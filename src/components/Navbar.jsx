@@ -19,7 +19,6 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem(<h2>EasyBuy</h2>),
   getItem("Dashbord", "sub1", <AppstoreOutlined />, [
     getItem("Chart", "1"),
     getItem("Customer List", "2"),
@@ -43,12 +42,13 @@ const items = [
   {
     type: "divider",
   },
-  getItem("Marchant/Admin"),
+  getItem("Marchant/Admin", "sub4", <ProductOutlined />, [
+    getItem("User Name", "13", <UserOutlined />),
+    getItem("Calculator", "14", <CalculatorOutlined />),
+  ]),
   {
     type: "divider",
   },
-  getItem("User Name", "13", <UserOutlined />),
-  getItem("Calculator", "14", <CalculatorOutlined />),
 ];
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -61,23 +61,36 @@ const Navbar = () => {
   return (
     <div
       style={{
-        width: 256,
+        width: "fit-content",
         height: "100vh",
+        background: "#fff",
+        boxShadow: "10px 0px 4px -7px rgba(0,0,0,0.1)",
+        padding: "0 20px",
       }}
     >
-      <Button
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-        }}
+      <div
+        className={
+          collapsed
+            ? "flex flex-col py-5"
+            : "flex items-center justify-between py-5"
+        }
       >
-        {collapsed ? (
-          <MenuUnfoldOutlined className="text-black" />
-        ) : (
-          <MenuFoldOutlined className="text-black" />
-        )}
-      </Button>
+        <h2 className="text-xl font-bold text-slate-800 w-full">EasyBuy</h2>
+        <Button
+          type="primary"
+          onClick={toggleCollapsed}
+          style={{
+            marginBottom: 16,
+            width: "fit-content",
+          }}
+        >
+          {collapsed ? (
+            <MenuUnfoldOutlined className="text-black" />
+          ) : (
+            <MenuFoldOutlined className="text-black" />
+          )}
+        </Button>
+      </div>
       <Menu
         defaultSelectedKeys={["1"]}
         defaultOpenKeys={["sub1"]}
@@ -86,6 +99,7 @@ const Navbar = () => {
         onClick={onClick}
         inlineCollapsed={collapsed}
         items={items}
+        style={{ fontSize: "20px" }}
       />
     </div>
   );
