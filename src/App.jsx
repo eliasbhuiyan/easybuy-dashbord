@@ -4,29 +4,18 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./components/Home";
 import Error from "./components/Error";
+import Layout from "./components/Layout";
+import Dashbord from "./components/Dashbord";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route
-          path="/"
-          element={
-            <div>
-              <Home />
-            </div>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <div>
-              <Error />
-            </div>
-          }
-        />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashbord />} />
+        </Route>
+        <Route path="*" element={<Error />} />
       </Route>
     )
   );
