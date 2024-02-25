@@ -6,9 +6,10 @@ import {
   ProductOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
 import { Button, Menu } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -20,76 +21,85 @@ function getItem(label, key, icon, children, type) {
 }
 const items = [
   getItem("Dashbord", "sub1", <AppstoreOutlined />, [
-    getItem("Chart", "1"),
-    getItem("Customer List", "2"),
-    getItem("Order Management", "3"),
-    getItem("Emails", "4"),
+    getItem("Chart", "chart"),
+    getItem("Customer List", "customers"),
+    getItem("Order Management", "order"),
+    getItem("Emails", "emails"),
   ]),
   {
     type: "divider",
   },
   getItem("Catagory", "sub2", <CodeSandboxOutlined />, [
-    getItem("Create Catagory", "5"),
-    getItem("Create SubCatagory", "6"),
+    getItem("Create Catagory", "catagory"),
+    getItem("Create SubCatagory", "subcatagory"),
   ]),
   {
     type: "divider",
   },
   getItem("Product", "sub3", <ProductOutlined />, [
-    getItem("Create Product", "7"),
-    getItem("All Products", "8"),
+    getItem("Create Product", "product"),
+    getItem("All Products", "allproducts"),
   ]),
   {
     type: "divider",
   },
-  getItem("Marchant/Admin", "sub4", <ProductOutlined />, [
-    getItem("User Name", "13", <UserOutlined />),
-    getItem("Calculator", "14", <CalculatorOutlined />),
-  ]),
+  getItem("@UserName", "user", <UserOutlined />),
   {
     type: "divider",
   },
+  getItem(
+    "Tools",
+    "tls",
+    null,
+    [
+      getItem("Calculator", "calculator", <CalculatorOutlined />),
+      getItem("Calendar", "calendar", <CalendarOutlined />),
+    ],
+    "group"
+  ),
 ];
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const screenWidth = window.innerWidth;
+  useEffect(() => {
+    if (screenWidth > 768) {
+      setCollapsed(false);
+    } else {
+      setCollapsed(true);
+    }
+  }, [screenWidth]);
   const onClick = (e) => {
-    console.log("click ", e);
+    console.log(e.key);
   };
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
   return (
-    <div
-      style={{
-        width: "fit-content",
-        height: "100vh",
-        background: "#fff",
-        boxShadow: "10px 0px 4px -7px rgba(0,0,0,0.1)",
-        padding: "0 20px",
-      }}
-    >
+    <div className="w-fit h-screen bg-white shadow-2xl">
       <div
         className={
           collapsed
-            ? "flex flex-col py-5"
-            : "flex items-center justify-between py-5"
+            ? "flex flex-col items-center justify-between py-5 px-2"
+            : "flex items-center justify-between py-5 px-2"
         }
       >
-        <h2 className="text-xl font-bold text-slate-800 w-full">EasyBuy</h2>
-        <Button
-          type="primary"
-          onClick={toggleCollapsed}
-          style={{
-            marginBottom: 16,
-            width: "fit-content",
-          }}
-        >
-          {collapsed ? (
-            <MenuUnfoldOutlined className="text-black" />
-          ) : (
-            <MenuFoldOutlined className="text-black" />
-          )}
-        </Button>
+        <h2 className="text-xl font-bold text-slate-800">EasyBuy</h2>
+        {screenWidth > 768 && (
+          <Button
+            type="primary"
+            onClick={toggleCollapsed}
+            style={{
+              marginBottom: 16,
+              width: "fit-content",
+            }}
+          >
+            {collapsed ? (
+              <MenuUnfoldOutlined className="text-black" />
+            ) : (
+              <MenuFoldOutlined className="text-black" />
+            )}
+          </Button>
+        )}
       </div>
       <Menu
         defaultSelectedKeys={["1"]}

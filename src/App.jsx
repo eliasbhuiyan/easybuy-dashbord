@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Error from "./components/Error";
 import Layout from "./components/Layout";
-import Dashbord from "./components/Dashbord";
+import Dashbord from "./components/pages/Dashbord";
 
 function App() {
   const router = createBrowserRouter(
@@ -14,6 +14,7 @@ function App() {
       <Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
+          <Route path="/calandar" element={<Dashbord />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>
