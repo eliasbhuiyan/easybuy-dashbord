@@ -7,6 +7,7 @@ import {
 import Error from "./components/Error";
 import Layout from "./components/Layout";
 import Dashbord from "./components/pages/Dashbord";
+import Calander from "./components/pages/Calander";
 
 function App() {
   const router = createBrowserRouter(
@@ -14,7 +15,7 @@ function App() {
       <Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
-          <Route path="/calandar" element={<Dashbord />} />
+          <Route path="/calandar" element={<Calander />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>

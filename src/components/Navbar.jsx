@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Menu } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -53,12 +54,13 @@ const items = [
     null,
     [
       getItem("Calculator", "calculator", <CalculatorOutlined />),
-      getItem("Calendar", "calendar", <CalendarOutlined />),
+      getItem("Calendar", "/calandar", <CalendarOutlined />),
     ],
     "group"
   ),
 ];
 const Navbar = () => {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const screenWidth = window.innerWidth;
   useEffect(() => {
@@ -70,6 +72,7 @@ const Navbar = () => {
   }, [screenWidth]);
   const onClick = (e) => {
     console.log(e.key);
+    navigate(e.key);
   };
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
