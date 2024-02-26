@@ -78,7 +78,7 @@ const Navbar = () => {
     setCollapsed(!collapsed);
   };
   return (
-    <div className="w-fit h-screen bg-white shadow-2xl">
+    <div className="z-50 h-screen w-[120px] lg:w-auto bg-white sticky top-0 left-0 overflow-y-scroll">
       <div
         className={
           collapsed
