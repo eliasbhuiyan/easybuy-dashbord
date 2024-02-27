@@ -3,6 +3,8 @@ import { Input, Select } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FileUploader } from "react-drag-drop-files";
+import { GiCrossMark } from "react-icons/gi";
+
 const CreateProduct = () => {
   // Image Upload Part
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
@@ -25,37 +27,42 @@ const CreateProduct = () => {
   return (
     <div className="bg-[#F5F5F5] p-6">
       <div className="productBox">
-        <label className="primary mb-2 inline-block">Product Name</label>
-        <Input placeholder="Product Name" />
-        <br />
-        <br />
-        <label className="primary mb-2 inline-block">Product Description</label>
-        <Editor wrapperClassName="demo-wrapper" editorClassName="demo-editor" />
-        <br />
-        <br />
-        <label className="primary mb-2 inline-block">Select Varient</label>
+        <label className="primary">Product Name *</label>
+        <Input placeholder="Product Name" className="input" />
+
+        <label className="primary">Product Description *</label>
+        <Editor
+          wrapperClassName="demo-wrapper input"
+          editorClassName="demo-editor"
+        />
+        <label className="primary">Select Varient *</label>
         <Select
-          mode="tags"
-          style={{
-            width: "100%",
-          }}
-          placeholder="Tags Mode"
+          placeholder="Select Varient"
           onChange={handleSelect}
           options={options}
-          className="bg-[#F5F5F5]"
+          className="input"
         />
-        <br />
-        <br />
-        <label className="primary mb-2 inline-block">Upload Image</label>
+        <label className="primary">Product Slug *</label>
+        <Input placeholder="Product Slug" className="input" />
+
+        <label className="primary mb-4 inline-block">Upload Image *</label>
         <FileUploader
           multiple={true}
           handleChange={handleChange}
           name="file"
           types={fileTypes}
         />
-        <img src={file} />
-        <br />
-        <br />
+        <div className="m-5 border p-1 w-fit">
+          {file && (
+            <GiCrossMark
+              className="ml-auto cursor-pointer text-xl m-2 text-red-600"
+              onClick={() => setFile(null)}
+            >
+              X
+            </GiCrossMark>
+          )}
+          <img src={file} className="shadow-2xl" />
+        </div>
 
         <button className="btn">Create Product</button>
       </div>

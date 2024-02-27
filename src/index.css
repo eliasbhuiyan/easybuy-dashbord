@@ -30,6 +30,44 @@
   .productBox {
     @apply p-4 bg-[#F8F9FD] rounded-3xl px-8 py-6 border-8 border-solid border-white;
   }
+
+  .input {
+    padding: 1rem 1.2rem;
+    margin: 10px 0 20px;
+    border-radius: 2rem;
+    display: block;
+    width: 80%;
+    border: none;
+    box-shadow: inset 6px 6px 8px rgba(97, 97, 97, 0.075),
+      6px 6px 6px rgba(255, 255, 255, 0.781);
+    outline: none;
+    background-color: inherit;
+    color: rgb(38, 38, 38);
+    font-size: inherit;
+    height: auto;
+  }
+
+
+  .inputField {
+    width: 80%;
+    height: 40px;
+    display: block;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid rgb(173, 173, 173);
+    border-radius: 30px;
+    margin: 10px 0 20px;
+    color: black;
+    font-size: .8em;
+    font-weight: 500;
+    box-sizing: border-box;
+    padding-left: 30px;
+  }
+
+  .inputField:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(199, 114, 255);
+  }
 }
 
 
