@@ -52,3 +52,7 @@ form .display input {
 form input.equal {
   width: 123px;
 }
+
+.demo-wrapper {
+  border: 1px solid #ccc;
+}

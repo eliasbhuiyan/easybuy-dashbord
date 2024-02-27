@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Dashbord from "./components/pages/Dashbord";
 import Calander from "./components/pages/Calander";
 import Calculator from "./components/pages/Calculator";
+import CreateProduct from "./components/pages/CreateProduct";
 
 function App() {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="/calandar" element={<Calander />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/product" element={<CreateProduct />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>
