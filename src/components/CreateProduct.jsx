@@ -27,6 +27,7 @@ const CreateProduct = () => {
   return (
     <div className="bg-[#F5F5F5] p-6">
       <div className="productBox">
+        <h2 className="title">Create Product</h2>
         <label className="primary">Product Name *</label>
         <Input placeholder="Product Name" className="input" />
 

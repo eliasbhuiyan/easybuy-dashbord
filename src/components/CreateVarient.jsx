@@ -23,8 +23,9 @@ const CreateVarient = () => {
   return (
     <div className=" bg-[#F5F5F5] p-6">
       <div className="productBox">
-        <div className="flex gap-4">
-          <label className="primary w-full">
+        <h2 className="title">Create Varient</h2>
+        <div className="flex justify-around">
+          <label className="primary w-2/5">
             Varient Name
             <input
               type="text"
@@ -33,7 +34,7 @@ const CreateVarient = () => {
             />
           </label>
 
-          <label className="primary w-full">
+          <label className="primary w-2/5">
             Color Varient
             <input
               type="text"
@@ -42,8 +43,8 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div className="flex gap-4">
-          <label className="primary w-full">
+        <div className="flex justify-around">
+          <label className="primary w-2/5">
             price Varient
             <input
               type="number"
@@ -52,7 +53,7 @@ const CreateVarient = () => {
             />
           </label>
 
-          <label className="primary w-full">
+          <label className="primary w-2/5">
             Quantity Varient
             <input
               type="number"
@@ -61,8 +62,8 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div className="flex gap-4">
-          <label className="primary w-full">
+        <div className="flex justify-around">
+          <label className="primary w-2/5">
             Size Varient
             <input
               type="text"
@@ -71,7 +72,7 @@ const CreateVarient = () => {
             />
           </label>
 
-          <label className="primary w-full">
+          <label className="primary w-2/5">
             Storage Varient
             <input
               type="text"
@@ -80,23 +81,28 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div>
-          <label className="primary">Select Product *</label>
-          <Select
-            placeholder="Select Product"
-            onChange={handleSelect}
-            options={options}
-            className="input"
-          />
+        <div className="w-full flex justify-center">
+          <label className="primary w-4/5">
+            Select Product *
+            <Select
+              placeholder="Select Product"
+              onChange={handleSelect}
+              options={options}
+              className="input"
+            />
+          </label>
         </div>
-        <div>
-          <label className="primary mb-4 inline-block">Upload Image *</label>
-          <FileUploader
-            multiple={true}
-            handleChange={handleChange}
-            name="file"
-            types={fileTypes}
-          />
+        <div className="flex flex-col items-center">
+          <label className="primary pb-4 inline-block">
+            Upload Image *
+            <FileUploader
+              multiple={true}
+              handleChange={handleChange}
+              name="file"
+              types={fileTypes}
+            />
+          </label>
+
           <div className="m-5 border p-1 w-fit">
             {file && (
               <GiCrossMark
@@ -109,7 +115,7 @@ const CreateVarient = () => {
             <img src={file} className="shadow-2xl" />
           </div>
         </div>
-        <button className="btn">Create Varient</button>
+        <button className="btn m-auto block">Create Varient</button>
       </div>
     </div>
   );
