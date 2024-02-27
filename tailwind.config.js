@@ -5,8 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    container:{
+    extend: {
+      colors: {
+        'primary': '#1E1E1E',
+        'brand': '#42B42F'
+      }
+    },
+    container: {
       center: true
     }
   },

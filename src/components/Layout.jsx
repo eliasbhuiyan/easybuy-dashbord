@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 const Layout = () => {
   return (
-    <div className="flex gap-5">
+    <div className="flex">
       <Navbar />
       <Outlet />
     </div>

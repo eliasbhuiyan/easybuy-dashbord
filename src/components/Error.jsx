@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-
 const Error = () => {
   function goBack() {
     window.history.back();
   }
   return (
-    <section className="bg-[url(../../public/404page.png)] bg-no-repeat bg-contain bg-center h-screen">
+    <section
+      className={
+        "bg-[url('../../404page.png')] bg-no-repeat bg-contain bg-center h-screen"
+      }
+    >
       <div className="container">
         <Link
           to="/"

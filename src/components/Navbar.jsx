@@ -1,13 +1,13 @@
 import {
-  AppstoreOutlined,
-  UserOutlined,
-  CalculatorOutlined,
-  CodeSandboxOutlined,
-  ProductOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  CalendarOutlined,
-} from "@ant-design/icons";
+  FaChartPie,
+  FaBox,
+  FaRegUserCircle,
+  FaCalendarAlt,
+} from "react-icons/fa";
+import { BiCategoryAlt } from "react-icons/bi";
+import { AiOutlineCalculator } from "react-icons/ai";
+import { FaBarsStaggered } from "react-icons/fa6";
+
 import { Button, Menu } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem("Dashbord", "sub1", <AppstoreOutlined />, [
+  getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
     getItem("Chart", "chart"),
     getItem("Customer List", "customers"),
     getItem("Order Management", "order"),
@@ -30,21 +30,21 @@ const items = [
   {
     type: "divider",
   },
-  getItem("Catagory", "sub2", <CodeSandboxOutlined />, [
+  getItem("Catagory", "sub2", <BiCategoryAlt />, [
     getItem("Create Catagory", "catagory"),
     getItem("Create SubCatagory", "subcatagory"),
   ]),
   {
     type: "divider",
   },
-  getItem("Product", "sub3", <ProductOutlined />, [
+  getItem("Product", "sub3", <FaBox />, [
     getItem("Create Product", "product"),
     getItem("All Products", "allproducts"),
   ]),
   {
     type: "divider",
   },
-  getItem("@UserName", "user", <UserOutlined />),
+  getItem("@UserName", "user", <FaRegUserCircle />),
   {
     type: "divider",
   },
@@ -53,8 +53,8 @@ const items = [
     "tls",
     null,
     [
-      getItem("Calculator", "calculator", <CalculatorOutlined />),
-      getItem("Calendar", "/calandar", <CalendarOutlined />),
+      getItem("Calculator", "calculator", <AiOutlineCalculator />),
+      getItem("Calendar", "/calandar", <FaCalendarAlt />),
     ],
     "group"
   ),
@@ -96,11 +96,7 @@ const Navbar = () => {
               width: "fit-content",
             }}
           >
-            {collapsed ? (
-              <MenuUnfoldOutlined className="text-black" />
-            ) : (
-              <MenuFoldOutlined className="text-black" />
-            )}
+            <FaBarsStaggered className="text-brand text-xl" />
           </Button>
         )}
       </div>
