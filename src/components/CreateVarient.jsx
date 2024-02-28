@@ -88,7 +88,7 @@ const CreateVarient = () => {
               placeholder="Select Product"
               onChange={handleSelect}
               options={options}
-              className="input"
+              className="input border-none"
             />
           </label>
         </div>

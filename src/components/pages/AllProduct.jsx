@@ -1,19 +1,46 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { BsFillSearchHeartFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Popup from "../Popup";
 const AllProduct = () => {
   const [product, setProduct] = useState([]);
+  const [deletePopup, setDeletePopup] = useState(false);
+  const [productId, setProductId] = useState("");
 
   useEffect(() => {
     // Fetch Data
-    const data = axios
+    axios
       .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
       .then((res) => {
         setProduct(res.data.product);
       });
   }, []);
+
+  // Delete Product
+  const handelDelete = (data) => {
+    setDeletePopup(data);
+    if (data) {
+      axios
+        .post("http://localhost:8000/api/v1/product/deleteproduct", {
+          id: productId,
+        })
+        .then((res) => {
+          toast.info(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+        })
+        .then(() => {
+          setDeletePopup(false);
+        });
+    }
+  };
   return (
     <section className="p-6 w-full productlist">
       {/* Product Header Part Start */}
@@ -54,7 +81,13 @@ const AllProduct = () => {
                 <button className="edit_btn">
                   <FaEdit className="edit_icon" />
                 </button>
-                <button className="delete_btn">
+                <button
+                  onClick={() => {
+                    setDeletePopup(true);
+                    setProductId(item._id);
+                  }}
+                  className="delete_btn"
+                >
                   <AiFillDelete className="blt_icon" />
                 </button>
               </td>
@@ -62,6 +95,9 @@ const AllProduct = () => {
           ))}
         </tbody>
       </table>
+      {/* Delete Popup */}
+      {deletePopup && <Popup sendData={handelDelete} />}
+      <ToastContainer />
     </section>
   );
 };

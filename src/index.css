@@ -6,9 +6,11 @@
   .primary {
     @apply font-sans text-xl font-bold text-secondary;
   }
+
   .basic {
     @apply font-sans text-base font-semibold text-primary;
   }
+
   .secondary {
     @apply font-sans text-xl font-bold text-secondary;
   }
@@ -18,7 +20,7 @@
   }
 
   .btn {
-    @apply py-3 px-8 rounded-full font-medium uppercase text-white font-bold inline-block relative transition-transform transition-shadow transform-gpu bg-brand;
+    @apply py-3 px-8 rounded-full uppercase text-white font-bold inline-block relative transition-all transform-gpu bg-brand;
   }
 
   .btn:hover {
@@ -44,16 +46,18 @@
   .productlist table tbody tr:nth-child(even) {
     @apply bg-[#f3f3f3];
   }
+
   .productlist table tbody tr:nth-child(odd):hover {
     @apply bg-[rgba(0,0,0,.075)];
   }
+
   .productlist table tbody tr td {
     @apply py-5 text-center basic;
   }
+
   /* ============= */
   .delete_btn {
-    @apply w-8 h-8 rounded-full bg-red-600 border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base
-    before:absolute before:-top-8 before:content-['Delete'] before:text-white before:transition-all before:text-[2px];
+    @apply w-8 h-8 rounded-full bg-red-600 border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Delete'] before:text-white before:transition-all before:text-[2px];
   }
 
   .delete_btn:hover {
@@ -63,9 +67,9 @@
   .delete_btn:hover .blt_icon {
     @apply text-3xl transition-all translate-y-[60%];
   }
+
   .edit_btn {
-    @apply w-8 h-8 rounded-full bg-brand border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base
-    before:absolute before:-top-8 before:content-['Edit'] before:text-white before:transition-all before:text-[2px];
+    @apply w-8 h-8 rounded-full bg-brand border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Edit'] before:text-white before:transition-all before:text-[2px];
   }
 
   .edit_btn:hover {
@@ -75,45 +79,23 @@
   .edit_btn:hover .edit_icon {
     @apply text-3xl transition-all translate-y-[60%];
   }
+
   /* ============= */
   .search {
     @apply w-1/2 px-3 h-fit flex items-center justify-between rounded-xl border-0 text-gray-600 shadow-input;
   }
+
   .search input {
-    @apply focus:ring-0 focus:outline-none py-3 bg-inherit;
+    @apply focus:ring-0 focus:outline-none py-3 bg-inherit w-full;
   }
+
   /* ============= */
   .input {
-    padding: 1rem 1.2rem;
-    margin: 10px 0 20px;
-    border-radius: 2rem;
-    display: block;
-    width: 80%;
-    border: none;
-    box-shadow: inset 6px 6px 8px rgba(97, 97, 97, 0.075),
-      6px 6px 6px rgba(255, 255, 255, 0.781);
-    outline: none;
-    background-color: inherit;
-    color: rgb(38, 38, 38);
-    font-size: inherit;
-    height: auto;
-    /* @apply py-4 px-5 */
+    @apply py-4 px-5 rounded-full block w-4/5 border-none shadow-input outline-none bg-inherit text-secondary;
   }
 
   .inputField {
-    width: 100%;
-    height: 40px;
-    display: block;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid rgb(173, 173, 173);
-    border-radius: 30px;
-    margin: 10px 0 20px;
-    color: black;
-    font-size: 0.8em;
-    font-weight: 500;
-    box-sizing: border-box;
-    padding-left: 30px;
+    @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 mx-5 text-black font-semibold pl-7;
   }
 
   .inputField:focus {
