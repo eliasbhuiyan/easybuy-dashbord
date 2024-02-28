@@ -1,10 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { BsFillSearchHeartFill } from "react-icons/bs";
+
 import { FaEdit } from "react-icons/fa";
 
 const AllProduct = () => {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    // Fetch Data
+    const data = axios
+      .get("http://localhost:8000/api/v1/product/getallproduct")
+      .then((res) => {
+        setProduct(res.data.product);
+      });
+  }, []);
   return (
     <section className="p-6 w-full productlist">
+      {/* Product Header Part Start */}
+      <div className="flex justify-around">
+        <h1 className="title">All Product</h1>
+        <div className="search">
+          <input type="text" placeholder="Search" />
+          <BsFillSearchHeartFill className="cursor-pointer text-xl" />
+        </div>
+      </div>
+      {/* Product Body Part Start */}
       <table className="w-full">
         <thead className="py-4 bg-secondary">
           <tr>
@@ -16,46 +37,30 @@ const AllProduct = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Product Name</td>
-            <td>Product Description</td>
-            <td>
-              <img
-                className="w-16 h-16 m-auto border"
-                src="/404page.png"
-                alt=""
-              />
-            </td>
-            <td>Cetagory</td>
-            <td className="flex items-center justify-evenly">
-              <button class="edit_btn">
-                <FaEdit className="edit_icon" />
-              </button>
-              <button class="delete_btn">
-                <AiFillDelete className="blt_icon" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Product Name</td>
-            <td>Product Description</td>
-            <td>
-              <img
-                className="w-16 h-16 m-auto border"
-                src="/404page.png"
-                alt=""
-              />
-            </td>
-            <td>Cetagory</td>
-            <td className="flex items-center justify-evenly">
-              <button class="edit_btn">
-                <FaEdit className="edit_icon" />
-              </button>
-              <button class="delete_btn">
-                <AiFillDelete className="blt_icon" />
-              </button>
-            </td>
-          </tr>
+          {product.map((item, index) => (
+            <tr key={item._id}>
+              <td>
+                #{++index} {item.name}
+              </td>
+              <td>{item.description}</td>
+              <td>
+                <img
+                  className="w-16 h-16 m-auto border"
+                  src={item.img}
+                  alt=""
+                />
+              </td>
+              <td>Cetagory</td>
+              <td className="flex items-center justify-evenly">
+                <button className="edit_btn">
+                  <FaEdit className="edit_icon" />
+                </button>
+                <button className="delete_btn">
+                  <AiFillDelete className="blt_icon" />
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </section>

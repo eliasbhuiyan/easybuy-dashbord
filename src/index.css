@@ -76,6 +76,13 @@
     @apply text-3xl transition-all translate-y-[60%];
   }
   /* ============= */
+  .search {
+    @apply w-1/2 px-3 h-fit flex items-center justify-between rounded-xl border-0 text-gray-600 shadow-input;
+  }
+  .search input {
+    @apply focus:ring-0 focus:outline-none py-3 bg-inherit;
+  }
+  /* ============= */
   .input {
     padding: 1rem 1.2rem;
     margin: 10px 0 20px;
