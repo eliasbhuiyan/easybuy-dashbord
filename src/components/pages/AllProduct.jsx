@@ -2,15 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { BsFillSearchHeartFill } from "react-icons/bs";
-
 import { FaEdit } from "react-icons/fa";
-
 const AllProduct = () => {
   const [product, setProduct] = useState([]);
+
   useEffect(() => {
     // Fetch Data
     const data = axios
-      .get("http://localhost:8000/api/v1/product/getallproduct")
+      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
       .then((res) => {
         setProduct(res.data.product);
       });

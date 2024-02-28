@@ -4,6 +4,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
+import axios from "axios";
 
 const CreateProduct = () => {
   // Image Upload Part
@@ -23,6 +24,20 @@ const CreateProduct = () => {
   }
   const handleSelect = (value) => {
     console.log(`selected ${value}`);
+  };
+
+  // Product Creation Part
+  const hendelCreate = () => {
+    try {
+      axios.post(`${import.meta.env.VITE_API_URL}product/createproduct`, {
+        name: "",
+        description: "",
+        img: "",
+        slug: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="bg-[#F5F5F5] p-6">
@@ -65,7 +80,9 @@ const CreateProduct = () => {
           <img src={file} className="shadow-2xl" />
         </div>
 
-        <button className="btn">Create Product</button>
+        <button onClick={hendelCreate} className="btn">
+          Create Product
+        </button>
       </div>
     </div>
   );
