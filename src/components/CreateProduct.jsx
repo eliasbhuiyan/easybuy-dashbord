@@ -123,9 +123,7 @@ const CreateProduct = () => {
             <GiCrossMark
               className="ml-auto cursor-pointer text-xl m-2 text-red-600"
               onClick={() => setFile(null)}
-            >
-              X
-            </GiCrossMark>
+            ></GiCrossMark>
           )}
           <img src={file} className="shadow-2xl" />
         </div>

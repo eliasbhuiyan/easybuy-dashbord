@@ -63,10 +63,10 @@ const AllProduct = () => {
           </tr>
         </thead>
         <tbody>
-          {product.map((item, index) => (
+          {product.map((item) => (
             <tr key={item._id}>
               <td>
-                #{++index} {item.name.substring(0, 20)}
+                {item.shortID} - {item.name.substring(0, 20)}
               </td>
               <td>{item.description.substring(0, 20)}...</td>
               <td>

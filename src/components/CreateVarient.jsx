@@ -1,18 +1,30 @@
 import { Select } from "antd";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
 const CreateVarient = () => {
+  const [product, setProduct] = useState([]);
+  // All Product
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
+      .then((res) => {
+        setProduct(res.data.product);
+      });
+  }, []);
+
   // Product Selection Part
   const options = [];
-  for (let i = 10; i < 36; i++) {
+  product.map((item) => {
     options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
+      value: item._id,
+      label: `${item.shortID}-${item.name}`,
     });
-  }
+  });
+
   const handleSelect = (value) => {
-    console.log(`selected ${value}`);
+    console.log(`${value}`);
   };
   // Image Upload Part
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
