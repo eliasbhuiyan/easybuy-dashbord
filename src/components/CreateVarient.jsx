@@ -4,19 +4,25 @@ import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
 const CreateVarient = () => {
-  const [product, setProduct] = useState([]);
+  const [allProduct, setAllProduct] = useState([]);
+  const [color, setColor] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [size, setSize] = useState("");
+  const [storage, setStorage] = useState("");
+  const [productId, setProductId] = useState("");
   // All Product
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
       .then((res) => {
-        setProduct(res.data.product);
+        setAllProduct(res.data.product);
       });
   }, []);
 
   // Product Selection Part
   const options = [];
-  product.map((item) => {
+  allProduct.map((item) => {
     options.push({
       value: item._id,
       label: `${item.shortID}-${item.name}`,
@@ -24,13 +30,49 @@ const CreateVarient = () => {
   });
 
   const handleSelect = (value) => {
-    console.log(`${value}`);
+    setProductId(value);
   };
   // Image Upload Part
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
   const handleChange = (file) => {
-    setFile(URL.createObjectURL(file[0]));
+    setFile(file[0]);
+  };
+
+  console.log(file);
+  // Create Varient Part
+  const hendelCreate = () => {
+    axios
+      .post(
+        `http://localhost:8000/api/v1/product/createvariant`,
+        {
+          color,
+          image: file,
+          price,
+          quantity,
+          size,
+          storage,
+          product: productId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@65c99558521ab0a4fdf3de0d@fjoslskdfj3`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("res", res);
+        // toast.success(res.data.message, {
+        //   position: "top-right",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        // })
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   };
   return (
     <div className=" bg-[#F5F5F5] p-6">
@@ -49,6 +91,7 @@ const CreateVarient = () => {
           <label className="primary w-2/5">
             Color Varient
             <input
+              onChange={(e) => setColor(e.target.value)}
               type="text"
               placeholder="Varient Color"
               className="inputField"
@@ -59,6 +102,7 @@ const CreateVarient = () => {
           <label className="primary w-2/5">
             price Varient
             <input
+              onChange={(e) => setPrice(e.target.value)}
               type="number"
               placeholder="price Varient"
               className="inputField"
@@ -68,6 +112,7 @@ const CreateVarient = () => {
           <label className="primary w-2/5">
             Quantity Varient
             <input
+              onChange={(e) => setQuantity(e.target.value)}
               type="number"
               placeholder="Quantity Varient"
               className="inputField"
@@ -78,6 +123,7 @@ const CreateVarient = () => {
           <label className="primary w-2/5">
             Size Varient
             <input
+              onChange={(e) => setSize(e.target.value)}
               type="text"
               placeholder="Size Varient"
               className="inputField"
@@ -87,6 +133,7 @@ const CreateVarient = () => {
           <label className="primary w-2/5">
             Storage Varient
             <input
+              onChange={(e) => setStorage(e.target.value)}
               type="text"
               placeholder="Storage Varient"
               className="inputField"
@@ -124,10 +171,12 @@ const CreateVarient = () => {
                 X
               </GiCrossMark>
             )}
-            <img src={file} className="shadow-2xl" />
+            {/* <img src={URL.createObjectURL(file[0])} className="shadow-2xl" /> */}
           </div>
         </div>
-        <button className="btn m-auto block">Create Varient</button>
+        <button onClick={hendelCreate} className="btn m-auto block">
+          Create Varient
+        </button>
       </div>
     </div>
   );
