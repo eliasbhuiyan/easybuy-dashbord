@@ -66,14 +66,14 @@ const AllProduct = () => {
           {product.map((item, index) => (
             <tr key={item._id}>
               <td>
-                #{++index} {item.name}
+                #{++index} {item.name.substring(0, 20)}
               </td>
-              <td>{item.description}</td>
+              <td>{item.description.substring(0, 20)}...</td>
               <td>
                 <img
                   className="w-16 h-16 m-auto border"
                   src={item.img}
-                  alt=""
+                  alt={item.imageAlt}
                 />
               </td>
               <td>Cetagory</td>
