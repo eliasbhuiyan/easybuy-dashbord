@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CreateVarient = () => {
   const [allProduct, setAllProduct] = useState([]);
   const [color, setColor] = useState("");
@@ -35,11 +37,10 @@ const CreateVarient = () => {
   // Image Upload Part
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
-  const handleChange = (file) => {
-    setFile(file[0]);
+  const handleChange = async (files) => {
+    setFile(files[0]);
   };
 
-  console.log(file);
   // Create Varient Part
   const hendelCreate = () => {
     axios
@@ -47,7 +48,7 @@ const CreateVarient = () => {
         `http://localhost:8000/api/v1/product/createvariant`,
         {
           color,
-          image: file,
+          // image: file,
           price,
           quantity,
           size,
@@ -61,17 +62,20 @@ const CreateVarient = () => {
         }
       )
       .then((res) => {
-        console.log("res", res);
-        // toast.success(res.data.message, {
-        //   position: "top-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        // })
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
       })
       .catch((err) => {
-        console.log("err", err);
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
       });
   };
   return (
@@ -178,6 +182,7 @@ const CreateVarient = () => {
           Create Varient
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

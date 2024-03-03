@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Input } from "antd";
+import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
@@ -13,7 +15,7 @@ const CreateProduct = () => {
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
-  const [descriptions, setDescriptions] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [image, setImage] = useState("");
   const [imageAlt, setImageAlt] = useState("");
   const [pslug, setpSlug] = useState("");
@@ -30,8 +32,10 @@ const CreateProduct = () => {
           `${import.meta.env.VITE_API_URL}product/createproduct`,
           {
             name: name,
-            description: descriptions,
             img: image,
+            description: draftToHtml(
+              convertToRaw(editorState.getCurrentContent())
+            ),
             imageAlt: imageAlt,
             slug: pslug,
           },
@@ -49,7 +53,6 @@ const CreateProduct = () => {
             theme: "light",
           });
           setName("");
-          setDescriptions("");
           setImage("");
           setpSlug("");
           setFile(null);
@@ -85,10 +88,10 @@ const CreateProduct = () => {
 
         <label className="primary">Product Description *</label>
         <Editor
-          value={descriptions}
-          onChange={(e) => setDescriptions(e.blocks[0].text)}
+          editorState={editorState}
           wrapperClassName="demo-wrapper input"
           editorClassName="demo-editor"
+          onEditorStateChange={(value) => setEditorState(value)}
         />
         <label className="primary">Product Slug *</label>
         <Input
