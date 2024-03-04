@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ThreeDanim from "../ThreeDanim";
 
 const Registration = () => {
@@ -30,9 +31,9 @@ const Registration = () => {
           <button className="btn w-1/2 m-auto mt-4">Register</button>
           <p className="mt-4 text-center">
             Already have an account?{" "}
-            <a href="#login" className="text-brand">
+            <Link to='/login' className="text-brand">
               Log in here.
-            </a>
+            </Link>
           </p>
         </form>
       </div>

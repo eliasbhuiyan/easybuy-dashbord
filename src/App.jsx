@@ -12,12 +12,14 @@ import Calculator from "./components/pages/Calculator";
 import Product from "./components/pages/Product";
 import AllProduct from "./components/pages/AllProduct";
 import Registration from "./components/pages/Registration";
+import Login from "./components/pages/Login";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
           <Route path="/calandar" element={<Calander />} />
