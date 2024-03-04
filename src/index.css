@@ -4,7 +4,7 @@
 
 @layer components {
   .primary {
-    @apply font-sans text-xl font-bold text-secondary;
+    @apply font-sans text-xl font-bold text-secondary relative;
   }
 
   .basic {
@@ -99,155 +99,80 @@
   }
 
   .inputField:focus {
-    outline: none;
-    border-bottom: 2px solid rgb(199, 114, 255);
+    @apply outline-none border-b-2 border-solid border-b-[rgb(199,114,255)];
   }
-}
 
+  .placeholder{
+    @apply absolute left-10 top-8 transition-all;
+  }
+  .inputField:focus + .placeholder{
+    @apply top-2 text-sm;
+  }
+  .inputField:valid + .placeholder{
+    @apply top-2 text-sm text-green-500;
+  }
+  
 .calculator {
-  width: fit-content;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: rgb(211, 211, 211);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ccc;
+  @apply w-fit p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
 }
 
-form input {
-  border: none;
-  outline: 0;
-  width: 60px;
-  height: 60px;
-  font-size: 16px;
-  background-color: rgb(216, 130, 0);
-  margin: 2px;
-  border-radius: 10px;
-  color: white;
-  font-weight: bolder;
-  cursor: pointer;
+.calculator input {
+  @apply border-none outline-none w-16 h-16 text-lg bg-slate-500 m-1 rounded-xl text-white cursor-pointer;
 }
 
-form input[type="button"]:hover {
-  background-color: rgb(255, 94, 0);
+.calculator input[type="button"]:hover {
+  @apply bg-[#ff5e00];
 }
 
-form .display {
-  display: flex;
-  justify-content: flex-end;
-  margin: 5px 0px 15px 0px;
+.calculator .display {
+  @apply flex justify-end mt-1 mb-4;
 }
 
-form .display input {
-  text-align: right;
-  flex: 1;
-  font-size: 40px;
-  padding: 5px 10px;
-  background-color: rgb(64, 64, 64);
+.calculator .display input {
+  @apply text-right flex-1 text-4xl py-1 px-2 bg-secondary
 }
 
-form input.equal {
-  width: 123px;
-}
-
-.demo-wrapper {
-  border: 1px solid #ccc;
+.calculator input.equal {
+  @apply w-32
 }
 
 /* ============================================ */
-@keyframes animate {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}
-
 .threedbox {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 500px;
-  transform: skewY(-20deg) translateY(-50%);
-  animation: animate 5s linear infinite;
-  display: flex;
-  justify-content: center;
-  -webkit-transform: skewY(-20deg) translateY(-50%);
-  -moz-transform: skewY(-20deg) translateY(-50%);
-  -ms-transform: skewY(-20deg) translateY(-50%);
-  -o-transform: skewY(-20deg) translateY(-50%);
+  @apply absolute top-1/2 left-0 w-[500px] -skew-y-[20deg] -translate-y-1/2 animate-[animate_5s_linear_infinite] flex justify-center;
 }
-.cube {
-  position: relative;
-  z-index: 2;
-
-  &:nth-child(2) {
-    z-index: 1;
-    translate: -60px -60px;
-  }
-
-  &:nth-child(3) {
-    z-index: 3;
-    translate: 60px 60px;
-  }
-
-  div {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    translate: calc(-70px * var(--x)) calc(-60px * var(--y));
-
-    span {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      background: #dcdcdc;
-      z-index: calc(1 * var(--i));
-      transition: 1.5s;
-
-      &:hover {
-        transition: 0s;
-        background: #6aef41;
-        filter: drop-shadow(0 0 30px #67ef41);
-
-        &:before,
-        &:after {
-          transition: 0s;
-          background: #44ef41;
-        }
-      }
-
-      &:before {
-        content: "";
-        position: absolute;
-        left: -40px;
-        width: 40px;
-        height: 100%;
-        background: #fff;
-        transform-origin: right;
-        transform: skewY(45deg);
-        transition: 1.5s;
-      }
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: -40px;
-        left: 0px;
-        width: 100%;
-        height: 40px;
-        background: #f2f2f2;
-        transform-origin: bottom;
-        transform: skewX(45deg);
-        transition: 1.5s;
-      }
-    }
-  }
+ .cube {
+  @apply absolute z-[2];
 }
 
+.cube:nth-child(2) {
+  @apply z-[1] -translate-y-[60px] -translate-x-[60px]
+}
+
+.cube:nth-child(3) {
+  @apply z-[3] translate-y-[60px] translate-x-[60px]
+}
+
+.cube div {
+  @apply absolute flex flex-col gap-7;
+  translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+}
+.cube span {
+  @apply relative block w-12 h-12 bg-[#dcdcdc] transition-all z-3dspan;
+}
+.cube span:hover {
+  @apply transition-none bg-[#67ef41] drop-shadow-3d;
+}
+.cube span:hover:before,
+.cube span:hover:after {
+  @apply transition-none bg-[#44ef41];
+}
+
+.cube span:before {
+  @apply content-[''] absolute -left-10 w-10 h-full bg-white origin-right skew-y-[45deg] transition-all
+}
+
+.cube span:after {
+  @apply content-[''] absolute -top-10 left-0 w-full h-10 bg-white origin-bottom skew-x-[45deg] transition-all
+}
 /* ============================================ */
+}

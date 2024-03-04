@@ -4,16 +4,16 @@ const Calculator = () => {
   return (
     <div className="container">
       <div className="calculator">
-        <form action="">
+        <form>
           <div className="display">
             <input type="text" value={value} />
           </div>
           <div>
-            <input type="button" value="AC" onClick={(e) => setValue("")} />
+            <input type="button" value="AC" onClick={() => setValue("")} />
             <input
               type="button"
               value="DE"
-              onClick={(e) => setValue(value.slice(0, -1))}
+              onClick={() => setValue(value.slice(0, -1))}
             />
             <input
               type="button"
@@ -107,7 +107,7 @@ const Calculator = () => {
               type="button"
               value="="
               className="equal"
-              onClick={(e) => setValue(eval(value))}
+              onClick={() => setValue(eval(value))}
             />
           </div>
         </form>
