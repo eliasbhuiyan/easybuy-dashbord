@@ -23,6 +23,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
   getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
     getItem("Chart", "chart"),
+    getItem("Merchant", "merchant"),
     getItem("Customer List", "customers"),
     getItem("Order Management", "order"),
     getItem("Emails", "emails"),

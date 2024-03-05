@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import ThreeDanim from "../ThreeDanim";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 
-const Login = () => {
-  let [loginData, setLoginData] = useState({
+const BecomeMerchant = () => {
+  let [merchantData, setMerchantData] = useState({
     email: "",
     password: "",
   })
-  const handelLogin = (e) => {
+  const handelMerchant = (e) => {
     e.preventDefault();
-    axios.post(`${import.meta.env.VITE_API_URL}auth/login`,{ 
-     email: loginData.email,
-     password: loginData.password
+    axios.post(`${import.meta.env.VITE_API_URL}auth/merchant`,{ 
+     email: merchantData.email,
+     password: merchantData.password
     })
     .then((res) => {
       toast.success(res.data.message, {
@@ -37,21 +37,27 @@ const Login = () => {
       <div className="container h-full relative flex items-center">
         <ThreeDanim />
         <form className="productBox w-2/5 flex flex-col">
-          <h2 className="title">Sign In To Your Account</h2>
+          <h2 className="title">Become Merchant</h2>
           <label className="primary">
-            <input value={loginData.email} onChange={(e) => setLoginData({ ...loginData, email: e.target.value })} type="email" className="inputField h-14" required />
+            <input value={merchantData.email} onChange={(e) => setMerchantData({ ...merchantData, email: e.target.value })} type="email" className="inputField h-14" required />
             <span className="placeholder">Email Address *</span>
           </label>
 
           <label className="primary">
-            <input value={loginData.password} onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} type="password" className="inputField h-14" required />
+            <input value={merchantData.password} onChange={(e) => setMerchantData({ ...merchantData, password: e.target.value })} type="password" className="inputField h-14" required />
             <span className="placeholder">Password *</span>
           </label>
-          <button onClick={handelLogin} className="btn w-1/2 m-auto mt-4">Sign In</button>
+          <button onClick={handelMerchant} className="btn w-1/2 m-auto mt-4">Become Merchant</button>
           <p className="mt-4 text-center">
-            Don&apos;t have an account? {" "}
+            Already Merchant ? {" "}
+            <Link to='/login' className="text-brand">
+              Sign In here.
+            </Link>
+          </p>
+          <p className="mt-4 text-center">
+            Don&apos;t have an account ? {" "}
             <Link to='/registration' className="text-brand">
-              Sign up here.
+              Sign Up here.
             </Link>
           </p>
         </form>
@@ -60,4 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default BecomeMerchant;

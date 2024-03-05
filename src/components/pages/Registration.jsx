@@ -5,7 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const Registration = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   let navigate = useNavigate();
   let [regData, setRegData] = useState({
     fullName: "",
@@ -111,8 +111,8 @@ const Registration = () => {
           </button>
           <p className="mt-4 text-center">
             Already have an account?{" "}
-            <Link to="/login" className="text-brand">
-              Log in here.
+            <Link to='/becomemerchant' className="text-brand">
+              Request to become Merchant
             </Link>
           </p>
         </form>

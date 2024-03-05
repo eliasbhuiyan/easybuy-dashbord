@@ -11,19 +11,23 @@ import Calander from "./components/pages/Calander";
 import Calculator from "./components/pages/Calculator";
 import Product from "./components/pages/Product";
 import AllProduct from "./components/pages/AllProduct";
-import Registration from "./components/pages/Registration";
 import Login from "./components/pages/Login";
 import OtpPage from "./components/pages/OtpPage";
+import BecomeMerchant from "./components/pages/BecomeMerchant";
+import Merchant from "./components/pages/Merchant";
+import Registration from "./components/pages/Registration";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/registration" element={<Registration />} />
+        <Route path="/becomemerchant" element={<BecomeMerchant />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otp/:userId" element={<OtpPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
+          <Route path="/merchant" element={<Merchant />} />
           <Route path="/calandar" element={<Calander />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/product" element={<Product />} />
