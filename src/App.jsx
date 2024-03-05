@@ -13,6 +13,7 @@ import Product from "./components/pages/Product";
 import AllProduct from "./components/pages/AllProduct";
 import Registration from "./components/pages/Registration";
 import Login from "./components/pages/Login";
+import OtpPage from "./components/pages/OtpPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
       <Route>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/otp/:userId" element={<OtpPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
           <Route path="/calandar" element={<Calander />} />

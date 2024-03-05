@@ -12,15 +12,15 @@ const Login = () => {
             <input type="email" className="inputField h-14" required />
             <span className="placeholder">Email Address *</span>
           </label>
-         
+
           <label className="primary">
             <input type="password" className="inputField h-14" required />
             <span className="placeholder">Password *</span>
           </label>
           <button className="btn w-1/2 m-auto mt-4">Sign In</button>
           <p className="mt-4 text-center">
-            Don&apos;t have an account? {" "}
-            <Link to='/registration' className="text-brand">
+            Don&apos;t have an account?{" "}
+            <Link to="/registration" className="text-brand">
               Sign up here.
             </Link>
           </p>

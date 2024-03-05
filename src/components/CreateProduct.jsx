@@ -46,7 +46,7 @@ const CreateProduct = () => {
           }
         )
         .then((res) => {
-          toast.success(res.data.message, {
+          toast.success(res.data.success, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
