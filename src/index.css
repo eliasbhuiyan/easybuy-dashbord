@@ -79,7 +79,18 @@
   .edit_btn:hover .edit_icon {
     @apply text-3xl transition-all translate-y-[60%];
   }
-
+  .approved_btn {
+    @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Approved'] before:text-white before:text-[2px] w-24 transition-all bg-brand items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
+  }
+  .approved_btn .edit_icon {
+    @apply text-3xl transition-all translate-y-[40%];
+  }
+  .reject_btn {
+    @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Reject'] before:text-white before:text-[2px] w-24 transition-all bg-red-600 items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
+  }
+  .reject_btn .blt_icon {
+    @apply text-3xl transition-all translate-y-[50%];
+  }
   /* ============= */
   .search {
     @apply w-1/2 px-3 h-fit flex items-center justify-between rounded-xl border-0 text-gray-600 shadow-input;
