@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Input } from "antd";
+import { useEffect, useState } from "react";
+import { Input, Select } from "antd";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const CreateProduct = () => {
-  // Image Upload Part
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
@@ -19,11 +18,33 @@ const CreateProduct = () => {
   const [image, setImage] = useState("");
   const [imageAlt, setImageAlt] = useState("");
   const [pslug, setpSlug] = useState("");
+  const [subCatagoryId, setSubCatagoryId] = useState("");
+  const [allSubCatagory, setAllSubCatagory] = useState([]);
+
+  // Image Upload Part
   const handleChange = (file) => {
     setImage(file[0].name);
     setFile(URL.createObjectURL(file[0]));
   };
-
+  // All SubCatagory
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`)
+      .then((res) => {
+        setAllSubCatagory(res.data.subCatagory);
+      });
+  }, []);
+  // SubCatagory Selection Part
+  const options = [];
+  allSubCatagory.map((item) => {
+    options.push({
+      value: item._id,
+      label: `${item.name}`,
+    });
+  });
+  const handleSelect = (value) => {
+    setSubCatagoryId(value);
+  };
   // Product Creation Part
   const hendelCreate = () => {
     try {
@@ -38,15 +59,17 @@ const CreateProduct = () => {
             ),
             imageAlt: imageAlt,
             slug: pslug,
+            subCatagory: subCatagoryId,
           },
           {
             headers: {
-              Authorization: `Bearer user@65c99558521ab0a4fdf3de0d@fjoslskdfj3`,
+              Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
             },
           }
         )
         .then((res) => {
-          toast.success(res.data.success, {
+          console.log(res);
+          toast.success(res.data.message, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
@@ -85,7 +108,6 @@ const CreateProduct = () => {
           placeholder="Product Name"
           className="input"
         />
-
         <label className="primary">Product Description *</label>
         <Editor
           editorState={editorState}
@@ -100,6 +122,17 @@ const CreateProduct = () => {
           placeholder="Product Slug"
           className="input"
         />
+        <div className="w-full flex justify-center">
+          <label className="primary w-4/5">
+            Select SubCatagory *
+            <Select
+              placeholder="Select Product"
+              onChange={handleSelect}
+              options={options}
+              className="input border-none"
+            />
+          </label>
+        </div>
 
         <div className="flex justify-between w-4/5">
           <label className="primary mb-4 inline-block w-2/5">

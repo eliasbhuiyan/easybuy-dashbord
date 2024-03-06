@@ -82,7 +82,7 @@ const AllProduct = () => {
                       alt={item.imageAlt}
                     />
                   </td>
-                  <td>Cetagory</td>
+                  <td>{item?.subCatagory?.name}</td>
                   <td className="flex items-center justify-evenly">
                     <button className="edit_btn">
                       <FaEdit className="edit_icon" />
