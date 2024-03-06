@@ -17,28 +17,53 @@ const Merchant = () => {
       });
   }, []);
   const handelApproved = (id) => {
-    axios.post(`${import.meta.env.VITE_API_URL}auth/approvedmerchant`, {
-      id
-    }).then((res) => {
-      toast.success(res.data.message, {
-        position: "top-right",
-        autoClose: 5000,
-        closeOnClick: true,
-        theme: "light",
+    axios
+      .post(`${import.meta.env.VITE_API_URL}auth/approvedmerchant`, {
+        id,
+      })
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
       });
-    }).catch((err) => {
-      console.log(err);
-      toast.error(err.response.data.error, {
-        position: "top-right",
-        autoClose: 5000,
-        closeOnClick: true,
-        theme: "light",
+  };
+  const handelReject = (id) => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}auth/deletemerchant`, {
+        id,
+      })
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
       });
-    })
-  }
+  };
   return (
     <section className="p-6 w-full productlist">
-      <ToastContainer/>
+      <ToastContainer />
       <table className="w-full">
         <thead className="py-4 bg-secondary">
           <tr>
@@ -49,16 +74,26 @@ const Merchant = () => {
           </tr>
         </thead>
         <tbody>
-          {merchant.map((item,i) => (
+          {merchant.map((item, i) => (
             <tr key={item._id}>
-              <td>#{++i} - {item?.merchant?.fullName}</td>
+              <td>
+                #{++i} - {item?.merchant?.fullName}
+              </td>
               <td>{item?.merchant?.email}</td>
               <td>{item?.merchant?.role}</td>
               <td className="flex items-center justify-evenly">
-                <button onClick={()=>handelApproved(item._id)} className="approved_btn">
-                  <IoCheckmarkDoneSharp className="edit_icon" />
-                </button>
-                <button className="reject_btn">
+                {item?.merchant?.role === "user" && (
+                  <button
+                    onClick={() => handelApproved(item._id)}
+                    className="approved_btn"
+                  >
+                    <IoCheckmarkDoneSharp className="edit_icon" />
+                  </button>
+                )}
+                <button
+                  onClick={() => handelReject(item._id)}
+                  className="reject_btn"
+                >
                   <GiCrossMark className="blt_icon" />
                 </button>
               </td>
