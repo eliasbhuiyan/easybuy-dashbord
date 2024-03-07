@@ -37,6 +37,15 @@ const Registration = () => {
           closeOnClick: true,
           theme: "light",
         });
+      })
+      .finally(() => {
+        setRegData({
+          fullName: "",
+          email: "",
+          phone: "",
+          addressOne: "",
+          password: "",
+        });
       });
   };
   return (

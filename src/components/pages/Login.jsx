@@ -31,6 +31,12 @@ const Login = () => {
           closeOnClick: true,
           theme: "light",
         });
+      })
+      .finally(() => {
+        setLoginData({
+          email: "",
+          password: "",
+        });
       });
   };
   return (

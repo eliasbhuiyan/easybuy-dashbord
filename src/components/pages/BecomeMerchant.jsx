@@ -31,6 +31,12 @@ const BecomeMerchant = () => {
           closeOnClick: true,
           theme: "light",
         });
+      })
+      .finally(() => {
+        setMerchantData({
+          email: "",
+          password: "",
+        });
       });
   };
   return (

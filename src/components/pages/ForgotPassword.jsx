@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
 const ForgotPassword = () => {
   let [email, setEmail] = useState("");
   const handelSubmit = () => {
@@ -10,7 +9,6 @@ const ForgotPassword = () => {
         email,
       })
       .then((res) => {
-        console.log(res.data);
         toast.success(res.data.message, {
           position: "top-right",
           autoClose: 5000,
@@ -19,7 +17,6 @@ const ForgotPassword = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.response.data.error, {
           position: "top-right",
           autoClose: 5000,
