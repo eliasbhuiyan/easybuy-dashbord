@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Layout = () => {
   const [userRole, setUserRole] = useState("");
