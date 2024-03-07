@@ -16,6 +16,8 @@ import OtpPage from "./components/pages/OtpPage";
 import BecomeMerchant from "./components/pages/BecomeMerchant";
 import Merchant from "./components/pages/Merchant";
 import Registration from "./components/pages/Registration";
+import ForgotPassword from "./components/pages/ForgotPassword";
+import ResetPassword from "./components/pages/ResetPassword";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +26,8 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/becomemerchant" element={<BecomeMerchant />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/otp/:userId" element={<OtpPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />

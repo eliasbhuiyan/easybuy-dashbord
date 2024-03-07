@@ -65,6 +65,9 @@ const Login = () => {
             />
             <span className="placeholder">Password *</span>
           </label>
+          <Link to="/forgotpassword" className="text-brand ml-8">
+            Forgot Password?
+          </Link>
           <button onClick={handelLogin} className="btn w-1/2 m-auto mt-4">
             Sign In
           </button>
