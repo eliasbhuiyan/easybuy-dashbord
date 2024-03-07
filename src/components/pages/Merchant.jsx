@@ -18,9 +18,17 @@ const Merchant = () => {
   }, []);
   const handelApproved = (id) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/approvedmerchant`, {
-        id,
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}auth/approvedmerchant`,
+        {
+          id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message, {
           position: "top-right",
@@ -41,9 +49,17 @@ const Merchant = () => {
   };
   const handelReject = (id) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/deletemerchant`, {
-        id,
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}auth/deletemerchant`,
+        {
+          id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message, {
           position: "top-right",

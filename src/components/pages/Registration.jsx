@@ -40,7 +40,7 @@ const Registration = () => {
       });
   };
   return (
-    <section className="h-screen bg-slate-100">
+    <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
       <ToastContainer />
       <div className="container h-full relative flex items-center">
         <ThreeDanim />
@@ -111,7 +111,7 @@ const Registration = () => {
           </button>
           <p className="mt-4 text-center">
             Already have an account?{" "}
-            <Link to='/becomemerchant' className="text-brand">
+            <Link to="/becomemerchant" className="text-brand">
               Request to become Merchant
             </Link>
           </p>
