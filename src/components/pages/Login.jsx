@@ -3,10 +3,7 @@ import ThreeDanim from "../ThreeDanim";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { loggeduser } from "../../reducer/userSlice";
 const Login = () => {
-  let dispatch = useDispatch();
   const navigate = useNavigate();
   let [loginData, setLoginData] = useState({
     email: "",
@@ -19,26 +16,16 @@ const Login = () => {
         password: loginData.password,
       })
       .then((res) => {
-        if (res.data.user.role === "user") {
-          toast.error("You are not authorized", {
-            position: "top-right",
-            autoClose: 5000,
-            closeOnClick: true,
-            theme: "light",
-          });
-        } else {
-          toast.success(res.data.message, {
-            position: "top-right",
-            autoClose: 5000,
-            closeOnClick: true,
-            theme: "light",
-          });
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
-          dispatch(loggeduser(res.data.user));
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-        }
+        document.cookie = `sec_token=${res.data.sec_token};SameSite=Lax;path=/`;
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+        setTimeout(() => {
+          navigate(`/`);
+        }, 1500);
       })
       .catch((err) => {
         toast.error(err.response.data.error, {
