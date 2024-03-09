@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
-
 const Dashbord = () => {
-  // const user = useSelector((state) => state.activeUser.value.role);
-  // console.log(user);
-  return <div>Dashbord</div>;
+  return (
+    <section className="h-screen w-full bg-[url('../../chart.png')] bg-no-repeat bg-center">
+      {" "}
+    </section>
+  );
 };
 
 export default Dashbord;

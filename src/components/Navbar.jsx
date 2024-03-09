@@ -23,7 +23,7 @@ function getItem(label, key, icon, children, type) {
 
 const items = [
   getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
-    getItem("Chart", "chart"),
+    getItem("Chart", "/"),
     getItem("Merchant", "merchant"),
     getItem("Customer List", "customers"),
     getItem("Order Management", "order"),
@@ -32,10 +32,7 @@ const items = [
   {
     type: "divider",
   },
-  getItem("Catagory", "sub2", <BiCategoryAlt />, [
-    getItem("Create Catagory", "catagory"),
-    getItem("Create SubCatagory", "subcatagory"),
-  ]),
+  getItem("Catagory", "catagory", <BiCategoryAlt />),
   {
     type: "divider",
   },

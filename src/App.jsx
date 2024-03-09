@@ -18,9 +18,9 @@ import Merchant from "./components/pages/Merchant";
 import Registration from "./components/pages/Registration";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
+import Catagory from "./components/pages/Catagory";
 
 function App() {
-  // const user = useSelector((state) => state.activeUser.value.role);
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
@@ -33,6 +33,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />
+          <Route path="/catagory" element={<Catagory />} />
           <Route path="/calandar" element={<Calander />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/product" element={<Product />} />
