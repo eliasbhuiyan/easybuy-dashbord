@@ -9,23 +9,40 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const handelLogin = (e) => {
+  const handelLogin = () => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/login`, {
-        email: loginData.email,
-        password: loginData.password,
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}auth/login`,
+        {
+          email: loginData.email,
+          password: loginData.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
-        document.cookie = `sec_token=${res.data.sec_token};SameSite=Lax;path=/`;
-        toast.success(res.data.message, {
-          position: "top-right",
-          autoClose: 5000,
-          closeOnClick: true,
-          theme: "light",
-        });
-        setTimeout(() => {
-          navigate(`/`);
-        }, 1500);
+        document.cookie = `sec_token=${res.data.sec_token}; path=/;`;
+        if (res.data.role == "admin" || res.data.role == "merchant") {
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
+        } else {
+          toast.error("You are not authorized", {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+        }
       })
       .catch((err) => {
         toast.error(err.response.data.error, {
@@ -33,12 +50,6 @@ const Login = () => {
           autoClose: 5000,
           closeOnClick: true,
           theme: "light",
-        });
-      })
-      .finally(() => {
-        setLoginData({
-          email: "",
-          password: "",
         });
       });
   };

@@ -18,7 +18,6 @@ import Merchant from "./components/pages/Merchant";
 import Registration from "./components/pages/Registration";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
-import { useSelector } from "react-redux";
 
 function App() {
   // const user = useSelector((state) => state.activeUser.value.role);

@@ -3,9 +3,14 @@ import { useEffect, useState } from "react";
 import { GiCrossMark } from "react-icons/gi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
+import { Navigate } from "react-router-dom";
 
 const Merchant = () => {
   let [merchant, setMerchant] = useState([]);
+  const token = document.cookie;
+  const decoded = jwtDecode(token);
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}auth/allmerchant`)
@@ -77,7 +82,7 @@ const Merchant = () => {
         });
       });
   };
-  return (
+  return decoded.role === "admin" ? (
     <section className="p-6 w-full productlist">
       <ToastContainer />
       <table className="w-full">
@@ -118,6 +123,8 @@ const Merchant = () => {
         </tbody>
       </table>
     </section>
+  ) : (
+    <Navigate to="/" />
   );
 };
 
