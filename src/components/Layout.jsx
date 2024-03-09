@@ -2,6 +2,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useState } from "react";
 const Layout = () => {
+  const user = "admin";
   const [userRole, setUserRole] = useState("");
   const decodeToken = (token) => {
     if (!token) return null;
