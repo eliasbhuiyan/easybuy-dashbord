@@ -52,7 +52,7 @@ const CreateSubCatagory = () => {
       });
   };
   return (
-    <div className="productBox w-4/5 m-auto flex flex-col items-center gap-6">
+    <div className="productBox w-4/5 m-auto mt-6 flex flex-col items-center gap-6 border border-slate-200">
       <h2 className="title">Create Sub Catagory</h2>
       <label className="primary w-full">
         Sub Catagory Name *

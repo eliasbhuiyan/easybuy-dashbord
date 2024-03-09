@@ -1,9 +1,4 @@
-import {
-  FaChartPie,
-  FaBox,
-  FaRegUserCircle,
-  FaCalendarAlt,
-} from "react-icons/fa";
+import { FaChartPie, FaBox, FaCalendarAlt } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
 import { AiOutlineCalculator } from "react-icons/ai";
 import { FaBarsStaggered } from "react-icons/fa6";

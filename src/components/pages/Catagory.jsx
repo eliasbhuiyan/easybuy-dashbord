@@ -3,7 +3,7 @@ import CreateSubCatagory from "../CreateSubCatagory";
 
 const Catagory = () => {
   return (
-    <section className="w-full">
+    <section className="w-full py-5">
       <CreateCatagory />
       <CreateSubCatagory />
     </section>
