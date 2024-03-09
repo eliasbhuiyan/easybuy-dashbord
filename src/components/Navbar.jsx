@@ -11,6 +11,8 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { Button, Menu } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -20,6 +22,8 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
+const token = document.cookie;
+const decoded = jwtDecode(token);
 
 const items = [
   getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
@@ -43,7 +47,11 @@ const items = [
   {
     type: "divider",
   },
-  getItem("@UserName", "user", <FaRegUserCircle />),
+  getItem(
+    `${decoded?.name}`,
+    "user",
+    <img src={decoded.avatar} alt="user" className="w-10 h-10 rounded-full" />
+  ),
   {
     type: "divider",
   },

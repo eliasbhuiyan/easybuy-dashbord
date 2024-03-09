@@ -19,6 +19,7 @@ import Registration from "./components/pages/Registration";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
 import Catagory from "./components/pages/Catagory";
+import User from "./components/pages/User";
 
 function App() {
   const router = createBrowserRouter(
@@ -38,6 +39,7 @@ function App() {
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/product" element={<Product />} />
           <Route path="/allproduct" element={<AllProduct />} />
+          <Route path="/user" element={<User />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>

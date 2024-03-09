@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 const Layout = () => {
   const token = document.cookie;
   const decoded = jwtDecode(token);
-
   return decoded?.role == "admin" || decoded?.role == "merchant" ? (
     <div className="flex">
       <Navbar />
