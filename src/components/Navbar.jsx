@@ -67,7 +67,6 @@ const Navbar = () => {
     }
   }, [screenWidth]);
   const onClick = (e) => {
-    console.log(e.key);
     navigate(e.key);
   };
   const toggleCollapsed = () => {
