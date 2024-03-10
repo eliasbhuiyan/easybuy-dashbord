@@ -101,35 +101,43 @@ const CreateProduct = () => {
     <div className="bg-[#F5F5F5] p-6">
       <div className="productBox">
         <h2 className="title">Create Product</h2>
-        <label className="primary">Product Name *</label>
-        <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Product Name"
-          className="input"
-        />
-        <label className="primary">Product Description *</label>
-        <Editor
-          editorState={editorState}
-          wrapperClassName="demo-wrapper input"
-          editorClassName="demo-editor"
-          onEditorStateChange={(value) => setEditorState(value)}
-        />
-        <label className="primary">Product Slug *</label>
-        <Input
-          value={pslug}
-          onChange={(e) => setpSlug(e.target.value)}
-          placeholder="Product Slug"
-          className="input"
-        />
-        <div className="w-full flex justify-center">
-          <label className="primary w-4/5">
+        <label className="primary">
+          Product Name *
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Product Name"
+            className="input"
+          />
+        </label>
+
+        <label className="primary pt-8 inline-block">
+          Product Description *
+          <Editor
+            editorState={editorState}
+            wrapperClassName="demo-wrapper input w-full rounded-lg"
+            editorClassName="demo-editor"
+            onEditorStateChange={(value) => setEditorState(value)}
+          />
+        </label>
+
+        <div className="flex justify-between w-4/5 my-8">
+          <label className="primary w-2/5">
+            Product Slug *
+            <Input
+              value={pslug}
+              onChange={(e) => setpSlug(e.target.value)}
+              placeholder="Product Slug"
+              className="input w-full"
+            />
+          </label>
+          <label className="primary w-2/5">
             Select SubCatagory *
             <Select
               placeholder="Select Product"
               onChange={handleSelect}
               options={options}
-              className="input border-none"
+              className="block"
             />
           </label>
         </div>
@@ -164,7 +172,7 @@ const CreateProduct = () => {
           <img src={file} className="shadow-2xl" />
         </div>
 
-        <button onClick={hendelCreate} className="btn">
+        <button onClick={hendelCreate} className="btn m-auto block">
           Create Product
         </button>
       </div>

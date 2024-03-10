@@ -1,6 +1,5 @@
-import { FaChartPie, FaBox, FaCalendarAlt } from "react-icons/fa";
+import { FaChartPie, FaBox } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
-import { AiOutlineCalculator } from "react-icons/ai";
 import { FaBarsStaggered } from "react-icons/fa6";
 
 import { Button, Menu } from "antd";
@@ -18,7 +17,12 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const token = document.cookie;
-const decoded = jwtDecode(token);
+let decoded;
+if (token) {
+  decoded = jwtDecode(token);
+} else {
+  decoded = null;
+}
 
 const items = [
   getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
@@ -45,21 +49,11 @@ const items = [
   getItem(
     `${decoded?.name}`,
     "user",
-    <img src={decoded.avatar} alt="user" className="w-10 h-10 rounded-full" />
+    <img src={decoded?.avatar} alt="user" className="w-10 h-10 rounded-full" />
   ),
   {
     type: "divider",
   },
-  getItem(
-    "Tools",
-    "tls",
-    null,
-    [
-      getItem("Calculator", "calculator", <AiOutlineCalculator />),
-      getItem("Calendar", "/calandar", <FaCalendarAlt />),
-    ],
-    "group"
-  ),
 ];
 const Navbar = () => {
   const navigate = useNavigate();

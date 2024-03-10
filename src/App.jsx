@@ -7,8 +7,6 @@ import {
 import Error from "./components/Error";
 import Layout from "./components/Layout";
 import Dashbord from "./components/pages/Dashbord";
-import Calander from "./components/pages/Calander";
-import Calculator from "./components/pages/Calculator";
 import Product from "./components/pages/Product";
 import AllProduct from "./components/pages/AllProduct";
 import Login from "./components/pages/Login";
@@ -35,8 +33,6 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/catagory" element={<Catagory />} />
-          <Route path="/calandar" element={<Calander />} />
-          <Route path="/calculator" element={<Calculator />} />
           <Route path="/product" element={<Product />} />
           <Route path="/allproduct" element={<AllProduct />} />
           <Route path="/user" element={<User />} />

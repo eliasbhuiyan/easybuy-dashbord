@@ -1,8 +1,8 @@
 import { useState } from "react";
-const Calculator = () => {
+const Calculator = ({className}) => {
   const [value, setValue] = useState("");
   return (
-    <div className="container">
+    <div className={`absolute bottom-16 -right-8 transition-all  ${className}`}>
       <div className="calculator">
         <form>
           <div className="display">

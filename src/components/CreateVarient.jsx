@@ -102,7 +102,7 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div className="flex justify-around">
+        <div className="flex justify-around my-8">
           <label className="primary w-2/5">
             price Varient
             <input
@@ -123,7 +123,7 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div className="flex justify-around">
+        <div className="flex justify-around mb-8">
           <label className="primary w-2/5">
             Size Varient
             <input
@@ -151,7 +151,7 @@ const CreateVarient = () => {
               placeholder="Select Product"
               onChange={handleSelect}
               options={options}
-              className="input border-none"
+              className="block"
             />
           </label>
         </div>

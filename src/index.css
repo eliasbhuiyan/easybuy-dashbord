@@ -105,6 +105,7 @@
     @apply py-4 px-5 rounded-full block w-4/5 border-none shadow-input outline-none bg-inherit text-secondary;
   }
 
+
   .inputField {
     @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 mx-5 text-black font-semibold pl-7;
   }
@@ -122,9 +123,18 @@
   .inputField:valid + .placeholder{
     @apply top-2 text-sm text-green-500;
   }
-  
+
+  .calculator_btn{
+    @apply w-12 h-12 rounded-full flex justify-center items-center bg-brand text-white text-2xl fixed bottom-12 right-10 cursor-pointer;
+  }
+  .calculator_show{
+    @apply scale-100 w-96 h-[500px] overflow-hidden
+  }
+  .calculator_hide{
+    @apply w-0 h-0 overflow-hidden scale-0
+  }
 .calculator {
-  @apply w-fit p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
+  @apply w-full p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
 }
 
 .calculator input {
