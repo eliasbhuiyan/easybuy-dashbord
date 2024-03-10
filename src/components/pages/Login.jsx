@@ -24,7 +24,7 @@ const Login = () => {
         }
       )
       .then((res) => {
-        document.cookie = `sec_token=${res.data.sec_token}; path=/;`;
+        // document.cookie = `sec_token=${res.data.sec_token}; path=/;`;
         if (res.data.role == "admin" || res.data.role == "merchant") {
           toast.success(res.data.message, {
             position: "top-right",

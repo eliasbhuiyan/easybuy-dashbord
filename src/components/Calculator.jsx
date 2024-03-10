@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Calculator = ({className}) => {
+const Calculator = ({ className }) => {
   const [value, setValue] = useState("");
   return (
     <div className={`absolute bottom-16 -right-8 transition-all  ${className}`}>
