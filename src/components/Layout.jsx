@@ -13,6 +13,7 @@ const Layout = () => {
   } else {
     decoded = null;
   }
+  console.log("layout", decoded);
   return decoded?.role == "admin" || decoded?.role == "merchant" ? (
     <>
       <div className="flex">

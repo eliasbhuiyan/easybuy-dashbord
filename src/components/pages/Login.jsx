@@ -9,22 +9,16 @@ const Login = () => {
     email: "",
     password: "",
   });
-  axios.defaults.withCredentials = true;
+
   const handelLogin = () => {
     axios
-      .post(
-        `${import.meta.env.VITE_API_URL}auth/login`,
-        {
-          email: loginData.email,
-          password: loginData.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .post(`${import.meta.env.VITE_API_URL}auth/login`, {
+        email: loginData.email,
+        password: loginData.password,
+      })
       .then((res) => {
+        console.log("login", res.data.sec_token);
+        document.cookie = `sec_token=${res.data.sec_token};`;
         if (res.data.role == "admin" || res.data.role == "merchant") {
           toast.success(res.data.message, {
             position: "top-right",
@@ -45,6 +39,7 @@ const Login = () => {
         }
       })
       .catch((err) => {
+        console.log(err);
         toast.error(err.response.data.error, {
           position: "top-right",
           autoClose: 5000,
@@ -53,7 +48,7 @@ const Login = () => {
         });
       });
   };
-  // document.cookie = `sec_token=${res.data.sec_token}; path=/;`;
+
   return (
     <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
       <ToastContainer />
