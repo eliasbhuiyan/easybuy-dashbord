@@ -2,8 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import ThreeDanim from "../ThreeDanim";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { loggedUser } from "../../reducer/userSlice";
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   let [loginData, setLoginData] = useState({
     email: "",
@@ -17,9 +20,12 @@ const Login = () => {
         password: loginData.password,
       })
       .then((res) => {
-        console.log("login", res.data.sec_token);
         document.cookie = `sec_token=${res.data.sec_token};`;
-        if (res.data.role == "admin" || res.data.role == "merchant") {
+        dispatch(loggedUser(res.data.userObject));
+        if (
+          res.data?.userObject?.role == "admin" ||
+          res.data?.userObject?.role == "merchant"
+        ) {
           toast.success(res.data.message, {
             position: "top-right",
             autoClose: 5000,

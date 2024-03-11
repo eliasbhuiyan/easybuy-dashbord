@@ -9,6 +9,7 @@ import { GiCrossMark } from "react-icons/gi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const CreateProduct = () => {
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
@@ -46,6 +47,7 @@ const CreateProduct = () => {
     setSubCatagoryId(value);
   };
   // Product Creation Part
+  const user = useSelector((state) => state.user_sec.user);
   const hendelCreate = () => {
     try {
       axios
@@ -63,7 +65,9 @@ const CreateProduct = () => {
           },
           {
             headers: {
-              Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
+              Authorization: `Bearer user@${user?.auth}@${
+                import.meta.env.VITE_SWTSECRT
+              }`,
             },
           }
         )

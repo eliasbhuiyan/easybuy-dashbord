@@ -1,20 +1,15 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { FaCalculator } from "react-icons/fa";
 import Navbar from "./Navbar";
-import { jwtDecode } from "jwt-decode";
 import Calculator from "./Calculator";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 const Layout = () => {
   const [show, setShow] = useState(false);
-  const token = document.cookie;
-  let decoded;
-  if (token) {
-    decoded = jwtDecode(token);
-  } else {
-    decoded = null;
-  }
-  console.log("layout", decoded);
-  return decoded?.role == "admin" || decoded?.role == "merchant" ? (
+  const user = useSelector((state) => state.user_sec.user);
+  console.log(user);
+
+  return user?.role == "admin" || user?.role == "merchant" ? (
     <>
       <div className="flex">
         <Navbar />

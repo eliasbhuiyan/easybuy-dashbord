@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { GiCrossMark } from "react-icons/gi";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const CreateVarient = () => {
@@ -40,7 +41,7 @@ const CreateVarient = () => {
   const handleChange = async (files) => {
     setFile(files[0]);
   };
-
+  const user = useSelector((state) => state.user_sec.user);
   // Create Varient Part
   const hendelCreate = () => {
     axios
@@ -57,7 +58,9 @@ const CreateVarient = () => {
         },
         {
           headers: {
-            Authorization: `Bearer user@65c99558521ab0a4fdf3de0d@fjoslskdfj3`,
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
           },
         }
       )

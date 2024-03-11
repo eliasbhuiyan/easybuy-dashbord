@@ -61,11 +61,12 @@ const AllProduct = () => {
           <table className="w-full">
             <thead className="py-4 bg-secondary">
               <tr>
-                <th className="border-r w-1/5 text-white">Name</th>
-                <th className="border-r w-1/5 text-white">Description</th>
-                <th className="border-r w-1/5 text-white">Image</th>
-                <th className="border-r w-1/5 text-white">Cetagory</th>
-                <th className="border-r w-1/5 text-white">Edit/Delete</th>
+                <th className="border-r w-1/6 text-white">Name</th>
+                <th className="border-r w-1/6 text-white">Description</th>
+                <th className="border-r w-1/6 text-white">Image</th>
+                <th className="border-r w-1/6 text-white">Cetagory</th>
+                <th className="border-r w-1/6 text-white">Status</th>
+                <th className="border-r w-1/6 text-white">Edit/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -83,6 +84,9 @@ const AllProduct = () => {
                     />
                   </td>
                   <td>{item?.subCatagory?.name}</td>
+                  <td>
+                    <button className="text-red-500">{item?.status}</button>
+                  </td>
                   <td className="flex items-center justify-evenly">
                     <button className="edit_btn">
                       <FaEdit className="edit_icon" />
