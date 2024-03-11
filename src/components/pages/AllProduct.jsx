@@ -7,7 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Popup from "../Popup";
 import Loading from "../Loading";
 import Heading from "../Heading";
+import { useSelector } from "react-redux";
 const AllProduct = () => {
+  const user = useSelector((state) => state.user_sec.user);
   const [product, setProduct] = useState([]);
   const [deletePopup, setDeletePopup] = useState(false);
   const [looding, setLooding] = useState(true);
@@ -27,15 +29,60 @@ const AllProduct = () => {
         setLooding(false);
       });
   }, []);
-
+  // Approved OR Pending Product
+  const handelApprovedPendibg = (id) => {
+    console.log("productID", id);
+    axios
+      .post(
+        `${import.meta.env.VITE_API_URL}product/approvedproduct`,
+        {
+          id: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        toast.info(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      });
+  };
   // Delete Product
   const handelDelete = (data) => {
     setDeletePopup(data);
     if (data) {
       axios
-        .post("http://localhost:8000/api/v1/product/deleteproduct", {
-          id: productId,
-        })
+        .post(
+          "http://localhost:8000/api/v1/product/deleteproduct",
+          {
+            id: productId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer user@${user?.auth}@${
+                import.meta.env.VITE_SWTSECRT
+              }`,
+            },
+          }
+        )
         .then((res) => {
           toast.info(res.data.message, {
             position: "top-right",
@@ -43,9 +90,15 @@ const AllProduct = () => {
             closeOnClick: true,
             theme: "light",
           });
-        })
-        .then(() => {
           setDeletePopup(false);
+        })
+        .catch((err) => {
+          toast.error(err.response.data.error, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
         });
     }
   };
@@ -85,7 +138,12 @@ const AllProduct = () => {
                   </td>
                   <td>{item?.subCatagory?.name}</td>
                   <td>
-                    <button className="text-red-500">{item?.status}</button>
+                    <button
+                      onClick={() => handelApprovedPendibg(item._id)}
+                      className="bg-red-500 text-white py-1 px-2 rounded-xl"
+                    >
+                      {item?.status}
+                    </button>
                   </td>
                   <td className="flex items-center justify-evenly">
                     <button className="edit_btn">

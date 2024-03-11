@@ -23,7 +23,7 @@ const items = [
     getItem("Merchant", "merchant"),
     getItem("Customer List", "customers"),
     getItem("Order Management", "order"),
-    getItem("Emails", "emails"),
+    getItem("Chat", "chat"),
   ]),
   {
     type: "divider",

@@ -5,6 +5,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Merchant = () => {
   let [merchant, setMerchant] = useState([]);
@@ -21,6 +22,7 @@ const Merchant = () => {
         console.log(err);
       });
   }, []);
+  const user = useSelector((state) => state.user_sec.user);
   const handelApproved = (id) => {
     axios
       .post(
@@ -30,7 +32,9 @@ const Merchant = () => {
         },
         {
           headers: {
-            Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
           },
         }
       )
@@ -61,7 +65,9 @@ const Merchant = () => {
         },
         {
           headers: {
-            Authorization: `Bearer user@65e6ef0afcf13a6f203dd146@fjoslskdfj3`,
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
           },
         }
       )
