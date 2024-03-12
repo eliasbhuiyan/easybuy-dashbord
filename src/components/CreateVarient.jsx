@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const CreateVarient = () => {
+  const user = useSelector((state) => state.user_sec.user);
   const [allProduct, setAllProduct] = useState([]);
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
@@ -17,7 +18,13 @@ const CreateVarient = () => {
   // All Product
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
+      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         setAllProduct(res.data.product);
       });
@@ -41,7 +48,6 @@ const CreateVarient = () => {
   const handleChange = async (files) => {
     setFile(files[0]);
   };
-  const user = useSelector((state) => state.user_sec.user);
   // Create Varient Part
   const hendelCreate = () => {
     axios

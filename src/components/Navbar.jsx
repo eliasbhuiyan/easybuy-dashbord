@@ -1,6 +1,8 @@
 import { FaChartPie, FaBox } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { RiListUnordered } from "react-icons/ri";
+import { FaUserSecret } from "react-icons/fa6";
 
 import { Button, Menu } from "antd";
 import { useEffect, useState } from "react";
@@ -16,14 +18,25 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
-
 const items = [
   getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
     getItem("Chart", "/"),
     getItem("Merchant", "merchant"),
-    getItem("Customer List", "customers"),
-    getItem("Order Management", "order"),
     getItem("Chat", "chat"),
+  ]),
+  {
+    type: "divider",
+  },
+  getItem("Customer", "sub5", <FaUserSecret className="text-brand text-xl" />, [
+    getItem("Customer List", "customerlist"),
+    getItem("Customer Details", "customerdetails"),
+  ]),
+  {
+    type: "divider",
+  },
+  getItem("Order", "sub4", <RiListUnordered className="text-brand text-xl" />, [
+    getItem("Order List", "orderlist"),
+    getItem("Order Details", "orderdetails"),
   ]),
   {
     type: "divider",
@@ -96,7 +109,7 @@ const Navbar = () => {
         onClick={onClick}
         inlineCollapsed={collapsed}
         items={items}
-        style={{ fontSize: "20px" }}
+        style={{ fontSize: "20px", }}
       />
       <Link
         to="/user"
