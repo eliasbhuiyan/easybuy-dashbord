@@ -2,19 +2,31 @@ import { Input, Select } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useSelector } from "react-redux";
 const CreateSubCatagory = () => {
+  const user = useSelector((state) => state.user_sec.user);
   const [name, setName] = useState("");
   const [allCatagory, setAllCatagory] = useState([]);
   const [catagoryId, setCatagoryId] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallcatagory`)
+      .get(`${import.meta.env.VITE_API_URL}catagory/getallcatagory`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         setAllCatagory(res.data.catagory);
       });
   }, []);
-  // SubCatagory Selection Part
+  // Catagory Selection Part
   const options = [];
   allCatagory.map((item) => {
     options.push({
@@ -29,10 +41,23 @@ const CreateSubCatagory = () => {
 
   const handelSubmit = () => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}catagory/createsubcatagory`, {
-        name: name,
-        catagory: catagoryId,
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}catagory/createsubcatagory`,
+        {
+          name: name,
+          catagory: catagoryId,
+          description: draftToHtml(
+            convertToRaw(editorState.getCurrentContent())
+          ),
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message, {
           position: "top-right",
@@ -63,13 +88,22 @@ const CreateSubCatagory = () => {
           className="input w-full"
         />
       </label>
+      <label className="primary pt-8 inline-block w-full">
+        SubCatagory Description *
+        <Editor
+          editorState={editorState}
+          wrapperClassName="demo-wrapper input w-full rounded-lg"
+          editorClassName="demo-editor"
+          onEditorStateChange={(value) => setEditorState(value)}
+        />
+      </label>
       <label className="primary w-full">
         Select Catagory *
         <Select
           placeholder="Select Product"
           onChange={handleSelect}
           options={options}
-          className="input border-none"
+          className="border-none block"
         />
       </label>
       <button onClick={handelSubmit} className="btn w-fit">

@@ -1,24 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { AiFillDelete } from "react-icons/ai";
-import { FaEdit } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Popup from "../Popup";
 import Loading from "../Loading";
 import Heading from "../Heading";
+import Popup from "../Popup";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import { useSelector } from "react-redux";
-const AllProduct = () => {
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+
+const AllCatagory = () => {
   const user = useSelector((state) => state.user_sec.user);
-  const [product, setProduct] = useState([]);
+  const [allCatagory, setAllCatagory] = useState([]);
   const [deletePopup, setDeletePopup] = useState(false);
   const [looding, setLooding] = useState(true);
   const [productId, setProductId] = useState("");
-  const [realtime, setRealtime] = useState(false);
+
   useEffect(() => {
-    // Fetch Data
     axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
+      .get(`${import.meta.env.VITE_API_URL}catagory/getallcatagory`, {
         headers: {
           Authorization: `Bearer user@${user?.auth}@${
             import.meta.env.VITE_SWTSECRT
@@ -26,7 +25,7 @@ const AllProduct = () => {
         },
       })
       .then((res) => {
-        setProduct(res.data.product);
+        setAllCatagory(res.data.catagory);
       })
       .catch((err) => {
         console.log(err);
@@ -34,13 +33,12 @@ const AllProduct = () => {
       .finally(() => {
         setLooding(false);
       });
-  }, [realtime]);
+  }, []);
   // Approved OR Pending Product
   const handelApprovedPendibg = (id) => {
-    console.log("productID", id);
     axios
       .post(
-        `${import.meta.env.VITE_API_URL}product/approvedproduct`,
+        `${import.meta.env.VITE_API_URL}catagory/updatecatstatus`,
         {
           id: id,
         },
@@ -59,7 +57,7 @@ const AllProduct = () => {
           closeOnClick: true,
           theme: "light",
         });
-        setRealtime(!realtime);
+        // setRealtime(!realtime);
       })
       .catch((err) => {
         console.log(err);
@@ -71,13 +69,13 @@ const AllProduct = () => {
         });
       });
   };
-  // Delete Product
+  // Delete Caategory
   const handelDelete = (data) => {
     setDeletePopup(data);
     if (data) {
       axios
         .post(
-          "http://localhost:8000/api/v1/product/deleteproduct",
+          `${import.meta.env.VITE_API_URL}catagory/deletecatagory`,
           {
             id: productId,
           },
@@ -97,7 +95,6 @@ const AllProduct = () => {
             theme: "light",
           });
           setDeletePopup(false);
-          setRealtime(!realtime);
         })
         .catch((err) => {
           toast.error(err.response.data.error, {
@@ -116,44 +113,32 @@ const AllProduct = () => {
       ) : (
         <>
           {/* Product Header Part Start */}
-          <Heading title="All Product" />
+          <Heading title="All Catagories" />
           {/* Product Body Part Start */}
           <table className="w-full">
             <thead className="py-4 bg-secondary">
               <tr>
-                <th className="border-r w-1/6 text-white">Name</th>
-                <th className="border-r w-1/6 text-white">Description</th>
-                <th className="border-r w-1/6 text-white">Image</th>
-                <th className="border-r w-1/6 text-white">Cetagory</th>
-                <th className="border-r w-1/6 text-white">Status</th>
-                <th className="border-r w-1/6 text-white">Edit/Delete</th>
+                <th className="border-r w-1/4 text-white">Catagory</th>
+                <th className="border-r w-1/4 text-white">Last Update</th>
+                <th className="border-r w-1/4 text-white">Status</th>
+                <th className="border-r w-1/4 text-white">Edit/Delete</th>
               </tr>
             </thead>
             <tbody>
-              {product.map((item) => (
+              {allCatagory.map((item) => (
                 <tr key={item._id}>
-                  <td>
-                    {item.shortID} - {item.name.substring(0, 20)}
-                  </td>
-                  <td>{item.description.substring(0, 20)}...</td>
-                  <td>
-                    <img
-                      className="w-16 h-16 m-auto border"
-                      src={item.img}
-                      alt={item.imageAlt}
-                    />
-                  </td>
-                  <td>{item?.subCatagory?.name}</td>
+                  <td>{item.name}</td>
+                  <td>{item?.update.slice(0, 10)}</td>
                   <td>
                     <button
                       onClick={() => handelApprovedPendibg(item._id)}
                       className={
-                        item.status === "pending"
+                        item.status === "waiting"
                           ? "bg-red-500 text-white py-1 px-2 rounded-xl"
                           : "bg-green-500 text-white py-1 px-2 rounded-xl"
                       }
                     >
-                      {item?.status}
+                      {item.status}
                     </button>
                   </td>
                   <td className="flex items-center justify-evenly">
@@ -183,4 +168,4 @@ const AllProduct = () => {
   );
 };
 
-export default AllProduct;
+export default AllCatagory;

@@ -14,7 +14,13 @@ const Merchant = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}auth/allmerchant`)
+      .get(`${import.meta.env.VITE_API_URL}auth/allmerchant`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         setMerchant(res.data.merchant);
       })

@@ -30,7 +30,13 @@ const CreateProduct = () => {
   // All SubCatagory
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`)
+      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         setAllSubCatagory(res.data.subCatagory);
       });

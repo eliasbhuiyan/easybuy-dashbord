@@ -28,7 +28,10 @@ const items = [
   {
     type: "divider",
   },
-  getItem("Catagory", "catagory", <BiCategoryAlt />),
+  getItem("Catagory", "catagory", <BiCategoryAlt />, [
+    getItem("Create Catagory", "catagory"),
+    getItem("All Catagory", "allcatagory"),
+  ]),
   {
     type: "divider",
   },

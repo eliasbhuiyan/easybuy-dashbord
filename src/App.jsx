@@ -18,6 +18,7 @@ import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
 import Catagory from "./components/pages/Catagory";
 import User from "./components/pages/User";
+import AllCatagory from "./components/pages/AllCatagory";
 
 function App() {
   const router = createBrowserRouter(
@@ -33,6 +34,7 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/catagory" element={<Catagory />} />
+          <Route path="/allcatagory" element={<AllCatagory />} />
           <Route path="/product" element={<Product />} />
           <Route path="/allproduct" element={<AllProduct />} />
           <Route path="/user" element={<User />} />
