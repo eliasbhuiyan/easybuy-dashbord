@@ -197,42 +197,8 @@
 }
 /* ============================================ */
 /* ================== ChatTing ================ */
-
-.bar {
-  @apply w-full h-10 bg-[none] flex items-center justify-between;
-}
-.nav-bar a {
-  @apply text-[#6B6C7B] whitespace-nowrap select-none ml-2.5;
-}
-.close {
-  @apply w-10 h-10 flex justify-center items-center relative cursor-pointer;
-}
-.line {
-  @apply absolute w-5 h-[3px] bg-[#6B6C7B] rounded-[30px];
-}
-.line.one {
-  @apply rotate-45;
-}
-.line.two {
-  @apply rotate-[135deg];
-}
-.messages-area {
-  @apply bg-[green] w-full h-[210px];
-}
-.sender-area {
-  @apply bg-[#343541] w-full h-[70px] flex rounded-lg;
-}
-.message {
-  @apply w-full h-10 text-white;
-}
-.message:nth-child(odd) {
-  @apply bg-[#2E2F3A];
-}
-.message:nth-child(even) {
-  @apply bg-[#343541];
-}
-.send-img {
-  @apply w-[30px];
+.message-left{
+  @apply text-left ml-3;
 }
 .send-input {
   @apply flex h-10 w-[230px] text-[white] text-ellipsis whitespace-nowrap overflow-hidden ml-[5px] rounded-[7px] border-[none];

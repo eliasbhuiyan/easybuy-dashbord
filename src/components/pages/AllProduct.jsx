@@ -135,11 +135,11 @@ const AllProduct = () => {
                   <td>
                     {item.shortID} - {item.name.substring(0, 20)}
                   </td>
-                  <td>{item.description.substring(0, 20)}...</td>
+                  <td>{item.description}...</td>
                   <td>
                     <img
                       className="w-16 h-16 m-auto border"
-                      src={item.img}
+                      src={item.image}
                       alt={item.imageAlt}
                     />
                   </td>

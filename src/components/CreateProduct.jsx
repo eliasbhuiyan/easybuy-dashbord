@@ -16,7 +16,7 @@ const CreateProduct = () => {
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState();
   const [imageAlt, setImageAlt] = useState("");
   const [pslug, setpSlug] = useState("");
   const [subCatagoryId, setSubCatagoryId] = useState("");
@@ -24,22 +24,22 @@ const CreateProduct = () => {
 
   // Image Upload Part
   const handleChange = (file) => {
-    setImage(file[0].name);
+    setImage(file[0]);
     setFile(URL.createObjectURL(file[0]));
   };
   // All SubCatagory
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setAllSubCatagory(res.data.subCatagory);
-      });
+    .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
+      headers: {
+        Authorization: `Bearer user@${user?.auth}@${
+          import.meta.env.VITE_SWTSECRT
+        }`,
+      },
+    })
+    .then((res) => {
+      setAllSubCatagory(res.data.subCatagory);
+    });
   }, []);
   // SubCatagory Selection Part
   const options = [];
@@ -54,14 +54,14 @@ const CreateProduct = () => {
   };
   // Product Creation Part
   const user = useSelector((state) => state.user_sec.user);
-  const hendelCreate = () => {
+  const hendelCreate = async () => {
     try {
-      axios
-        .post(
+     await axios
+      .post(
           `${import.meta.env.VITE_API_URL}product/createproduct`,
           {
             name: name,
-            img: image,
+            image,
             description: draftToHtml(
               convertToRaw(editorState.getCurrentContent())
             ),
@@ -74,6 +74,7 @@ const CreateProduct = () => {
               Authorization: `Bearer user@${user?.auth}@${
                 import.meta.env.VITE_SWTSECRT
               }`,
+              "Content-Type": "multipart/form-data",
             },
           }
         )
@@ -85,7 +86,7 @@ const CreateProduct = () => {
             theme: "light",
           });
           setName("");
-          setImage("");
+          // setImage("");
           setpSlug("");
           setFile(null);
         })
@@ -157,7 +158,7 @@ const CreateProduct = () => {
             <FileUploader
               multiple={true}
               handleChange={handleChange}
-              name="file"
+              name="image"
               types={fileTypes}
             />
           </label>
