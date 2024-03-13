@@ -10,6 +10,7 @@ const CreateVarient = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [allProduct, setAllProduct] = useState([]);
   const [color, setColor] = useState("");
+  const [image, setImage] = useState();
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [size, setSize] = useState("");
@@ -46,16 +47,17 @@ const CreateVarient = () => {
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
   const handleChange = async (files) => {
-    setFile(files[0]);
+    setImage(files[0]);
+    setFile(URL.createObjectURL(file[0]));
   };
   // Create Varient Part
   const hendelCreate = () => {
     axios
       .post(
-        `http://localhost:8000/api/v1/product/createvariant`,
+        `${import.meta.env.VITE_API_URL}/product/createvariant`,
         {
           color,
-          // image: file,
+          image,
           price,
           quantity,
           size,
@@ -67,6 +69,7 @@ const CreateVarient = () => {
             Authorization: `Bearer user@${user?.auth}@${
               import.meta.env.VITE_SWTSECRT
             }`,
+            "Content-Type": "multipart/form-data",
           },
         }
       )
@@ -184,7 +187,7 @@ const CreateVarient = () => {
                 X
               </GiCrossMark>
             )}
-            {/* <img src={URL.createObjectURL(file[0])} className="shadow-2xl" /> */}
+            <img src={file} className="shadow-2xl" />
           </div>
         </div>
         <button onClick={hendelCreate} className="btn m-auto block">

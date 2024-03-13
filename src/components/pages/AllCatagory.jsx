@@ -134,8 +134,8 @@ const AllCatagory = () => {
                       onClick={() => handelApprovedPendibg(item._id)}
                       className={
                         item.status === "waiting"
-                          ? "bg-red-500 text-white py-1 px-2 rounded-xl"
-                          : "bg-green-500 text-white py-1 px-2 rounded-xl"
+                          ? "bg-red-500 text-white py-1 px-4 rounded-xl"
+                          : "bg-green-500 text-white py-1 px-4 rounded-xl"
                       }
                     >
                       {item.status}

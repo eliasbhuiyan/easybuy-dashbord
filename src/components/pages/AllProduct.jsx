@@ -135,7 +135,7 @@ const AllProduct = () => {
                   <td>
                     {item.shortID} - {item.name.substring(0, 20)}
                   </td>
-                  <td>{item.description}...</td>
+                  <td>{item.description.substring(0, 20)}...</td>
                   <td>
                     <img
                       className="w-16 h-16 m-auto border"
@@ -149,8 +149,8 @@ const AllProduct = () => {
                       onClick={() => handelApprovedPendibg(item._id)}
                       className={
                         item.status === "pending"
-                          ? "bg-red-500 text-white py-1 px-2 rounded-xl"
-                          : "bg-green-500 text-white py-1 px-2 rounded-xl"
+                          ? "bg-red-500 text-white py-1 px-4 rounded-xl"
+                          : "bg-green-500 text-white py-1 px-4 rounded-xl"
                       }
                     >
                       {item?.status}

@@ -30,16 +30,16 @@ const CreateProduct = () => {
   // All SubCatagory
   useEffect(() => {
     axios
-    .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
-      headers: {
-        Authorization: `Bearer user@${user?.auth}@${
-          import.meta.env.VITE_SWTSECRT
-        }`,
-      },
-    })
-    .then((res) => {
-      setAllSubCatagory(res.data.subCatagory);
-    });
+      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
+      .then((res) => {
+        setAllSubCatagory(res.data.subCatagory);
+      });
   }, []);
   // SubCatagory Selection Part
   const options = [];
@@ -56,8 +56,8 @@ const CreateProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
   const hendelCreate = async () => {
     try {
-     await axios
-      .post(
+      await axios
+        .post(
           `${import.meta.env.VITE_API_URL}product/createproduct`,
           {
             name: name,
@@ -86,7 +86,7 @@ const CreateProduct = () => {
             theme: "light",
           });
           setName("");
-          // setImage("");
+          setImage("");
           setpSlug("");
           setFile(null);
         })
