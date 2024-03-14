@@ -109,15 +109,15 @@ const Navbar = () => {
         onClick={onClick}
         inlineCollapsed={collapsed}
         items={items}
-        style={{ fontSize: "20px", }}
+        style={{ fontSize: "20px" }}
       />
       <Link
         to="/user"
         className="mt-auto py-3 flex justify-between items-center flex-wrap px-3 bg-primary"
       >
-        {user.avatar ? (
+        {user?.avatar ? (
           <img
-            src="/404page.png"
+            src={user?.avatar}
             alt="user"
             className="w-10 h-10 rounded-full border"
           />

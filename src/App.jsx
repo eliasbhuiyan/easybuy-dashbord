@@ -21,6 +21,7 @@ import User from "./components/pages/User";
 import AllCatagory from "./components/pages/AllCatagory";
 import Chating from "./components/pages/Chating";
 import CustomerList from "./components/pages/CustomerList";
+import CustomerDetails from "./components/pages/CustomerDetails";
 
 function App() {
   const router = createBrowserRouter(
@@ -36,6 +37,7 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/customerlist" element={<CustomerList />} />
+          <Route path="/customerdetails" element={<CustomerDetails />} />
           <Route path="/chat" element={<Chating />} />
           <Route path="/catagory" element={<Catagory />} />
           <Route path="/allcatagory" element={<AllCatagory />} />

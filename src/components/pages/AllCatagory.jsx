@@ -106,64 +106,61 @@ const AllCatagory = () => {
         });
     }
   };
+  if (looding) {
+    return <Loading />;
+  }
   return (
     <section className="p-6 w-full productlist">
-      {looding ? (
-        <Loading />
-      ) : (
-        <>
-          {/* Product Header Part Start */}
-          <Heading title="All Catagories" />
-          {/* Product Body Part Start */}
-          <table className="w-full">
-            <thead className="py-4 bg-secondary">
-              <tr>
-                <th className="border-r w-1/4 text-white">Catagory</th>
-                <th className="border-r w-1/4 text-white">Last Update</th>
-                <th className="border-r w-1/4 text-white">Status</th>
-                <th className="border-r w-1/4 text-white">Edit/Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allCatagory.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.name}</td>
-                  <td>{item?.update.slice(0, 10)}</td>
-                  <td>
-                    <button
-                      onClick={() => handelApprovedPendibg(item._id)}
-                      className={
-                        item.status === "waiting"
-                          ? "bg-red-500 text-white py-1 px-4 rounded-xl"
-                          : "bg-green-500 text-white py-1 px-4 rounded-xl"
-                      }
-                    >
-                      {item.status}
-                    </button>
-                  </td>
-                  <td className="flex items-center justify-evenly">
-                    <button className="edit_btn">
-                      <FaEdit className="edit_icon" />
-                    </button>
-                    <button
-                      onClick={() => {
-                        setDeletePopup(true);
-                        setProductId(item._id);
-                      }}
-                      className="delete_btn"
-                    >
-                      <AiFillDelete className="blt_icon" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {/* Delete Popup */}
-          {deletePopup && <Popup sendData={handelDelete} />}
-          <ToastContainer />
-        </>
-      )}
+      {/* Product Header Part Start */}
+      <Heading title="All Catagories" />
+      {/* Product Body Part Start */}
+      <table className="w-full">
+        <thead className="py-4 bg-secondary">
+          <tr>
+            <th className="border-r w-1/4 text-white">Catagory</th>
+            <th className="border-r w-1/4 text-white">Last Update</th>
+            <th className="border-r w-1/4 text-white">Status</th>
+            <th className="border-r w-1/4 text-white">Edit/Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allCatagory.map((item) => (
+            <tr key={item._id}>
+              <td>{item.name}</td>
+              <td>{item?.update.slice(0, 10)}</td>
+              <td>
+                <button
+                  onClick={() => handelApprovedPendibg(item._id)}
+                  className={
+                    item.status === "waiting"
+                      ? "bg-red-500 text-white py-1 px-4 rounded-xl"
+                      : "bg-green-500 text-white py-1 px-4 rounded-xl"
+                  }
+                >
+                  {item.status}
+                </button>
+              </td>
+              <td className="flex items-center justify-evenly">
+                <button className="edit_btn">
+                  <FaEdit className="edit_icon" />
+                </button>
+                <button
+                  onClick={() => {
+                    setDeletePopup(true);
+                    setProductId(item._id);
+                  }}
+                  className="delete_btn"
+                >
+                  <AiFillDelete className="blt_icon" />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* Delete Popup */}
+      {deletePopup && <Popup sendData={handelDelete} />}
+      <ToastContainer />
     </section>
   );
 };
