@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FaUserSecret } from "react-icons/fa6";
 import Loading from "../Loading";
+import { Link } from "react-router-dom";
 
 const CustomerList = () => {
   const user = useSelector((state) => state.user_sec.user);
@@ -64,7 +65,11 @@ const CustomerList = () => {
                   </div>
                 )}
               </td>
-              <td>{data?.fullName}</td>
+              <td className="hover:text-brand">
+                <Link className="py-8" to="/customerdetails">
+                  {data?.fullName}
+                </Link>
+              </td>
               <td>{data?.create.slice(0, 10)}</td>
               <td>{data?.email}</td>
               <td>{data?.phone}</td>
