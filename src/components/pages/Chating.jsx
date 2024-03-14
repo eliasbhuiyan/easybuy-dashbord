@@ -1,7 +1,6 @@
 import { FaUserSecret } from "react-icons/fa6";
 import { GrMoreVertical } from "react-icons/gr";
 import { IoSend } from "react-icons/io5";
-
 const Chating = () => {
   return (
     <div className="flex gap-3 w-full py-4">

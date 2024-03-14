@@ -79,18 +79,23 @@
   .edit_btn:hover .edit_icon {
     @apply text-3xl transition-all translate-y-[60%];
   }
+
   .approved_btn {
     @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Approved'] before:text-white before:text-[2px] w-24 transition-all bg-brand items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
   }
+
   .approved_btn .edit_icon {
     @apply text-3xl transition-all translate-y-[40%];
   }
+
   .reject_btn {
     @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Reject'] before:text-white before:text-[2px] w-24 transition-all bg-red-600 items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
   }
+
   .reject_btn .blt_icon {
     @apply text-3xl transition-all translate-y-[50%];
   }
+
   /* ============= */
   .search {
     @apply w-1/2 px-3 h-fit flex items-center justify-between rounded-xl border-0 text-gray-600 shadow-input;
@@ -105,7 +110,6 @@
     @apply py-4 px-5 rounded-full block w-4/5 border-none shadow-input outline-none bg-inherit text-secondary;
   }
 
-
   .inputField {
     @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 mx-5 text-black font-semibold pl-7;
   }
@@ -114,111 +118,125 @@
     @apply outline-none border-b-2 border-solid border-b-[rgb(199,114,255)];
   }
 
-  .placeholder{
+  .placeholder {
     @apply absolute left-10 top-8 transition-all;
   }
-  .inputField:focus + .placeholder{
+
+  .inputField:focus+.placeholder {
     @apply top-2 text-sm;
   }
-  .inputField:valid + .placeholder{
+
+  .inputField:valid+.placeholder {
     @apply top-2 text-sm text-green-500;
   }
 
-  .calculator_btn{
+  .calculator_btn {
     @apply w-12 h-12 rounded-full flex justify-center items-center bg-brand text-white text-2xl fixed bottom-12 right-10 cursor-pointer;
   }
-  .calculator_show{
+
+  .calculator_show {
     @apply scale-100 w-96 h-[500px] overflow-hidden
   }
-  .calculator_hide{
+
+  .calculator_hide {
     @apply w-0 h-0 overflow-hidden scale-0
   }
-.calculator {
-  @apply w-full p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
-}
 
-.calculator input {
-  @apply border-none outline-none w-16 h-16 text-lg bg-slate-500 m-1 rounded-xl text-white cursor-pointer;
-}
+  .calculator {
+    @apply w-full p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
+  }
 
-.calculator input[type="button"]:hover {
-  @apply bg-[#ff5e00];
-}
+  .calculator input {
+    @apply border-none outline-none w-16 h-16 text-lg bg-slate-500 m-1 rounded-xl text-white cursor-pointer;
+  }
 
-.calculator .display {
-  @apply flex justify-end mt-1 mb-4;
-}
+  .calculator input[type="button"]:hover {
+    @apply bg-[#ff5e00];
+  }
 
-.calculator .display input {
-  @apply text-right flex-1 text-4xl py-1 px-2 bg-secondary
-}
+  .calculator .display {
+    @apply flex justify-end mt-1 mb-4;
+  }
 
-.calculator input.equal {
-  @apply w-32
-}
+  .calculator .display input {
+    @apply text-right flex-1 text-4xl py-1 px-2 bg-secondary
+  }
 
-/* ============================================ */
-.threedbox {
-  @apply absolute top-1/2 left-0 w-[500px] -skew-y-[20deg] -translate-y-1/2 animate-[animate_5s_linear_infinite] flex justify-center;
-}
- .cube {
-  @apply absolute z-[2];
-}
+  .calculator input.equal {
+    @apply w-32
+  }
 
-.cube:nth-child(2) {
-  @apply z-[1] -translate-y-[60px] -translate-x-[60px]
-}
+  /* ============================================ */
+  .threedbox {
+    @apply absolute top-1/2 left-0 w-[500px] -skew-y-[20deg] -translate-y-1/2 animate-[animate_5s_linear_infinite] flex justify-center;
+  }
 
-.cube:nth-child(3) {
-  @apply z-[3] translate-y-[60px] translate-x-[60px]
-}
+  .cube {
+    @apply absolute z-[2];
+  }
 
-.cube div {
-  @apply absolute flex flex-col gap-7;
-  translate: calc(-70px * var(--x)) calc(-60px * var(--y));
-}
-.cube span {
-  @apply relative block w-12 h-12 bg-[#dcdcdc] transition-all z-3dspan;
-}
-.cube span:hover {
-  @apply transition-none bg-[#67ef41] drop-shadow-3d;
-}
-.cube span:hover:before,
-.cube span:hover:after {
-  @apply transition-none bg-[#44ef41];
-}
+  .cube:nth-child(2) {
+    @apply z-[1] -translate-y-[60px] -translate-x-[60px]
+  }
 
-.cube span:before {
-  @apply content-[''] absolute -left-10 w-10 h-full bg-white origin-right skew-y-[45deg] transition-all
-}
+  .cube:nth-child(3) {
+    @apply z-[3] translate-y-[60px] translate-x-[60px]
+  }
 
-.cube span:after {
-  @apply content-[''] absolute -top-10 left-0 w-full h-10 bg-white origin-bottom skew-x-[45deg] transition-all
-}
-/* ============================================ */
-/* ================== ChatTing ================ */
-.message-left{
-  @apply text-left ml-3;
-}
-.send-input {
-  @apply flex h-10 w-[230px] text-[white] text-ellipsis whitespace-nowrap overflow-hidden ml-[5px] rounded-[7px] border-[none];
-  outline: none;
-  background: none;
-  background: none;
-}
-.send-input::placeholder {
-  @apply text-[#828E9E];
-}
-.input-place {
-  @apply flex flex-row items-center bg-[#40414F] h-10 w-[280px] gap-[5px] border ml-2.5 mt-[15px] rounded-[7px] border-solid border-[#2E2F3A];
-}
-.send {
-  @apply w-[30px] h-[30px] bg-[none] flex items-center justify-center cursor-pointer;
-}
-.send-icon {
-  @apply w-[17px];
-}
+  .cube div {
+    @apply absolute flex flex-col gap-7;
+    translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+  }
 
+  .cube span {
+    @apply relative block w-12 h-12 bg-[#dcdcdc] transition-all z-3dspan;
+  }
+
+  .cube span:hover {
+    @apply transition-none bg-[#67ef41] drop-shadow-3d;
+  }
+
+  .cube span:hover:before,
+  .cube span:hover:after {
+    @apply transition-none bg-[#44ef41];
+  }
+
+  .cube span:before {
+    @apply content-[''] absolute -left-10 w-10 h-full bg-white origin-right skew-y-[45deg] transition-all
+  }
+
+  .cube span:after {
+    @apply content-[''] absolute -top-10 left-0 w-full h-10 bg-white origin-bottom skew-x-[45deg] transition-all
+  }
+
+  /* ============================================ */
+  /* ================== ChatTing ================ */
+  .message-left {
+    @apply text-left ml-3;
+  }
+
+  .send-input {
+    @apply flex h-10 w-[230px] text-[white] text-ellipsis whitespace-nowrap overflow-hidden ml-[5px] rounded-[7px] border-[none];
+    outline: none;
+    background: none;
+    background: none;
+  }
+
+  .send-input::placeholder {
+    @apply text-[#828E9E];
+  }
+
+  .input-place {
+    @apply flex flex-row items-center bg-[#40414F] h-10 w-[280px] gap-[5px] border ml-2.5 mt-[15px] rounded-[7px] border-solid border-[#2E2F3A];
+  }
+
+  .send {
+    @apply w-[30px] h-[30px] bg-[none] flex items-center justify-center cursor-pointer;
+  }
+
+  .send-icon {
+    @apply w-[17px];
+  }
 }
 
 /* ======== otp ============ */
@@ -248,7 +266,7 @@
   outline: none;
   background-color: rgb(235, 235, 235);
   box-shadow: inset 3px 3px 6px #d1d1d1,
-            inset -3px -3px 6px #ffffff;
+    inset -3px -3px 6px #ffffff;
   top: 6.5em;
   left: 1.5em;
   padding-left: 15px;
@@ -257,13 +275,13 @@
 
 .otp_input:hover {
   box-shadow: inset 0px 0px 0px #d1d1d1,
-            inset 0px 0px 0px #ffffff;
+    inset 0px 0px 0px #ffffff;
   background-color: lightgrey;
 }
 
 .otp_input:focus {
   box-shadow: inset 0px 0px 0px #d1d1d1,
-            inset 0px 0px 0px #ffffff;
+    inset 0px 0px 0px #ffffff;
   background-color: lightgrey;
 }
 
@@ -278,12 +296,12 @@
   outline: none;
   transition: .4s ease-in-out;
   box-shadow: 1px 1px 3px #b5b5b5,
-             -1px -1px 3px #ffffff;
+    -1px -1px 3px #ffffff;
 }
 
 .btn1:active {
   box-shadow: inset 3px 3px 6px #b5b5b5,
-            inset -3px -3px 6px #ffffff;
+    inset -3px -3px 6px #ffffff;
 }
 
 .btn2 {
@@ -297,11 +315,12 @@
   outline: none;
   transition: .4s ease-in-out;
   box-shadow: 1px 1px 3px #b5b5b5,
-             -1px -1px 3px #ffffff;
+    -1px -1px 3px #ffffff;
 }
 
 .btn2:active {
   box-shadow: inset 3px 3px 6px #b5b5b5,
-            inset -3px -3px 6px #ffffff;
+    inset -3px -3px 6px #ffffff;
 }
+
 /* ======== otp ============ */

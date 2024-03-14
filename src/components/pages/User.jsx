@@ -20,7 +20,7 @@ const User = () => {
           <img
             src="/EliasBhuiyan.jpg"
             alt="user"
-            className="w-20 h-20 rounded-2xl border-2 border-white"
+            className="w-24 h-20 rounded-2xl border-2 border-white"
           />
           <p className=" text-[#5b5f60] text-base font-semibold">ID: 123456</p>
           <h2 className="text-secondary text-lg font-semibold">{user?.name}</h2>

@@ -21,7 +21,7 @@ export default {
       keyframes: {
         animate: {
           '0%': { filter: 'hue-rotate(0deg)' },
-          '100%': { filter: 'hue-rotate(360deg)'}
+          '100%': { filter: 'hue-rotate(360deg)' }
         }
       }
     },
