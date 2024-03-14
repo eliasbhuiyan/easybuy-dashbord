@@ -1,5 +1,3 @@
-import React from "react";
-
 const CustomerOrder = () => {
   return (
     <div className="w-1/2 productBox productlist">

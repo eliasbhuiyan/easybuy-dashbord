@@ -34,7 +34,6 @@ const CreateSubCatagory = () => {
       label: `${item.name}`,
     });
   });
-  console.log(allCatagory);
   const handleSelect = (value) => {
     setCatagoryId(value);
   };
