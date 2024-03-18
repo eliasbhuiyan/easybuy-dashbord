@@ -7,7 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Popup from "../Popup";
 import Loading from "../Loading";
 import Heading from "../Heading";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { productID } from "../../reducer/productIdSlice";
 const AllProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [product, setProduct] = useState([]);
@@ -15,6 +17,7 @@ const AllProduct = () => {
   const [looding, setLooding] = useState(true);
   const [productId, setProductId] = useState("");
   const [realtime, setRealtime] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     // Fetch Data
     axios
@@ -132,7 +135,13 @@ const AllProduct = () => {
           {product.map((item) => (
             <tr key={item._id}>
               <td>
-                {item.shortID} - {item.name.substring(0, 20)}
+                <Link
+                  onClick={dispatch(productID(item.shortID))}
+                  to={`/productdetails`}
+                  className="py-4 hover:text-brand"
+                >
+                  {item.shortID} - {item.name.substring(0, 20)}
+                </Link>
               </td>
               <td>{item.description.substring(0, 20)}...</td>
               <td>

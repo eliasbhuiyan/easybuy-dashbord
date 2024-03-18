@@ -3,17 +3,20 @@ import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import Loading from "../Loading";
 const ProductDetails = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const productID = window.location.hash.substring(1);
+
   useEffect(() => {
     // Fetch Data
     axios
       .post(
         `${import.meta.env.VITE_API_URL}product/findoneproduct`,
         {
-          id: "#2929",
+          id: `#${productID}`,
         },
         {
           headers: {
@@ -33,7 +36,9 @@ const ProductDetails = () => {
         setLoading(false);
       });
   }, []);
-  console.log(product.variant);
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="w-full p-6">
       <div className="border-b pb-4 mb-6 flex justify-around">
@@ -75,7 +80,13 @@ const ProductDetails = () => {
             <h4 className="title mb-2 text-start capitalize">
               ID: {product?.shortID}
             </h4>
-            <button className="bg-green-500 text-white py-1 px-4 rounded-xl">
+            <button
+              className={
+                product?.status === "pending"
+                  ? "bg-red-500 text-white py-1 px-4 rounded-xl"
+                  : "bg-green-500 text-white py-1 px-4 rounded-xl"
+              }
+            >
               {product?.status}
             </button>
             <div className="flex items-center gap-2 my-2">
