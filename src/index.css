@@ -237,6 +237,10 @@
   .send-icon {
     @apply w-[17px];
   }
+  /* ============= productSlider============= */
+  .product_image .active{
+    @apply scale-110 border-brand
+  }
 }
 
 /* ======== otp ============ */

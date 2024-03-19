@@ -12,6 +12,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [allProduct, setAllProduct] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [variantID, setvariantID] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     // Fetch Data
@@ -39,7 +40,6 @@ const ProductDetails = () => {
         setLoading(false);
       });
   }, []);
-
   // All Product
   useEffect(() => {
     axios
@@ -86,22 +86,17 @@ const ProductDetails = () => {
           />
         </label>
       </div>
+      {/* Product Details */}
       <div className="flex gap-6">
-        <div className="w-1/2">
-          <div className="flex gap-1">
-            {product?.variant?.map((item) => (
-              <div key={item?._id} className="border">
-                <img src={item?.image} alt="img" />
-              </div>
-            ))}
-          </div>
-          <div className="w-56 flex gap-1 m-auto mt-2">
-            {product?.variant?.map((item) => (
-              <div key={item?._id} className="border">
-                <img src={item?.image} alt="img" />
-              </div>
-            ))}
-          </div>
+        <div className="w-1/2 flex gap-2 product_image">
+          {product?.variant.map((item, i) => (
+            <div
+              key={item._id}
+              className={`border rounded-lg overflow-hidden ${i === variantID ? "active" : ""}`}
+            >
+              <img src={item?.image} alt="img" />
+            </div>
+          ))}
         </div>
         <div className="w-1/2">
           <div>
@@ -114,8 +109,8 @@ const ProductDetails = () => {
             <button
               className={
                 product?.status === "pending"
-                  ? "bg-red-500 text-white py-1 px-4 rounded-xl"
-                  : "bg-green-500 text-white py-1 px-4 rounded-xl"
+                  ? "bg-red-500 text-white py-1 px-4 rounded-xl capitalize"
+                  : "bg-green-500 text-white py-1 px-4 rounded-xl capitalize"
               }
             >
               {product?.status}
@@ -141,67 +136,63 @@ const ProductDetails = () => {
               <p>8 Reviews</p>
             </div>
             <div className="border-b">
-              {product?.variant?.map((item) => (
-                <h3
-                  key={item?._id}
-                  className="title mb-0 text-start text-brand"
-                >
-                  {item?.price}Tk
-                </h3>
-              ))}
+              <h3 className="title mb-2 text-start text-brand">
+                {product?.variant[variantID]?.price}Tk
+              </h3>
             </div>
             <div className="flex gap-2 items-center mt-4">
               <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
                 Color:
               </p>
               <ul className="flex gap-1 items-center mt-2">
-                {product?.variant?.map((item) => (
+                {product?.variant.map((item, i) => (
                   <li key={item?._id}>
                     <span
-                      className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item?.color}] inline-block`}
+                      onClick={() => setvariantID(i)}
+                      className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item.color}]  inline-block`}
                     ></span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="flex gap-2 items-center my-4">
-              <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
-                Size:
-              </p>
-              <ul className="flex gap-1 items-center">
-                {product?.variant?.map((item) => (
-                  <li key={item?._id}>
-                    <span className="py-1 px-2 rounded-sm border inline-block">
-                      {item?.size}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex gap-2 items-center my-4">
-              <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
-                Storage:
-              </p>
-              <ul className="flex gap-1 items-center">
-                {product?.variant?.map((item) => (
-                  <li key={item?._id}>
-                    <span className="py-1 px-2 rounded-sm border inline-block">
-                      {item?.storage}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex gap-2 items-center">
+            {product?.variant[variantID]?.size && (
+              <div className="flex gap-2 items-center my-4">
+                <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
+                  Size:
+                </p>
+                <ul className="flex gap-1 items-center">
+                  {product?.variant?.map((item) => (
+                    <li key={item?._id}>
+                      <span className="py-1 px-2 rounded-sm border inline-block">
+                        {item?.size}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {product?.variant[variantID]?.storage && (
+              <div className="flex gap-2 items-center my-4">
+                <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
+                  Size:
+                </p>
+                <ul className="flex gap-1 items-center">
+                  {product?.variant?.map((item) => (
+                    <li key={item?._id}>
+                      <span className="py-1 px-2 rounded-sm border inline-block">
+                        {item?.storage}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="flex gap-2 items-center mt-2">
               <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
                 Quantity:
-                {product?.variant?.map((item) => (
-                  <li key={item?._id}>
-                    <span className="py-1 px-2 rounded-sm border inline-block">
-                      {item?.quantity}
-                    </span>
-                  </li>
-                ))}
+                <span className="py-1 px-2 rounded-sm text-brand title">
+                  {product?.variant[variantID]?.price}
+                </span>
               </p>
             </div>
           </div>
