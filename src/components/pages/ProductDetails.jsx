@@ -2,13 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
+import { Select } from "antd";
+import { productID } from "../../reducer/productIdSlice";
 const ProductDetails = () => {
   const user = useSelector((state) => state.user_sec.user);
   const productShortID = useSelector((state) => state.productID.product);
   const [product, setProduct] = useState([]);
+  const [allProduct, setAllProduct] = useState([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   useEffect(() => {
     // Fetch Data
     axios
@@ -35,6 +39,36 @@ const ProductDetails = () => {
         setLoading(false);
       });
   }, []);
+
+  // All Product
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
+        headers: {
+          Authorization: `Bearer user@${user?.auth}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
+      .then((res) => {
+        setAllProduct(res.data.product);
+      });
+  }, []);
+  // Product Selection Part
+  const options = [];
+  allProduct.map((item) => {
+    options.push({
+      value: item.shortID,
+      label: `${item.shortID}-${item.name}`,
+    });
+  });
+
+  const handleSelect = (value) => {
+    dispatch(productID(value));
+    document.cookie = `product_short=${value};`;
+    window.location.reload();
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -42,16 +76,14 @@ const ProductDetails = () => {
     <div className="w-full p-6">
       <div className="border-b pb-4 mb-6 flex justify-around">
         <h2 className="title">Product Details</h2>
-        <label className="basic">
-          Search By ID:
-          <select className="border">
-            <option value="" disabled hidden>
-              Product ID
-            </option>
-            <option value="">#2433</option>
-            <option value="">#2433</option>
-            <option value="">#2433</option>
-          </select>
+        <label className="primary flex gap-3">
+          Select Product :
+          <Select
+            placeholder="Product ID"
+            onChange={handleSelect}
+            options={options}
+            className="block w-56"
+          />
         </label>
       </div>
       <div className="flex gap-6">
