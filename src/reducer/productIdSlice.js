@@ -1,22 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import { jwtDecode } from 'jwt-decode';
+function getCookies() {
+    const cookies = document.cookie.split(";").map((cookie) => cookie.trim());
+    const cookiesObject = {};
 
-// const token = document.cookie;
-// let decoded;
+    cookies.forEach((cookie) => {
+        const [name, value] = cookie.split("=");
+        cookiesObject[name] = value;
+    });
 
-// try {
-//     decoded = jwtDecode(token);
-// } catch {
-//     decoded = null;
-// }
+    return cookiesObject?.product_short;
+}
+const cookies = getCookies();
 export const productIDSlice = createSlice({
     name: 'productID',
     initialState: {
-        product_id: null,
+        product: cookies ? cookies : null,
     },
     reducers: {
         productID: (state, actions) => {
-            state.product_id = actions.payload;
+            state.product = actions.payload;
         },
     },
 })

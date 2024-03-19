@@ -10,12 +10,13 @@ import Heading from "../Heading";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { productID } from "../../reducer/productIdSlice";
+
 const AllProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [product, setProduct] = useState([]);
   const [deletePopup, setDeletePopup] = useState(false);
   const [looding, setLooding] = useState(true);
-  const [productId, setProductId] = useState("");
+  const [productKey, setProductKey] = useState("");
   const [realtime, setRealtime] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,7 +41,6 @@ const AllProduct = () => {
   }, [realtime]);
   // Approved OR Pending Product
   const handelApprovedPendibg = (id) => {
-    console.log("productID", id);
     axios
       .post(
         `${import.meta.env.VITE_API_URL}product/approvedproduct`,
@@ -82,7 +82,7 @@ const AllProduct = () => {
         .post(
           "http://localhost:8000/api/v1/product/deleteproduct",
           {
-            id: productId,
+            id: productKey,
           },
           {
             headers: {
@@ -136,7 +136,10 @@ const AllProduct = () => {
             <tr key={item._id}>
               <td>
                 <Link
-                  onClick={dispatch(productID(item.shortID))}
+                  onClick={() => {
+                    dispatch(productID(item.shortID));
+                    document.cookie = `product_short=${item.shortID};`;
+                  }}
                   to={`/productdetails`}
                   className="py-4 hover:text-brand"
                 >
@@ -171,7 +174,7 @@ const AllProduct = () => {
                 <button
                   onClick={() => {
                     setDeletePopup(true);
-                    setProductId(item._id);
+                    setProductKey(item._id);
                   }}
                   className="delete_btn"
                 >

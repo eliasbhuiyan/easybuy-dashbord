@@ -6,17 +6,16 @@ import { useSelector } from "react-redux";
 import Loading from "../Loading";
 const ProductDetails = () => {
   const user = useSelector((state) => state.user_sec.user);
+  const productShortID = useSelector((state) => state.productID.product);
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
-  const productID = window.location.hash.substring(1);
-
   useEffect(() => {
     // Fetch Data
     axios
       .post(
         `${import.meta.env.VITE_API_URL}product/findoneproduct`,
         {
-          id: `#${productID}`,
+          id: productShortID,
         },
         {
           headers: {
