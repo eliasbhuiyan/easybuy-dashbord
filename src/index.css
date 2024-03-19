@@ -237,9 +237,12 @@
   .send-icon {
     @apply w-[17px];
   }
-  /* ============= productSlider============= */
+  /* ============= product Details============= */
   .product_image .active{
     @apply scale-110 border-brand
+  }
+  .product_color .active{
+    @apply scale-110 w-7 h-7 border-2 rounded-full border-brand
   }
 }
 

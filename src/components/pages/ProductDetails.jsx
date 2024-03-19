@@ -91,8 +91,11 @@ const ProductDetails = () => {
         <div className="w-1/2 flex gap-2 product_image">
           {product?.variant.map((item, i) => (
             <div
+              onClick={() => setvariantID(i)}
               key={item._id}
-              className={`border rounded-lg overflow-hidden ${i === variantID ? "active" : ""}`}
+              className={`border rounded-lg overflow-hidden cursor-pointer ${
+                i === variantID ? "active" : ""
+              }`}
             >
               <img src={item?.image} alt="img" />
             </div>
@@ -144,12 +147,12 @@ const ProductDetails = () => {
               <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
                 Color:
               </p>
-              <ul className="flex gap-1 items-center mt-2">
+              <ul className="flex gap-1 items-center mt-2 product_color">
                 {product?.variant.map((item, i) => (
-                  <li key={item?._id}>
+                  <li key={item?._id} className={`${i === variantID ? "active" : ""}`}>
                     <span
                       onClick={() => setvariantID(i)}
-                      className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item.color}]  inline-block`}
+                      className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item.color}] inline-block`}
                     ></span>
                   </li>
                 ))}
