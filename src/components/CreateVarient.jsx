@@ -6,6 +6,7 @@ import { GiCrossMark } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProductData } from "../api";
 const CreateVarient = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [allProduct, setAllProduct] = useState([]);
@@ -18,17 +19,12 @@ const CreateVarient = () => {
   const [productId, setProductId] = useState("");
   // All Product
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
+    const data = async () => {
+      await ProductData(user?.auth).then((res) => {
         setAllProduct(res.data.product);
       });
+    };
+    data();
   }, []);
 
   // Product Selection Part

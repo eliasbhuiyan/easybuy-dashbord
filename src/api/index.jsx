@@ -54,5 +54,20 @@ const SubCatagoryData = (auth) => {
     return error;
   }
 };
+const ProductData = (auth) => {
+  try {
+    const res = axios.get(
+      `${import.meta.env.VITE_API_URL}product/getallproduct`,
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
-export { AllMerchant, UserList, CatagoryData, SubCatagoryData };
+export { AllMerchant, UserList, CatagoryData, SubCatagoryData, ProductData };

@@ -244,124 +244,44 @@
   .product_color .active{
     @apply scale-110 w-7 h-7 border-2 rounded-full border-brand
   }
+  /* ============= Rating  Stars ============== */
+  .rating {
+    @apply flex flex-row-reverse border-none justify-end;
+  }
+  .rating > label {
+    @apply text-[#90A0A3] text-3xl inline-block m-[5px];
+  }
+  .rating > input {
+    @apply hidden;
+  }
+  .rating > input:checked ~ label,
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+    @apply text-[#F79426];
+  }
+  .rating > input:checked + label:hover,
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label,
+  .rating > input:checked ~ label:hover ~ label {
+    @apply text-[#FECE31];
+  }
+  /* ======== otp ============ */
+  .otpform {
+    @apply w-[400px] h-[500px] flex flex-col bg-[white] shadow-[0_4px_30px_rgba(0,0,0,0.1)] transition-all rounded-[15px] hover:shadow-[1px_1px_1px_rgba(0,0,0,0.1)];
+  }
+  .otpform:hover {
+    @apply scale-90
+  }
+  .otp_input {
+    @apply relative outline-none w-[2.5em] h-[2.5em] bg-[rgb(235,235,235)] shadow-[inset_3px_3px_6px_#d1d1d1,inset_-3px_-3px_6px_#ffffff] transition-all m-[1em] pl-[15px] rounded-[5px] border-[none] left-[1.5em] top-[6.5em] hover:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] hover:bg-[lightgrey] focus:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] focus:bg-[lightgrey];
+  }
+  .btn1 {
+    @apply relative outline-none w-[17em] h-[3em] transition-[0.4s]  shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] rounded-[5px] border-[none] left-[2.4em] top-[8.5em] active:shadow-[inset_3px_3px_6px_#b5b5b5,inset_-3px_-3px_6px_#ffffff];
+  }
+  .btn2 {
+    @apply relative outline-none w-[17em] h-[3em] transition-[0.4s]  shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] rounded-[5px] border-[none] left-[2.4em] top-[9.5em] active:shadow-[inset_3px_3px_6px_#b5b5b5,inset_-3px_-3px_6px_#ffffff];
+  }
+  /* ======== otp ============ */
 }
 
-/* ======== otp ============ */
-.otpform {
-  width: 400px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  background-color: white;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  transition: .4s ease-in-out;
-}
 
-.otpform:hover {
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  scale: 0.99;
-}
-
-.otp_input {
-  position: relative;
-  width: 2.5em;
-  height: 2.5em;
-  margin: 1em;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  background-color: rgb(235, 235, 235);
-  box-shadow: inset 3px 3px 6px #d1d1d1,
-    inset -3px -3px 6px #ffffff;
-  top: 6.5em;
-  left: 1.5em;
-  padding-left: 15px;
-  transition: .4s ease-in-out;
-}
-
-.otp_input:hover {
-  box-shadow: inset 0px 0px 0px #d1d1d1,
-    inset 0px 0px 0px #ffffff;
-  background-color: lightgrey;
-}
-
-.otp_input:focus {
-  box-shadow: inset 0px 0px 0px #d1d1d1,
-    inset 0px 0px 0px #ffffff;
-  background-color: lightgrey;
-}
-
-.btn1 {
-  position: relative;
-  top: 8.5em;
-  left: 2.4em;
-  width: 17em;
-  height: 3em;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  transition: .4s ease-in-out;
-  box-shadow: 1px 1px 3px #b5b5b5,
-    -1px -1px 3px #ffffff;
-}
-
-.btn1:active {
-  box-shadow: inset 3px 3px 6px #b5b5b5,
-    inset -3px -3px 6px #ffffff;
-}
-
-.btn2 {
-  position: relative;
-  top: 9.5em;
-  left: 2.4em;
-  width: 17em;
-  height: 3em;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  transition: .4s ease-in-out;
-  box-shadow: 1px 1px 3px #b5b5b5,
-    -1px -1px 3px #ffffff;
-}
-
-.btn2:active {
-  box-shadow: inset 3px 3px 6px #b5b5b5,
-    inset -3px -3px 6px #ffffff;
-}
-
-/* ======== otp ============ */
-
-.rating {
-  border: none;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: start;
-}
-
-.rating > label {
-  color: #90A0A3;
-}
-
-.rating > label {
-  margin: 5px;
-  font-size: 30px;
-  display: inline-block;
-}
-
-.rating > input {
-  display: none;
-}
-
-.rating > input:checked ~ label,
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-  color: #F79426;
-}
-
-.rating > input:checked + label:hover,
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label,
-.rating > input:checked ~ label:hover ~ label {
-  color: #FECE31;
-}

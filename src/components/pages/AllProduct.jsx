@@ -10,6 +10,7 @@ import Heading from "../Heading";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { productID } from "../../reducer/productIdSlice";
+import { ProductData } from "../../api";
 
 const AllProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
@@ -20,24 +21,19 @@ const AllProduct = () => {
   const [realtime, setRealtime] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    // Fetch Data
-    axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setProduct(res.data.product);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLooding(false);
-      });
+    const data = async () => {
+      await ProductData(user?.auth)
+        .then((res) => {
+          setProduct(res.data.product);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLooding(false);
+        });
+    };
+    data();
   }, [realtime]);
   // Approved OR Pending Product
   const handelApprovedPendibg = (id) => {

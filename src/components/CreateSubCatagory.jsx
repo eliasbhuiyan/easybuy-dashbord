@@ -7,7 +7,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useSelector } from "react-redux";
-import { AllCatagory } from "../api";
+import { CatagoryData } from "../api";
 const CreateSubCatagory = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [name, setName] = useState("");
@@ -16,7 +16,7 @@ const CreateSubCatagory = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   useEffect(() => {
     const data = async () => {
-      await AllCatagory(user?.auth)
+      await CatagoryData(user?.auth)
         .then((res) => {
           console.log(res);
           setAllCatagory(res.data.catagory);
@@ -27,7 +27,6 @@ const CreateSubCatagory = () => {
     };
     data();
   }, []);
-  console.log(allCatagory);
   // Catagory Selection Part
   const options = [];
   allCatagory.map((item) => {

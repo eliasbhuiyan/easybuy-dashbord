@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { GiCrossMark } from "react-icons/gi";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AllMerchant } from "../../api";

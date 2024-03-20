@@ -17,12 +17,16 @@ const Chating = () => {
         </div>
         <div className="overflow-y-scroll bg-secondary text-white h-4/5 px-3">
           <div className="flex items-center gap-2 my-2">
-            <div className="w-10 h-10 rounded-full border flex justify-center items-center"><FaUserSecret/></div>
+            <div className="w-10 h-10 rounded-full border flex justify-center items-center">
+              <FaUserSecret />
+            </div>
             <p className="text-xl">Hello</p>
           </div>
           <div className="flex items-center gap-2 justify-end my-2">
             <p className="text-xl">Hi! How can I help you ?</p>
-            <div className="w-10 h-10 rounded-full border flex justify-center items-center"><FaUserSecret/></div>
+            <div className="w-10 h-10 rounded-full border flex justify-center items-center">
+              <FaUserSecret />
+            </div>
           </div>
         </div>
         <div className="bg-primary p-4">
@@ -33,7 +37,7 @@ const Chating = () => {
               type="text"
             />
             <div className="send">
-                <IoSend className="text-white"/>
+              <IoSend className="text-white" />
             </div>
           </div>
         </div>
