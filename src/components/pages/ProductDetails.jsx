@@ -6,30 +6,29 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import { Select } from "antd";
 import { productID } from "../../reducer/productIdSlice";
+import { useNavigate } from "react-router-dom";
+import StarRating from "../StarRating";
 const ProductDetails = () => {
-  const user = useSelector((state) => state.user_sec.user);
+  const navigate = useNavigate();
   const productShortID = useSelector((state) => state.productID.product);
   const [product, setProduct] = useState([]);
   const [allProduct, setAllProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [variantID, setvariantID] = useState(0);
+  const [reviewData, setReviewData] = useState({
+    rating: '',
+    email: '',
+    comment: '',
+    shortID: '',
+  });
+
   const dispatch = useDispatch();
   useEffect(() => {
     // Fetch Data
     axios
-      .post(
-        `${import.meta.env.VITE_API_URL}product/findoneproduct`,
-        {
-          id: productShortID,
-        },
-        {
-          headers: {
-            Authorization: `Bearer user@${user?.auth}@${
-              import.meta.env.VITE_SWTSECRT
-            }`,
-          },
-        }
-      )
+      .post(`${import.meta.env.VITE_API_URL}product/findoneproduct`, {
+        id: productShortID,
+      })
       .then((res) => {
         setProduct(res.data.product);
       })
@@ -43,13 +42,7 @@ const ProductDetails = () => {
   // All Product
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
+      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
       .then((res) => {
         setAllProduct(res.data.product);
       });
@@ -59,16 +52,23 @@ const ProductDetails = () => {
   allProduct.map((item) => {
     options.push({
       value: item.shortID,
-      label: `${item.shortID}-${item.name}`,
+      label: `${item.shortID} ${item.slug}`,
     });
   });
 
-  const handleSelect = (value) => {
+  const handleSelect = (value, label) => {
     dispatch(productID(value));
     document.cookie = `product_short=${value};`;
+    navigate(`/productdetails/${label.label.split(" ")[1]}`);
     window.location.reload();
   };
 
+  const handelRate = (value) => {
+    setReviewData({...reviewData, rating: value });
+  };
+const handelSubmitReview = () => {
+  console.log(reviewData);
+}
   if (loading) {
     return <Loading />;
   }
@@ -149,7 +149,10 @@ const ProductDetails = () => {
               </p>
               <ul className="flex gap-1 items-center mt-2 product_color">
                 {product?.variant.map((item, i) => (
-                  <li key={item?._id} className={`${i === variantID ? "active" : ""}`}>
+                  <li
+                    key={item?._id}
+                    className={`${i === variantID ? "active" : ""}`}
+                  >
                     <span
                       onClick={() => setvariantID(i)}
                       className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item.color}] inline-block`}
@@ -205,6 +208,7 @@ const ProductDetails = () => {
         <p className="title text-start mb-2">Product Details:</p>
         <p className="basic">{product?.description}</p>
       </div>
+      {/* Customer Review */}
       <div className="my-4">
         <p className="title text-start mb-2 mt-8">Customer Review (5) :</p>
         <div className="border-b pb-3 my-3">
@@ -259,33 +263,32 @@ const ProductDetails = () => {
             fugiat eos voluptates itaque nemo.
           </p>
         </div>
+        {/* Add Review */}
         <div className="w-1/4">
           <p className="title mt-8 mb-3 text-start">Add Review</p>
-          <label className="basic">
-            Name
-            <input
-              type="text"
-              placeholder="Your name.."
-              className="inputField ml-0"
-            />
-          </label>
-          <label className="basic">
-            Email
-            <input
-              type="email"
-              placeholder="Your email.."
-              className="inputField ml-0"
-            />
-          </label>
-          <label className="basic">
-            Review
-            <textarea
-              type="email"
-              placeholder="Your opinion"
-              className="inputField ml-0"
-            />
-          </label>
-          <button className="btn btn-primary">Submit</button>
+          <p className="basic">Your Rating</p>
+          <StarRating getRate={handelRate}/>
+          <div className="mt-5">
+            <label className="basic">
+              Email
+              <input
+                type="email"
+                placeholder="Your email.."
+                className="inputField ml-0"
+                onChange={(e) => setReviewData({ ...reviewData, email: e.target.value })}
+              />
+            </label>
+            <label className="basic">
+              Review
+              <textarea
+                type="email"
+                placeholder="Your opinion"
+                className="inputField ml-0"
+                onChange={(e)=>setReviewData({...reviewData, comment: e.target.value })}
+              />
+            </label>
+          </div>
+          <button onClick={handelSubmitReview} className="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

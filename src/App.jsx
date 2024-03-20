@@ -44,7 +44,7 @@ function App() {
           <Route path="/allcatagory" element={<AllCatagory />} />
           <Route path="/product" element={<Product />} />
           <Route path="/allproduct" element={<AllProduct />} />
-          <Route path="/productdetails" element={<ProductDetils />} />
+          <Route path="/productdetails/:Slug" element={<ProductDetils />} />
           <Route path="/user" element={<User />} />
         </Route>
         <Route path="*" element={<Error />} />

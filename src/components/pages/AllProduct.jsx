@@ -140,7 +140,7 @@ const AllProduct = () => {
                     dispatch(productID(item.shortID));
                     document.cookie = `product_short=${item.shortID};`;
                   }}
-                  to={`/productdetails`}
+                  to={`/productdetails/${item.slug}`}
                   className="py-4 hover:text-brand"
                 >
                   {item.shortID} - {item.name.substring(0, 20)}
