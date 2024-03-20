@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import { Select } from "antd";
 import { productID } from "../../reducer/productIdSlice";
 import { useNavigate } from "react-router-dom";
 import StarRating from "../StarRating";
+import { ToastContainer, toast } from "react-toastify";
 const ProductDetails = () => {
   const navigate = useNavigate();
   const productShortID = useSelector((state) => state.productID.product);
@@ -16,10 +16,10 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [variantID, setvariantID] = useState(0);
   const [reviewData, setReviewData] = useState({
-    rating: '',
-    email: '',
-    comment: '',
-    shortID: '',
+    rating: "",
+    email: "",
+    comment: "",
+    shortID: "",
   });
 
   const dispatch = useDispatch();
@@ -64,16 +64,45 @@ const ProductDetails = () => {
   };
 
   const handelRate = (value) => {
-    setReviewData({...reviewData, rating: value });
+    setReviewData({ ...reviewData, rating: value });
   };
-const handelSubmitReview = () => {
-  console.log(reviewData);
-}
+  const handelSubmitReview = () => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}product/review`, {
+        rating: reviewData.rating,
+        comment: reviewData.comment,
+        email: reviewData.email,
+        shortID: productShortID,
+      })
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "bottom-center",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+        setReviewData({
+          rating: "",
+          email: "",
+          comment: "",
+          shortID: "",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error, {
+          position: "bottom-center",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      });
+  };
   if (loading) {
     return <Loading />;
   }
   return (
     <div className="w-full p-6">
+      <ToastContainer />
       <div className="border-b pb-4 mb-6 flex justify-around">
         <h2 className="title">Product Details</h2>
         <label className="primary flex gap-3">
@@ -211,84 +240,53 @@ const handelSubmitReview = () => {
       {/* Customer Review */}
       <div className="my-4">
         <p className="title text-start mb-2 mt-8">Customer Review (5) :</p>
-        <div className="border-b pb-3 my-3">
-          <div className="flex gap-2 items-center pb-2">
-            <p className="basic">User Name</p>
-            <ul className="flex gap-1 text-orange-400">
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-            </ul>
+        {product?.reviews.map((item) => (
+          <div key={item._id} className="border-b pb-3 my-3">
+            <div className="flex gap-2 items-center pb-2">
+              <p className="basic">{item?.userId?.fullName}</p>
+              <ul className="flex gap-1 text-orange-400">
+                <li>
+                  <FaStar className="text-yellow-500" />
+                </li>
+              </ul>
+            </div>
+            <p className=" font-sans text-secondary">{item?.comment}</p>
           </div>
-          <p className=" font-sans text-secondary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et error
-            fugiat eos voluptates itaque nemo.
-          </p>
-        </div>
-        <div className="border-b pb-3 my-3">
-          <div className="flex gap-2 items-center pb-2">
-            <p className="basic">User Name</p>
-            <ul className="flex gap-1 text-orange-400">
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaStar />
-              </li>
-              <li>
-                <FaRegStar />
-              </li>
-            </ul>
-          </div>
-          <p className=" font-sans text-secondary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et error
-            fugiat eos voluptates itaque nemo.
-          </p>
-        </div>
+        ))}
         {/* Add Review */}
         <div className="w-1/4">
           <p className="title mt-8 mb-3 text-start">Add Review</p>
           <p className="basic">Your Rating</p>
-          <StarRating getRate={handelRate}/>
+          <StarRating getRate={handelRate} />
           <div className="mt-5">
             <label className="basic">
               Email
               <input
+                value={reviewData.email}
                 type="email"
                 placeholder="Your email.."
                 className="inputField ml-0"
-                onChange={(e) => setReviewData({ ...reviewData, email: e.target.value })}
+                onChange={(e) =>
+                  setReviewData({ ...reviewData, email: e.target.value })
+                }
               />
             </label>
             <label className="basic">
               Review
               <textarea
+                value={reviewData.comment}
                 type="email"
                 placeholder="Your opinion"
                 className="inputField ml-0"
-                onChange={(e)=>setReviewData({...reviewData, comment: e.target.value })}
+                onChange={(e) =>
+                  setReviewData({ ...reviewData, comment: e.target.value })
+                }
               />
             </label>
           </div>
-          <button onClick={handelSubmitReview} className="btn btn-primary">Submit</button>
+          <button onClick={handelSubmitReview} className="btn btn-primary">
+            Submit
+          </button>
         </div>
       </div>
     </div>
