@@ -7,6 +7,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useSelector } from "react-redux";
+import { AllCatagory } from "../api";
 const CreateSubCatagory = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [name, setName] = useState("");
@@ -14,17 +15,16 @@ const CreateSubCatagory = () => {
   const [catagoryId, setCatagoryId] = useState("");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallcatagory`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setAllCatagory(res.data.catagory);
-      });
+    const data = async () => {
+      await AllCatagory(user?.auth)
+        .then((res) => {
+          setAllCatagory(res.data.catagory);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    data();
   }, []);
   // Catagory Selection Part
   const options = [];
@@ -37,7 +37,6 @@ const CreateSubCatagory = () => {
   const handleSelect = (value) => {
     setCatagoryId(value);
   };
-
   const handelSubmit = () => {
     axios
       .post(

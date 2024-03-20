@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
@@ -11,7 +10,6 @@ const CustomerList = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [userList, setUserList] = useState([]);
   const [looding, setLooding] = useState(true);
-
   useEffect(() => {
     const data = async () => {
       await UserList(user?.auth)

@@ -24,5 +24,20 @@ const UserList = (auth) => {
     return error;
   }
 };
+const AllCatagory = (auth) => {
+  try {
+    const res = axios.get(
+      `${import.meta.env.VITE_API_URL}catagory/getallcatagory`,
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
-export { AllMerchant, UserList };
+export { AllMerchant, UserList, AllCatagory };
