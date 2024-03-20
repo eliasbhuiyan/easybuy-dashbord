@@ -52,7 +52,6 @@ const items = [
   getItem("Product", "sub3", <FaBox />, [
     getItem("Create Product", "product"),
     getItem("All Products", "allproduct"),
-    getItem("Product Details", "productdetails"),
   ]),
   {
     type: "divider",

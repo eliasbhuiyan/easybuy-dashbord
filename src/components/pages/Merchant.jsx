@@ -6,29 +6,18 @@ import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { AllMerchant } from "../../api";
 
 const Merchant = () => {
-  let [merchant, setMerchant] = useState([]);
-  const token = document.cookie;
-  const decoded = jwtDecode(token);
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}auth/allmerchant`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setMerchant(res.data.merchant);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   const user = useSelector((state) => state.user_sec.user);
+  let [merchant, setMerchant] = useState([]);
+  useEffect(() => {
+    const data = async () => {
+      const merchantData = await AllMerchant(user.auth);
+      setMerchant(merchantData.data.merchant);
+    };
+    data();
+  }, []);
   const handelApproved = (id) => {
     axios
       .post(
@@ -94,7 +83,10 @@ const Merchant = () => {
         });
       });
   };
-  return decoded.role === "admin" ? (
+  if (user.role !== "admin") {
+    return <Navigate to="/" />;
+  }
+  return (
     <section className="p-6 w-full productlist">
       <ToastContainer />
       <table className="w-full">
@@ -135,8 +127,6 @@ const Merchant = () => {
         </tbody>
       </table>
     </section>
-  ) : (
-    <Navigate to="/" />
   );
 };
 

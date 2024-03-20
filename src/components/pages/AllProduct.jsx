@@ -112,6 +112,14 @@ const AllProduct = () => {
         });
     }
   };
+  const handelEdit = () => {
+    toast.info("Admin Action Only", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      theme: "light",
+    });
+  };
   if (looding) {
     return <Loading />;
   }
@@ -168,7 +176,7 @@ const AllProduct = () => {
                 </button>
               </td>
               <td className="flex items-center justify-evenly">
-                <button className="edit_btn">
+                <button onClick={handelEdit} className="edit_btn">
                   <FaEdit className="edit_icon" />
                 </button>
                 <button

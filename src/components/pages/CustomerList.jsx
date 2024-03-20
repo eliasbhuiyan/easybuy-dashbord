@@ -6,31 +6,28 @@ import { useSelector } from "react-redux";
 import { FaUserSecret } from "react-icons/fa6";
 import Loading from "../Loading";
 import { Link } from "react-router-dom";
-
+import { UserList } from "../../api";
 const CustomerList = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [userList, setUserList] = useState([]);
   const [looding, setLooding] = useState(true);
+
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}auth/userlist`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setUserList(res.data.user);
-        console.log(res.data.user[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLooding(false);
-      });
+    const data = async () => {
+      await UserList(user?.auth)
+        .then((res) => {
+          setUserList(res.data.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLooding(false);
+        });
+    };
+    data();
   }, []);
+
   if (looding) {
     return <Loading />;
   }
