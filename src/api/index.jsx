@@ -24,7 +24,7 @@ const UserList = (auth) => {
     return error;
   }
 };
-const AllCatagory = (auth) => {
+const CatagoryData = (auth) => {
   try {
     const res = axios.get(
       `${import.meta.env.VITE_API_URL}catagory/getallcatagory`,
@@ -39,5 +39,20 @@ const AllCatagory = (auth) => {
     return error;
   }
 };
+const SubCatagoryData = (auth) => {
+  try {
+    const res = axios.get(
+      `${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`,
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
-export { AllMerchant, UserList, AllCatagory };
+export { AllMerchant, UserList, CatagoryData, SubCatagoryData };

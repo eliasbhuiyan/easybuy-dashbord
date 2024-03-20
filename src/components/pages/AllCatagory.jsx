@@ -7,32 +7,25 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-
+import { CatagoryData } from "../../api";
 const AllCatagory = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [allCatagory, setAllCatagory] = useState([]);
   const [deletePopup, setDeletePopup] = useState(false);
   const [looding, setLooding] = useState(true);
   const [productId, setProductId] = useState("");
-
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallcatagory`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
-        setAllCatagory(res.data.catagory);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLooding(false);
-      });
+    const data = async () => {
+      await CatagoryData(user?.auth)
+        .then((res) => {
+          setAllCatagory(res.data.catagory);
+          setLooding(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    data();
   }, []);
   // Approved OR Pending Product
   const handelApprovedPendibg = (id) => {
@@ -57,7 +50,6 @@ const AllCatagory = () => {
           closeOnClick: true,
           theme: "light",
         });
-        // setRealtime(!realtime);
       })
       .catch((err) => {
         console.log(err);

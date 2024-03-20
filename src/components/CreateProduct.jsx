@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { SubCatagoryData } from "../api";
 
 const CreateProduct = () => {
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
@@ -21,7 +22,6 @@ const CreateProduct = () => {
   const [pslug, setpSlug] = useState("");
   const [subCatagoryId, setSubCatagoryId] = useState("");
   const [allSubCatagory, setAllSubCatagory] = useState([]);
-
   // Image Upload Part
   const handleChange = (file) => {
     setImage(file[0]);
@@ -29,17 +29,12 @@ const CreateProduct = () => {
   };
   // All SubCatagory
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}catagory/getallsubcatagory`, {
-        headers: {
-          Authorization: `Bearer user@${user?.auth}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-        },
-      })
-      .then((res) => {
+    const data = async () => {
+      await SubCatagoryData(user?.auth).then((res) => {
         setAllSubCatagory(res.data.subCatagory);
       });
+    };
+    data();
   }, []);
   // SubCatagory Selection Part
   const options = [];

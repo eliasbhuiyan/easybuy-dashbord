@@ -18,6 +18,7 @@ const CreateSubCatagory = () => {
     const data = async () => {
       await AllCatagory(user?.auth)
         .then((res) => {
+          console.log(res);
           setAllCatagory(res.data.catagory);
         })
         .catch((err) => {
@@ -26,6 +27,7 @@ const CreateSubCatagory = () => {
     };
     data();
   }, []);
+  console.log(allCatagory);
   // Catagory Selection Part
   const options = [];
   allCatagory.map((item) => {
