@@ -40,7 +40,7 @@ const CatagoryDetails = () => {
     <section className="w-full py-5 flex flex-col items-center">
       <div className="productBox w-4/5 flex flex-col items-center gap-6 border border-slate-200">
         <ToastContainer />
-        <h2 className="title">catagory</h2>
+        <h2 className="title">catagory Details</h2>
         <label className="primary w-full">
           Catagory Name *
           <Input

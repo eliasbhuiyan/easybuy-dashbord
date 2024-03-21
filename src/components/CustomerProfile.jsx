@@ -22,14 +22,14 @@ const CustomerProfile = ({ userData }) => {
   const [enableEdit, setEnableEdit] = useState(false);
   const [userUpdateData, setUserUpdateData] = useState({
     fullName: userData.fullName,
-    phone: userData.phone ? userData.phone : "",
-    email: userData.email ? userData.email : "",
-    addressOne: userData.addressOne ? userData.addressOne : "",
-    addressTwo: userData.addressTwo ? userData.addressTwo : "",
-    zipCode: userData.zipCode ? userData.zipCode : "",
-    city: userData.city ? userData.city : "",
-    country: userData.country ? userData.country : "",
-    state: userData.state ? userData.state : "",
+    phone: userData.phone,
+    email: userData.email,
+    addressOne: userData.addressOne,
+    addressTwo: userData.addressTwo,
+    zipCode: userData.zipCode,
+    city: userData.city,
+    country: userData.country,
+    state: userData.state,
     uid: "",
   });
   const name = userData?.fullName;
