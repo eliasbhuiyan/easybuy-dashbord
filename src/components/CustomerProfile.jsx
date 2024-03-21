@@ -6,84 +6,224 @@ import {
 import { FaBox } from "react-icons/fa";
 import { FaRoad } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import { IoTimeSharp } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { useState } from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { GiCrossMark } from "react-icons/gi";
 
 // eslint-disable-next-line react/prop-types
 const CustomerProfile = ({ userData }) => {
-  console.log(userData);
+  let [searchParams] = useSearchParams();
+  const [enableEdit, setEnableEdit] = useState(false);
+  const [userUpdateData, setUserUpdateData] = useState({
+    fullName: userData.fullName,
+    phone: userData.phone ? userData.phone : "",
+    email: userData.email ? userData.email : "",
+    addressOne: userData.addressOne ? userData.addressOne : "",
+    addressTwo: userData.addressTwo ? userData.addressTwo : "",
+    zipCode: userData.zipCode ? userData.zipCode : "",
+    city: userData.city ? userData.city : "",
+    country: userData.country ? userData.country : "",
+    state: userData.state ? userData.state : "",
+    uid: "",
+  });
+  const name = userData?.fullName;
+  const firstName = name.substring(0, 1);
+  const lastName = name.substring(name.indexOf(" ") + 1, name.indexOf(" ") + 2);
+  const concatenated = firstName + lastName;
+
+  const handleClick = () => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}auth/updateuser`, {
+        fullName: userUpdateData.fullName,
+        phone: userUpdateData.phone,
+        email: userUpdateData.email,
+        addressOne: userUpdateData.addressOne,
+        addressTwo: userUpdateData.addressTwo,
+        zipCode: userUpdateData.zipCode,
+        city: userUpdateData.city,
+        country: userUpdateData.country,
+        state: userUpdateData.state,
+        uid: searchParams.get("uid"),
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      });
+  };
+
   return (
     <div className="w-1/2 h-fit productBox">
+      <ToastContainer />
       <div className="flex justify-between">
         <h2 className="text-lg text-secondary font-medium">Profile</h2>
-        <FaEdit className="text-xl cursor-pointer" />
+        {enableEdit ? (
+          <div className="flex gap-4 items-center">
+            <GiCrossMark
+              onClick={() => setEnableEdit(false)}
+              className="cursor-pointer text-red-600 text-2xl"
+            />
+            <button onClick={handleClick} className="btn py-1 px-3 text-sm">
+              Save
+            </button>
+          </div>
+        ) : (
+          <FaEdit
+            onClick={() => setEnableEdit(true)}
+            className="text-xl cursor-pointer"
+          />
+        )}
       </div>
       <div className="flex flex-col items-center">
-        <img
-          src="/EliasBhuiyan.jpg"
-          alt="user"
-          className="w-24 h-20 rounded-2xl border-2 border-white"
-        />
-        <p className=" text-[#5b5f60] text-base font-semibold uppercase">
+        {userData?.avatar ? (
+          <img
+            src={userData?.avatar}
+            alt="user"
+            className="w-24 h-24 rounded-full border"
+          />
+        ) : (
+          <div className="w-24 h-24 border rounded-full bg-secondary flex justify-center items-center text-white text-2xl">
+            {concatenated}
+          </div>
+        )}
+        <p className=" text-[#5b5f60] text-base font-semibold uppercase mt-3">
           ROLE: {userData.role}
         </p>
-        <h2 className="text-secondary text-lg font-semibold">
-          {userData.fullName}
-        </h2>
+        <input
+          placeholder="Full Name"
+          value={userData.fullName}
+          className={`userInput text-center ${
+            enableEdit ? "outline-double" : "outline-none"
+          }`}
+          onChange={(e) =>
+            setUserUpdateData({ ...userUpdateData, fullName: e.target.value })
+          }
+        />
       </div>
       <div className="py-4 px-6">
         <div className="flex items-center mt-4 text-gray-700">
-          <svg className="h-6 w-6 fill-current" viewBox="0 0 512 512">
-            <path d="M437.332 80H74.668C51.199 80 32 99.198 32 122.667v266.666C32 412.802 51.199 432 74.668 432h362.664C460.801 432 480 412.802 480 389.333V122.667C480 99.198 460.801 80 437.332 80zM432 170.667L256 288 80 170.667V128l176 117.333L432 128v42.667z" />
-          </svg>
+          <MdEmail />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">Email:</span>
-            <span className="text-base text-secondary font-medium">
-              {userData.email}
-            </span>
+            <input
+              placeholder="Enter your email address..."
+              value={enableEdit ? userUpdateData.email : userData.email}
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({ ...userUpdateData, email: e.target.value })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
           <FaPhoneAlt />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">Phone:</span>
-            <span className="text-base text-secondary font-medium">
-              0{userData.phone ? userData.phone : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your email address..."
+              value={enableEdit ? userUpdateData.phone : userData.phone}
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({ ...userUpdateData, phone: e.target.value })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
-          <svg className="h-6 w-6 fill-current" viewBox="0 0 512 512">
-            <path d="M256 32c-88.004 0-160 70.557-160 156.801C96 306.4 256 480 256 480s160-173.6 160-291.199C416 102.557 344.004 32 256 32zm0 212.801c-31.996 0-57.144-24.645-57.144-56 0-31.357 25.147-56 57.144-56s57.144 24.643 57.144 56c0 31.355-25.148 56-57.144 56z" />
-          </svg>
+          <FaLocationDot />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">
               Address 1 :
             </span>
-            <span className="text-base text-secondary font-medium">
-              {userData.addressOne}
-            </span>
+            <input
+              placeholder="Enter your address..."
+              value={
+                enableEdit ? userUpdateData.addressOne : userData.addressOne
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  addressOne: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
-          <svg className="h-6 w-6 fill-current" viewBox="0 0 512 512">
-            <path d="M256 32c-88.004 0-160 70.557-160 156.801C96 306.4 256 480 256 480s160-173.6 160-291.199C416 102.557 344.004 32 256 32zm0 212.801c-31.996 0-57.144-24.645-57.144-56 0-31.357 25.147-56 57.144-56s57.144 24.643 57.144 56c0 31.355-25.148 56-57.144 56z" />
-          </svg>
+          <FaLocationDot />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">
               Address 2 :
             </span>
-            <span className="text-base text-secondary font-medium">
-              {userData.addressTwo ? userData.addressTwo : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your address..."
+              value={
+                enableEdit
+                  ? userUpdateData.addressTwo
+                  : userData.addressTwo
+                  ? userData.addressTwo
+                  : "N/A"
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  addressTwo: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
           <FaMountainCity />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">City :</span>
-            <span className="text-base text-secondary font-medium">
-              {userData.city ? userData.city : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your address..."
+              value={
+                enableEdit
+                  ? userUpdateData.city
+                  : userData.city
+                  ? userData.city
+                  : "N/A"
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  city: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -92,9 +232,25 @@ const CustomerProfile = ({ userData }) => {
             <span className="text-lg text-secondary font-semibold">
               Post Code :
             </span>
-            <span className="text-base text-secondary font-medium">
-              {userData.zipCode ? userData.zipCode : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your post code..."
+              value={
+                enableEdit
+                  ? userUpdateData.zipCode
+                  : userData.zipCode
+                  ? userData.zipCode
+                  : "N/A"
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  zipCode: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -103,9 +259,25 @@ const CustomerProfile = ({ userData }) => {
             <span className="text-lg text-secondary font-semibold">
               State :
             </span>
-            <span className="text-base text-secondary font-medium">
-              {userData.state ? userData.state : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your state..."
+              value={
+                enableEdit
+                  ? userUpdateData.state
+                  : userData.state
+                  ? userData.state
+                  : "N/A"
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  state: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -114,9 +286,25 @@ const CustomerProfile = ({ userData }) => {
             <span className="text-lg text-secondary font-semibold">
               Country :
             </span>
-            <span className="text-base text-secondary font-medium">
-              {userData.country ? userData.country : "N/A"}
-            </span>
+            <input
+              placeholder="Enter your country..."
+              value={
+                enableEdit
+                  ? userUpdateData.country
+                  : userData.country
+                  ? userData.country
+                  : "N/A"
+              }
+              className={`userInput ${
+                enableEdit ? "outline-double" : "outline-none"
+              }`}
+              onChange={(e) =>
+                setUserUpdateData({
+                  ...userUpdateData,
+                  country: e.target.value,
+                })
+              }
+            />
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -127,6 +315,17 @@ const CustomerProfile = ({ userData }) => {
             </span>
             <span className="text-base text-secondary font-medium">
               {userData.totalOrder}
+            </span>
+          </h3>
+        </div>
+        <div className="flex items-center mt-4 text-gray-700">
+          <IoTimeSharp />
+          <h3 className="px-2 flex gap-2 items-center">
+            <span className="text-lg text-secondary font-semibold">
+              Since :
+            </span>
+            <span className="text-base text-secondary font-medium">
+              {userData.create.slice(0, 10)}
             </span>
           </h3>
         </div>

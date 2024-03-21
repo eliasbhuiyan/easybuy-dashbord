@@ -11,7 +11,7 @@ const CustomerList = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [userList, setUserList] = useState([]);
   const [looding, setLooding] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const data = async () => {
       await UserList(user?.auth)
@@ -27,10 +27,10 @@ const CustomerList = () => {
     };
     data();
   }, []);
-const handelDetails = (data)=>{
-  const username = data.fullName.split(" ").join("-")
-  navigate(`/customerdetails/:${username}?uid=${data._id}`);
-}
+  const handelDetails = (data) => {
+    const username = data.fullName.split(" ").join("-");
+    navigate(`/customerdetails/:${username}?uid=${data._id}`);
+  };
   if (looding) {
     return <Loading />;
   }
@@ -76,7 +76,10 @@ const handelDetails = (data)=>{
               <td>{data?.addressOne}</td>
               <td>{data?.totalOrder}</td>
               <td className="flex items-center justify-evenly">
-                <button onClick={() => handelDetails(data)} className="detail_btn">
+                <button
+                  onClick={() => handelDetails(data)}
+                  className="detail_btn"
+                >
                   <TbListDetails className="detail_icon" />
                 </button>
                 <button className="edit_btn">

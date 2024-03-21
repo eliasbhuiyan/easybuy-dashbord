@@ -140,7 +140,9 @@
   .inputField:valid+.placeholder {
     @apply top-2 text-sm text-green-500;
   }
-
+ .userInput{
+  @apply text-secondary text-lg font-semibold bg-[#F8F9FD]
+ }
   .calculator_btn {
     @apply w-12 h-12 rounded-full flex justify-center items-center bg-brand text-white text-2xl fixed bottom-12 right-10 cursor-pointer;
   }
