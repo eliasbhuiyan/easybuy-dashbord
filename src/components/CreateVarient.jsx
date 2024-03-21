@@ -87,7 +87,7 @@ const CreateVarient = () => {
       });
   };
   return (
-    <div className=" bg-[#F5F5F5] p-6">
+    <div className="bg-[#F5F5F5] p-6">
       <div className="productBox">
         <h2 className="title">Create Varient</h2>
         <div className="flex justify-around">

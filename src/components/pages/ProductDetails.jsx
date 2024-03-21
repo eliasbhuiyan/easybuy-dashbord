@@ -184,7 +184,8 @@ const ProductDetails = () => {
                   >
                     <span
                       onClick={() => setvariantID(i)}
-                      className={`w-6 h-6 cursor-pointer rounded-full border bg-[${item.color}] inline-block`}
+                      style={{ backgroundColor: item.color }}
+                      className={`w-6 h-6 cursor-pointer rounded-full border inline-block`}
                     ></span>
                   </li>
                 ))}

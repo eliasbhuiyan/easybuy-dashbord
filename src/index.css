@@ -68,6 +68,17 @@
     @apply text-3xl transition-all translate-y-[60%];
   }
 
+  .detail_btn {
+    @apply w-8 h-8 rounded-full bg-[#007EC6] border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Details'] before:text-white before:transition-all before:text-[2px];
+  }
+
+  .detail_btn:hover {
+    @apply w-24 rounded-full transition-all  items-center before:text-sm before:opacity-100 before:translate-y-[30px] before:transition-all;
+  }
+
+  .detail_btn:hover .detail_icon {
+    @apply text-3xl transition-all translate-y-[60%];
+  }
   .edit_btn {
     @apply w-8 h-8 rounded-full bg-brand border-none font-semibold flex items-center justify-center shadow-md cursor-pointer transition-all overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Edit'] before:text-white before:transition-all before:text-[2px];
   }

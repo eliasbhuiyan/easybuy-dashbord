@@ -5,11 +5,13 @@ import Popup from "../Popup";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { CatagoryData } from "../../api";
+import { useNavigate } from "react-router-dom";
+import { TbListDetails } from "react-icons/tb";
 const AllCatagory = () => {
   const user = useSelector((state) => state.user_sec.user);
+  const navigate = useNavigate();
   const [allCatagory, setAllCatagory] = useState([]);
   const [deletePopup, setDeletePopup] = useState(false);
   const [looding, setLooding] = useState(true);
@@ -98,6 +100,9 @@ const AllCatagory = () => {
         });
     }
   };
+  const handeledit = (item) => {
+    navigate(`/catagorydetails/:${item.name}?pid=${item._id}`);
+  };
   if (looding) {
     return <Loading />;
   }
@@ -112,7 +117,7 @@ const AllCatagory = () => {
             <th className="border-r w-1/4 text-white">Catagory</th>
             <th className="border-r w-1/4 text-white">Last Update</th>
             <th className="border-r w-1/4 text-white">Status</th>
-            <th className="border-r w-1/4 text-white">Edit/Delete</th>
+            <th className="border-r w-1/4 text-white">Details/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -133,8 +138,8 @@ const AllCatagory = () => {
                 </button>
               </td>
               <td className="flex items-center justify-evenly">
-                <button className="edit_btn">
-                  <FaEdit className="edit_icon" />
+                <button onClick={() => handeledit(item)} className="detail_btn">
+                  <TbListDetails className="detail_icon" />
                 </button>
                 <button
                   onClick={() => {

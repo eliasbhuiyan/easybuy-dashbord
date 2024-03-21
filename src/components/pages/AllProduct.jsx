@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import { TbListDetails } from "react-icons/tb";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Popup from "../Popup";
@@ -132,23 +133,18 @@ const AllProduct = () => {
             <th className="border-r w-1/6 text-white">Image</th>
             <th className="border-r w-1/6 text-white">Cetagory</th>
             <th className="border-r w-1/6 text-white">Status</th>
-            <th className="border-r w-1/6 text-white">Edit/Delete</th>
+            <th className="border-r w-1/6 text-white">Details/Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
           {product.map((item) => (
             <tr key={item._id}>
               <td>
-                <Link
-                  onClick={() => {
-                    dispatch(productID(item.shortID));
-                    document.cookie = `product_short=${item.shortID};`;
-                  }}
-                  to={`/productdetails/${item.slug}`}
-                  className="py-4 hover:text-brand"
+                <p
+                  
                 >
                   {item.shortID} - {item.name.substring(0, 20)}
-                </Link>
+                </p>
               </td>
               <td>{item.description.substring(0, 20)}...</td>
               <td>
@@ -172,6 +168,15 @@ const AllProduct = () => {
                 </button>
               </td>
               <td className="flex items-center justify-evenly">
+                <Link 
+                  onClick={() => {
+                    dispatch(productID(item.shortID));
+                    document.cookie = `product_short=${item.shortID};`;
+                  }}
+                  to={`/productdetails/${item.slug}`}
+                className="detail_btn">
+                  <TbListDetails className="detail_icon" />
+                </Link>
                 <button onClick={handelEdit} className="edit_btn">
                   <FaEdit className="edit_icon" />
                 </button>

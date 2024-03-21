@@ -39,6 +39,23 @@ const CatagoryData = (auth) => {
     return error;
   }
 };
+const CatagorybyId = (auth, id) => {
+  console.log(auth, id);
+  try {
+    const res = axios.post(
+      `${import.meta.env.VITE_API_URL}catagory/getcatagorybyid`,
+      { id },
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 const SubCatagoryData = (auth) => {
   try {
     const res = axios.get(
@@ -70,4 +87,11 @@ const ProductData = (auth) => {
   }
 };
 
-export { AllMerchant, UserList, CatagoryData, SubCatagoryData, ProductData };
+export {
+  AllMerchant,
+  UserList,
+  CatagoryData,
+  SubCatagoryData,
+  ProductData,
+  CatagorybyId,
+};

@@ -51,7 +51,7 @@ const CreateCatagory = () => {
   return (
     <div className="productBox w-4/5 m-auto flex flex-col items-center gap-6 border border-slate-200">
       <ToastContainer />
-      <h2 className="title">Create Catagory</h2>
+      <h2 className="title">Create catagory</h2>
       <label className="primary w-full">
         Catagory Name *
         <Input
