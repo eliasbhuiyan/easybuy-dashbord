@@ -13,6 +13,8 @@ const CreateVarient = () => {
   const [color, setColor] = useState("");
   const [image, setImage] = useState();
   const [price, setPrice] = useState("");
+  const [originalPrice, setOriginalPrice ] = useState("");
+  const [sellingPrice, setSellingPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [size, setSize] = useState("");
   const [storage, setStorage] = useState("");
@@ -54,7 +56,8 @@ const CreateVarient = () => {
         {
           color,
           image,
-          price,
+          originalPrice,
+          sellingPrice,
           quantity,
           size,
           storage,
@@ -90,33 +93,13 @@ const CreateVarient = () => {
     <div className="bg-[#F5F5F5] p-6">
       <div className="productBox">
         <h2 className="title">Create Varient</h2>
-        <div className="flex justify-around">
-          <label className="primary w-2/5">
-            Varient Name
-            <input
-              type="text"
-              placeholder="Varient Name"
-              className="inputField"
-            />
-          </label>
-
+        <div className="flex justify-around my-8">
           <label className="primary w-2/5">
             Color Varient
             <input
               onChange={(e) => setColor(e.target.value)}
               type="text"
               placeholder="Varient Color"
-              className="inputField"
-            />
-          </label>
-        </div>
-        <div className="flex justify-around my-8">
-          <label className="primary w-2/5">
-            price Varient
-            <input
-              onChange={(e) => setPrice(e.target.value)}
-              type="number"
-              placeholder="price Varient"
               className="inputField"
             />
           </label>
@@ -152,7 +135,27 @@ const CreateVarient = () => {
             />
           </label>
         </div>
-        <div className="w-full flex justify-center">
+        <div className="flex justify-around">
+          <label className="primary w-2/5">
+            Original Price
+            <input
+              onChange={(e) => setOriginalPrice(e.target.value)}
+              type="number"
+              placeholder="Original Price"
+              className="inputField"
+            />
+          </label>
+          <label className="primary w-2/5">
+            Selling Price
+            <input
+              onChange={(e) => setSellingPrice(e.target.value)}
+              type="number"
+              placeholder="Selling price"
+              className="inputField"
+            />
+          </label>
+        </div>
+        <div className="w-full flex justify-center mt-4">
           <label className="primary w-4/5">
             Select Product *
             <Select

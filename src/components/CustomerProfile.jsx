@@ -52,13 +52,15 @@ const CustomerProfile = ({ userData }) => {
         uid: searchParams.get("uid"),
       })
       .then((res) => {
-        console.log(res);
         toast.success(res.data.message, {
           position: "top-right",
           autoClose: 5000,
           closeOnClick: true,
           theme: "light",
         });
+        setTimeout(() => {
+          window.location.reload()
+        }, 1500);
       })
       .catch((err) => {
         toast.error(err.response.data.error, {

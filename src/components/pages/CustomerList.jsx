@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { FaEdit } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FaUserSecret } from "react-icons/fa6";
 import Loading from "../Loading";
@@ -46,7 +45,7 @@ const CustomerList = () => {
             <th className="border-r text-white">Phone</th>
             <th className="border-r text-white">Country</th>
             <th className="border-r text-white">Total Order</th>
-            <th className="border-r text-white">Edit/Delete</th>
+            <th className="border-r text-white">Details/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -65,11 +64,7 @@ const CustomerList = () => {
                   </div>
                 )}
               </td>
-              <td className="hover:text-brand">
-                <Link className="py-8" to="/customerdetails">
-                  {data?.fullName}
-                </Link>
-              </td>
+              <td>{data?.fullName}</td>
               <td>{data?.create.slice(0, 10)}</td>
               <td>{data?.email}</td>
               <td>{data?.phone}</td>
@@ -81,9 +76,6 @@ const CustomerList = () => {
                   className="detail_btn"
                 >
                   <TbListDetails className="detail_icon" />
-                </button>
-                <button className="edit_btn">
-                  <FaEdit className="edit_icon" />
                 </button>
                 <button className="delete_btn">
                   <AiFillDelete className="blt_icon" />

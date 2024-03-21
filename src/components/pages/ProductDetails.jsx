@@ -159,11 +159,14 @@ const ProductDetails = () => {
                   <FaStar />
                 </li>
               </ul>
-              <p>8 Reviews</p>
+              <p className="basic">{product?.reviews.length} Reviews</p>
             </div>
-            <div className="border-b">
+            <div className="border-b flex gap-3">
+              <h3 className="title text-lg mb-2 text-start text-slate-500 line-through">
+                {product?.variant[variantID]?.originalPrice}Tk
+              </h3>
               <h3 className="title mb-2 text-start text-brand">
-                {product?.variant[variantID]?.price}Tk
+                {product?.variant[variantID]?.sellingPrice}Tk
               </h3>
             </div>
             <div className="flex gap-2 items-center mt-4">
@@ -221,7 +224,7 @@ const ProductDetails = () => {
               <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
                 Quantity:
                 <span className="py-1 px-2 rounded-sm text-brand title">
-                  {product?.variant[variantID]?.price}
+                  {product?.variant[variantID]?.quantity}
                 </span>
               </p>
             </div>
