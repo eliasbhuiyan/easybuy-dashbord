@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import { Select } from "antd";
-import { productID } from "../../reducer/productIdSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,7 +10,6 @@ import { FindOneProduct } from "../../api";
 const ProductDetails = () => {
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
-  const productShortID = useSelector((state) => state.productID.product);
   const [product, setProduct] = useState([]);
   const [allProduct, setAllProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +18,7 @@ const ProductDetails = () => {
     rating: "",
     email: "",
     comment: "",
-    shortID: "",
+    id: "",
   });
   useEffect(() => {
     // Fetch Data
@@ -69,7 +66,7 @@ const ProductDetails = () => {
         rating: reviewData.rating,
         comment: reviewData.comment,
         email: reviewData.email,
-        shortID: productShortID,
+        id: searchParams.get("pid"),
       })
       .then((res) => {
         toast.success(res.data.message, {

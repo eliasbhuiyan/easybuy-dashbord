@@ -3,11 +3,14 @@ import {
   FaRegFileZipper,
   FaMapLocation,
 } from "react-icons/fa6";
+import { FaBox } from "react-icons/fa";
 import { FaRoad } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
-const CustomerProfile = () => {
+// eslint-disable-next-line react/prop-types
+const CustomerProfile = ({ userData }) => {
+  console.log(userData);
   return (
     <div className="w-1/2 h-fit productBox">
       <div className="flex justify-between">
@@ -20,8 +23,12 @@ const CustomerProfile = () => {
           alt="user"
           className="w-24 h-20 rounded-2xl border-2 border-white"
         />
-        <p className=" text-[#5b5f60] text-base font-semibold">ID: 123456</p>
-        <h2 className="text-secondary text-lg font-semibold">Elias Bhuiyan</h2>
+        <p className=" text-[#5b5f60] text-base font-semibold uppercase">
+          ROLE: {userData.role}
+        </p>
+        <h2 className="text-secondary text-lg font-semibold">
+          {userData.fullName}
+        </h2>
       </div>
       <div className="py-4 px-6">
         <div className="flex items-center mt-4 text-gray-700">
@@ -31,7 +38,7 @@ const CustomerProfile = () => {
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">Email:</span>
             <span className="text-base text-secondary font-medium">
-              adrianallan@gmail.com
+              {userData.email}
             </span>
           </h3>
         </div>
@@ -40,7 +47,7 @@ const CustomerProfile = () => {
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">Phone:</span>
             <span className="text-base text-secondary font-medium">
-              098765432
+              0{userData.phone ? userData.phone : "N/A"}
             </span>
           </h3>
         </div>
@@ -53,7 +60,7 @@ const CustomerProfile = () => {
               Address 1 :
             </span>
             <span className="text-base text-secondary font-medium">
-              2734 West Fork Street,EASTON 02334.
+              {userData.addressOne}
             </span>
           </h3>
         </div>
@@ -66,7 +73,7 @@ const CustomerProfile = () => {
               Address 2 :
             </span>
             <span className="text-base text-secondary font-medium">
-              2734 West Fork Street,EASTON 02334.
+              {userData.addressTwo ? userData.addressTwo : "N/A"}
             </span>
           </h3>
         </div>
@@ -75,7 +82,7 @@ const CustomerProfile = () => {
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">City :</span>
             <span className="text-base text-secondary font-medium">
-              West Fork.
+              {userData.city ? userData.city : "N/A"}
             </span>
           </h3>
         </div>
@@ -85,7 +92,9 @@ const CustomerProfile = () => {
             <span className="text-lg text-secondary font-semibold">
               Post Code :
             </span>
-            <span className="text-base text-secondary font-medium">02334.</span>
+            <span className="text-base text-secondary font-medium">
+              {userData.zipCode ? userData.zipCode : "N/A"}
+            </span>
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -94,7 +103,9 @@ const CustomerProfile = () => {
             <span className="text-lg text-secondary font-semibold">
               State :
             </span>
-            <span className="text-base text-secondary font-medium">2734.</span>
+            <span className="text-base text-secondary font-medium">
+              {userData.state ? userData.state : "N/A"}
+            </span>
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -104,7 +115,18 @@ const CustomerProfile = () => {
               Country :
             </span>
             <span className="text-base text-secondary font-medium">
-              Bangladesh.
+              {userData.country ? userData.country : "N/A"}
+            </span>
+          </h3>
+        </div>
+        <div className="flex items-center mt-4 text-gray-700">
+          <FaBox />
+          <h3 className="px-2 flex gap-2 items-center">
+            <span className="text-lg text-secondary font-semibold">
+              Total Order :
+            </span>
+            <span className="text-base text-secondary font-medium">
+              {userData.totalOrder}
             </span>
           </h3>
         </div>

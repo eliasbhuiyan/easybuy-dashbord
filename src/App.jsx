@@ -39,7 +39,7 @@ function App() {
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/customerlist" element={<CustomerList />} />
-          <Route path="/customerdetails" element={<CustomerDetails />} />
+          <Route path="/customerdetails/:id" element={<CustomerDetails />} />
           <Route path="/chat" element={<Chating />} />
           <Route path="/catagory" element={<Catagory />} />
           <Route path="/allcatagory" element={<AllCatagory />} />

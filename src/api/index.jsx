@@ -24,6 +24,20 @@ const UserList = (auth) => {
     return error;
   }
 };
+const FindUser = (auth, id) => {
+  try {
+    const res = axios.post(`${import.meta.env.VITE_API_URL}auth/finduser`,{
+      id
+    }, {
+      headers: {
+        Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 const CatagoryData = (auth) => {
   try {
     const res = axios.get(
@@ -106,5 +120,6 @@ export {
   SubCatagoryData,
   ProductData,
   CatagorybyId,
-  FindOneProduct
+  FindOneProduct,
+  FindUser
 };
