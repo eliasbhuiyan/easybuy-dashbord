@@ -88,13 +88,7 @@ const SubCatagoryData = (auth) => {
 const ProductData = (auth) => {
   try {
     const res = axios.get(
-      `${import.meta.env.VITE_API_URL}product/getallproduct`,
-      {
-        headers: {
-          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
-        },
-      }
-    );
+      `${import.meta.env.VITE_API_URL}product/getallproduct`);
     return res;
   } catch (error) {
     return error;

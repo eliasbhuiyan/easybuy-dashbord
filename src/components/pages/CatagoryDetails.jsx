@@ -44,7 +44,7 @@ const CatagoryDetails = () => {
         <label className="primary w-full">
           Catagory Name *
           <Input
-            value={catagoryData.name}
+            value={catagoryData?.name}
             readOnly
             placeholder="Catagory Name"
             className="input w-full"
@@ -55,7 +55,7 @@ const CatagoryDetails = () => {
           <textarea
             readOnly
             className="input w-full"
-            value={catagoryData.description}
+            value={catagoryData?.description}
           />
         </label>
       </div>

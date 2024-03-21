@@ -52,9 +52,9 @@ const CustomerList = () => {
           {userList.map((data) => (
             <tr key={data._id}>
               <td>
-                {user?.avatar ? (
+                {data?.avatar ? (
                   <img
-                    src={user?.avatar}
+                    src={data?.avatar}
                     alt="user"
                     className="w-12 h-12 m-auto rounded-full border"
                   />

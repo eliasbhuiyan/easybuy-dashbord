@@ -6,7 +6,7 @@ import { Select } from "antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import { ToastContainer, toast } from "react-toastify";
-import { FindOneProduct } from "../../api";
+import { FindOneProduct, ProductData } from "../../api";
 const ProductDetails = () => {
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
@@ -38,11 +38,12 @@ const ProductDetails = () => {
   }, []);
   // All Product
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}product/getallproduct`)
-      .then((res) => {
+    const data = async ()=>{
+      await ProductData().then((res) => {
         setAllProduct(res.data.product);
       });
+    }
+    data()
   }, []);
   // Product Selection Part
   const options = [];
