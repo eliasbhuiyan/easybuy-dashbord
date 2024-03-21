@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import { Select } from "antd";
 import { productID } from "../../reducer/productIdSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import { ToastContainer, toast } from "react-toastify";
+import { FindOneProduct } from "../../api";
 const ProductDetails = () => {
   const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
   const productShortID = useSelector((state) => state.productID.product);
   const [product, setProduct] = useState([]);
   const [allProduct, setAllProduct] = useState([]);
@@ -21,14 +23,10 @@ const ProductDetails = () => {
     comment: "",
     shortID: "",
   });
-
-  const dispatch = useDispatch();
   useEffect(() => {
     // Fetch Data
-    axios
-      .post(`${import.meta.env.VITE_API_URL}product/findoneproduct`, {
-        id: productShortID,
-      })
+    const data = async  () => {
+      await FindOneProduct(searchParams.get("pid"))
       .then((res) => {
         setProduct(res.data.product);
       })
@@ -38,6 +36,8 @@ const ProductDetails = () => {
       .finally(() => {
         setLoading(false);
       });
+    }
+    data()
   }, []);
   // All Product
   useEffect(() => {
@@ -51,16 +51,13 @@ const ProductDetails = () => {
   const options = [];
   allProduct.map((item) => {
     options.push({
-      value: item.shortID,
+      value: item._id,
       label: `${item.shortID} ${item.slug}`,
     });
   });
 
   const handleSelect = (value, label) => {
-    dispatch(productID(value));
-    document.cookie = `product_short=${value};`;
-    navigate(`/productdetails/${label.label.split(" ")[1]}`);
-    window.location.reload();
+    navigate(`/productdetails/:${label.label.split(" ")[1]}?pid=${value}`);
   };
 
   const handelRate = (value) => {

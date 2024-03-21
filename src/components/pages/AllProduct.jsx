@@ -8,10 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Popup from "../Popup";
 import Loading from "../Loading";
 import Heading from "../Heading";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { productID } from "../../reducer/productIdSlice";
+import { useSelector } from "react-redux";
 import { ProductData } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const AllProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
@@ -20,7 +19,7 @@ const AllProduct = () => {
   const [looding, setLooding] = useState(true);
   const [productKey, setProductKey] = useState("");
   const [realtime, setRealtime] = useState(false);
-  const dispatch = useDispatch();
+  const navigate = useNavigate()
   useEffect(() => {
     const data = async () => {
       await ProductData(user?.auth)
@@ -117,6 +116,10 @@ const AllProduct = () => {
       theme: "light",
     });
   };
+
+  const handelDetails = (item) => {
+    navigate(`/productdetails/:${item.slug}?pid=${item._id}`);
+  };
   if (looding) {
     return <Loading />;
   }
@@ -168,7 +171,10 @@ const AllProduct = () => {
                 </button>
               </td>
               <td className="flex items-center justify-evenly">
-                <Link 
+              <button onClick={() => handelDetails(item)} className="detail_btn">
+                  <TbListDetails className="detail_icon" />
+                </button>
+                {/* <Link 
                   onClick={() => {
                     dispatch(productID(item.shortID));
                     document.cookie = `product_short=${item.shortID};`;
@@ -176,7 +182,7 @@ const AllProduct = () => {
                   to={`/productdetails/${item.slug}`}
                 className="detail_btn">
                   <TbListDetails className="detail_icon" />
-                </Link>
+                </Link> */}
                 <button onClick={handelEdit} className="edit_btn">
                   <FaEdit className="edit_icon" />
                 </button>

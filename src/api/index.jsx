@@ -86,6 +86,18 @@ const ProductData = (auth) => {
     return error;
   }
 };
+const FindOneProduct = (id) => {
+  try {
+    const res = axios.post(
+      `${import.meta.env.VITE_API_URL}product/findoneproduct`,{
+        id: id,
+      },
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
 export {
   AllMerchant,
@@ -94,4 +106,5 @@ export {
   SubCatagoryData,
   ProductData,
   CatagorybyId,
+  FindOneProduct
 };
