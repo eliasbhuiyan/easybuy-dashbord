@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedUser } from "../reducer/userSlice";
+import DisabledContext from "antd/es/config-provider/DisabledContext";
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -29,8 +30,7 @@ const items = [
     type: "divider",
   },
   getItem("Customer", "sub5", <FaUserSecret className="text-brand text-xl" />, [
-    getItem("Customer List", "customerlist"),
-    getItem("Customer Details", "customerdetails"),
+    getItem("Customer List / Details", "customerlist"),
   ]),
   {
     type: "divider",

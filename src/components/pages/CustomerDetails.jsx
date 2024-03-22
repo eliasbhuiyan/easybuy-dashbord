@@ -32,8 +32,9 @@ const CustomerDetails = () => {
   }
   return (
     <div className="w-full p-9 bg-slate-100">
-      <div>
-        <h2 className="title border-b pb-5">Customer Details</h2>
+      <div className="relative">
+        <h2 className="title text-3xl border-b pb-5">Customer Details</h2>
+        <h3 className="heading_bg">Customer</h3>
       </div>
       <div className="flex gap-6">
         <CustomerProfile userData= {userData} />

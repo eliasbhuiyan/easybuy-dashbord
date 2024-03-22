@@ -98,7 +98,8 @@ const ProductDetails = () => {
   return (
     <div className="w-full p-6">
       <ToastContainer />
-      <div className="border-b pb-4 mb-6 flex justify-around">
+      <div className="border-b pb-4 mb-6 flex justify-around relative">
+        <h3 className="heading_bg text-6xl pt-12">Product Details</h3>
         <h2 className="title">Product Details</h2>
         <label className="primary flex gap-3">
           Select Product :
@@ -112,7 +113,7 @@ const ProductDetails = () => {
       </div>
       {/* Product Details */}
       <div className="flex gap-6">
-        <div className="w-1/2 flex gap-2 product_image">
+        <div className="w-1/2 flex gap-2 product_image h-fit">
           {product?.variant.map((item, i) => (
             <div
               onClick={() => setvariantID(i)}

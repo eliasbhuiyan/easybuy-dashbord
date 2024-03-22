@@ -91,7 +91,9 @@ const CustomerProfile = () => {
     setImageUrl(URL.createObjectURL(files[0]));
   };
   return (
-    <div className="w-1/2 h-fit productBox m-auto">
+    <section className="w-full relative z-10 pt-10 flex justify-center items-center bg-slate-200">
+     <h3 className="heading_bg pt-4 -z-10">Profile</h3>
+      <div className="w-1/2 h-fit productBox bg-slate-100 m-auto">
       <ToastContainer />
       <div className="flex justify-between">
         <h2 className="text-lg text-secondary font-medium">Profile</h2>
@@ -117,7 +119,7 @@ const CustomerProfile = () => {
           enableEdit
           &&
           <label className="primary pb-4 inline-block">
-            Upload Image *
+            Upload Profile *
             <FileUploader
               multiple={true}
               handleChange={handleChange}
@@ -143,7 +145,7 @@ const CustomerProfile = () => {
         </p>
         <input
           placeholder="Full Name"
-          value={user.name}
+          value={enableEdit ? userUpdateData.fullName : user.name}
           className={`userInput text-center ${
             enableEdit ? "outline-double" : "outline-none"
           }`}
@@ -343,6 +345,7 @@ const CustomerProfile = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
