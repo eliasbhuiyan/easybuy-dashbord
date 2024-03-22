@@ -85,7 +85,7 @@ const SubCatagoryData = (auth) => {
     return error;
   }
 };
-const ProductData = (auth) => {
+const ProductData = () => {
   try {
     const res = axios.get(
       `${import.meta.env.VITE_API_URL}product/getallproduct`);

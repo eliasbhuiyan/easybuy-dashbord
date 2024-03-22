@@ -91,7 +91,7 @@ const CustomerProfile = () => {
     setImageUrl(URL.createObjectURL(files[0]));
   };
   return (
-    <section className="w-full relative z-10 pt-10 flex justify-center items-center bg-slate-200">
+    <section className="w-full relative z-10 pt-12 flex justify-center items-center bg-slate-200">
      <h3 className="heading_bg pt-4 -z-10">Profile</h3>
       <div className="w-1/2 h-fit productBox bg-slate-100 m-auto">
       <ToastContainer />
