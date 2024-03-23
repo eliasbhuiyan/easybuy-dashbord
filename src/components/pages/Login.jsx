@@ -14,7 +14,8 @@ const Login = () => {
   });
 
   const handelLogin = () => {
-    axios
+    try {
+      axios
       .post(`${import.meta.env.VITE_API_URL}auth/login`, {
         email: loginData.email,
         password: loginData.password,
@@ -29,7 +30,7 @@ const Login = () => {
           res.data?.userObject?.role == "admin" ||
           res.data?.userObject?.role == "merchant"
         ) {
-          toast.success(res.data.message, {
+          toast.success(res?.data.message, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
@@ -48,14 +49,16 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
-        toast.error(err.response.data.error, {
+        toast.error(err.response?.data.error, {
           position: "top-right",
           autoClose: 5000,
           closeOnClick: true,
           theme: "light",
         });
       });
+    } catch (error) {
+      console.log("Faild to login!");
+    }
   };
 
   return (
