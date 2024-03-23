@@ -16,11 +16,11 @@
   }
 
   .title {
-    @apply font-bold text-2xl text-primary font-sans uppercase text-center mb-12;
+    @apply font-bold lg:text-2xl text-primary font-sans uppercase text-center mb-12;
   }
 
   .btn {
-    @apply py-3 px-8 rounded-full uppercase text-white font-bold inline-block relative transition-all transform-gpu bg-brand;
+    @apply py-1 px-3 lg:py-3 lg:px-8 rounded-full uppercase text-white font-medium text-xs lg:text-sm lg:font-bold inline-block relative transition-all transform-gpu bg-brand;
   }
 
   .btn:hover {
@@ -40,7 +40,7 @@
   }
 
   .productBox {
-    @apply p-4 bg-[#F8F9FD] rounded-3xl px-8 py-6 border-8 border-solid border-white;
+    @apply bg-[#F8F9FD] rounded-3xl py-6 px-8 lg:p-2 xl:px-8 xl:py-6 border-8 border-solid border-white;
   }
 
   .productlist table tbody tr:nth-child(even) {
@@ -92,7 +92,7 @@
   }
 
   .approved_btn {
-    @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Approved'] before:text-white before:text-[2px] w-24 transition-all bg-brand items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
+    @apply h-8 lg:h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Approved'] before:text-white before:text-[2px] w-24 transition-all bg-brand items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
   }
 
   .approved_btn .edit_icon {
@@ -100,7 +100,7 @@
   }
 
   .reject_btn {
-    @apply h-10 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Reject'] before:text-white before:text-[2px] w-24 transition-all bg-red-600 items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
+    @apply h-8 lg:h-10 w-16 lg:w-24 rounded-full border-none font-semibold flex justify-center shadow-md cursor-pointer overflow-hidden relative text-white text-base before:absolute before:-top-8 before:content-['Reject'] before:text-white before:text-[2px] transition-all bg-red-600 items-center before:text-sm before:opacity-100 before:translate-y-[32px] before:transition-all;
   }
 
   .reject_btn .blt_icon {
@@ -141,7 +141,7 @@
     @apply top-2 text-sm text-green-500;
   }
  .userInput{
-  @apply text-secondary text-lg font-semibold bg-slate-100;
+  @apply text-secondary text-lg font-semibold bg-slate-100 ;
  }
   .calculator_btn {
     @apply w-12 h-12 rounded-full flex justify-center items-center bg-brand text-white text-2xl fixed bottom-12 right-10 cursor-pointer;
@@ -181,7 +181,7 @@
 
   /* ============================================ */
   .threedbox {
-    @apply absolute top-1/2 left-0 w-[500px] -skew-y-[20deg] -translate-y-1/2 animate-[animate_5s_linear_infinite] flex justify-center;
+    @apply absolute top-1/2 left-0 w-[200px] xl:w-[500px] -skew-y-[20deg] -translate-y-1/2 animate-[animate_5s_linear_infinite] flex justify-center;
   }
 
   .cube {
@@ -296,14 +296,14 @@
   }
   /* ======== otp ============ */
     .heading_bg{
-      @apply w-full m-auto text-center uppercase text-transparent font-black text-9xl absolute -top-5 left-1/2 -translate-x-1/2;
+      @apply w-full m-auto text-center uppercase text-transparent font-black text-6xl md:text-8xl lg:text-9xl absolute top-3 lg:-top-5 left-1/2 -translate-x-1/2;
       -webkit-text-stroke: 2px #0bb3f62a;
     }
 
     /* ================= Dashboard =============== */
 
     .dashbordCart{
-      @apply cursor-pointer border-8 border-white w-[30%] py-8 bg-[#F8F8F8] flex flex-col justify-center items-center gap-2 rounded-[30px] hover:shadow-[0_0_0px_5px_rgba(0,0,0,0.2)] transition-all shadow-[5px_8px_5px_rgba(0,0,0,0.1)];
+      @apply cursor-pointer border-8 border-white w-full md:w-[45%] lg:w-[30%] py-8 bg-[#F8F8F8] flex flex-col justify-center items-center gap-2 rounded-[30px] hover:shadow-[0_0_0px_5px_rgba(0,0,0,0.2)] transition-all shadow-[5px_8px_5px_rgba(0,0,0,0.1)];
     }
   
 }

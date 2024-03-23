@@ -3,9 +3,10 @@ import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { FaUserSecret } from "react-icons/fa6";
 import Loading from "../Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserList } from "../../api";
 import { TbListDetails } from "react-icons/tb";
+import { ToastContainer, toast } from "react-toastify";
 const CustomerList = () => {
   const user = useSelector((state) => state.user_sec.user);
   const [userList, setUserList] = useState([]);
@@ -30,20 +31,29 @@ const CustomerList = () => {
     const username = data.fullName.split(" ").join("-");
     navigate(`/customerdetails/:${username}?uid=${data._id}`);
   };
+  const handelEdit = () => {
+    toast.info("Admin Action Only", {
+      position: "top-right",
+      autoClose: 5000,
+      closeOnClick: true,
+      theme: "light",
+    });
+  };
   if (looding) {
     return <Loading />;
   }
   return (
     <div className="p-6 w-full productlist">
+      <ToastContainer />
       <table className="w-full">
         <thead className="py-4 bg-secondary">
           <tr>
-            <th className="border-r text-white">Avatar</th>
+            <th className="border-r text-white hidden lg:block">Avatar</th>
             <th className="border-r text-white">Customer Name</th>
-            <th className="border-r text-white">Registration Date</th>
+            <th className="border-r text-white hidden lg:block">Registration Date</th>
             <th className="border-r text-white">Mail</th>
             <th className="border-r text-white">Phone</th>
-            <th className="border-r text-white">Country</th>
+            <th className="border-r text-white hidden lg:block">Country</th>
             <th className="border-r text-white">Total Order</th>
             <th className="border-r text-white">Details/Delete</th>
           </tr>
@@ -51,7 +61,7 @@ const CustomerList = () => {
         <tbody>
           {userList.map((data) => (
             <tr key={data._id}>
-              <td>
+              <td className="hidden lg:inline-block">
                 {data?.avatar ? (
                   <img
                     src={data?.avatar}
@@ -65,10 +75,10 @@ const CustomerList = () => {
                 )}
               </td>
               <td>{data?.fullName}</td>
-              <td>{data?.create.slice(0, 10)}</td>
+              <td className="hidden lg:block">{data?.create.slice(0, 10)}</td>
               <td>{data?.email}</td>
               <td>{data?.phone}</td>
-              <td>{data?.addressOne}</td>
+              <td className="hidden lg:block">{data?.country}</td>
               <td>{data?.totalOrder}</td>
               <td className="flex items-center justify-evenly">
                 <button
@@ -77,7 +87,7 @@ const CustomerList = () => {
                 >
                   <TbListDetails className="detail_icon" />
                 </button>
-                <button className="delete_btn">
+                <button onClick={handelEdit} className="delete_btn">
                   <AiFillDelete className="blt_icon" />
                 </button>
               </td>

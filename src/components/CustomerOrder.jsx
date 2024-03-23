@@ -1,6 +1,6 @@
 const CustomerOrder = () => {
   return (
-    <div className="w-1/2 productBox productlist">
+    <div className="w-full lg:w-1/2 productBox productlist">
       <h2 className="title border-b pb-5">Customer Orders</h2>
       <table className="w-full">
         <thead className="py-4 bg-secondary">

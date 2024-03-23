@@ -12,13 +12,13 @@ import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { GiCrossMark } from "react-icons/gi";
+import PropTypes from "prop-types";
+import { RiLockPasswordFill } from "react-icons/ri";
 
-// eslint-disable-next-line react/prop-types
-const CustomerProfile = ({ userData }) => {
-  let [searchParams] = useSearchParams();
+const CustomerProfile = ({ user }) => {
+  let userData = user;
   const [enableEdit, setEnableEdit] = useState(false);
   const [userUpdateData, setUserUpdateData] = useState({
     fullName: userData.fullName,
@@ -29,6 +29,7 @@ const CustomerProfile = ({ userData }) => {
     zipCode: userData.zipCode,
     city: userData.city,
     country: userData.country,
+    password: "",
     state: userData.state,
     uid: "",
   });
@@ -49,7 +50,15 @@ const CustomerProfile = ({ userData }) => {
         city: userUpdateData.city,
         country: userUpdateData.country,
         state: userUpdateData.state,
-        uid: searchParams.get("uid"),
+        password: userUpdateData.password,
+        uid: user._id,
+      },{
+        headers: {
+          Authorization: `Bearer user@${user._id}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((res) => {
         toast.success(res.data.message, {
@@ -59,7 +68,7 @@ const CustomerProfile = ({ userData }) => {
           theme: "light",
         });
         setTimeout(() => {
-          window.location.reload()
+          window.location.reload();
         }, 1500);
       })
       .catch((err) => {
@@ -73,7 +82,7 @@ const CustomerProfile = ({ userData }) => {
   };
 
   return (
-    <div className="w-1/2 h-fit productBox">
+    <div className="w-full lg:w-1/2 h-fit productBox">
       <ToastContainer />
       <div className="flex justify-between">
         <h2 className="text-lg text-secondary font-medium">Profile</h2>
@@ -120,7 +129,7 @@ const CustomerProfile = ({ userData }) => {
           }
         />
       </div>
-      <div className="py-4 px-6">
+      <div className="p-0 xl:py-4 xl:px-6">
         <div className="flex items-center mt-4 text-gray-700">
           <MdEmail />
           <h3 className="px-2 flex gap-2 items-center">
@@ -331,9 +340,34 @@ const CustomerProfile = ({ userData }) => {
             </span>
           </h3>
         </div>
+        {enableEdit && (
+            <div className="flex justify-center">
+              <div className="flex items-center mt-8 w-fit px-4 py-3 border shadow">
+                <RiLockPasswordFill />
+                <h3 className="px-2 w-full flex gap-2 items-center">
+                  <span className="text-lg text-secondary font-semibold">
+                    Password :
+                  </span>
+                  <input
+                    placeholder="Enter your password"
+                    type="password"
+                    className="userInput outline-double"
+                    onChange={(e) =>
+                      setUserUpdateData((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }))
+                    }
+                  />
+                </h3>
+              </div>
+            </div>
+          )}
       </div>
     </div>
   );
 };
-
+CustomerProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+};
 export default CustomerProfile;

@@ -61,9 +61,9 @@ const Login = () => {
   return (
     <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
       <ToastContainer />
-      <div className="container h-full relative flex items-center">
+      <div className="container h-full relative flex items-center gap-9">
         <ThreeDanim />
-        <div className="productBox w-2/5 flex flex-col">
+        <div className="productBox w-full md:w-2/3 lg:w-1/2 xl:w-2/5 flex flex-col m-auto">
           <h2 className="title">Sign In To Your Account</h2>
           <label className="primary">
             <input

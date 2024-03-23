@@ -22,7 +22,7 @@ function Cube() {
 
 const ThreeDanim = () => {
   return (
-    <div className="w-1/2">
+    <div className="md:w-1/3 xl:w-1/2 hidden lg:block">
       <div className="threedbox">
         <Cube />
         <Cube />

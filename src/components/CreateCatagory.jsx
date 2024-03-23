@@ -70,7 +70,7 @@ const CreateCatagory = () => {
           onEditorStateChange={(value) => setEditorState(value)}
         />
       </label>
-      <button onClick={handelSubmit} className="btn w-fit">
+      <button onClick={handelSubmit} className="btn w-fit px-5 py-3 lg:px-8">
         Create
       </button>
     </div>

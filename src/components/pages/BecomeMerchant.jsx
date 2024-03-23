@@ -44,7 +44,7 @@ const BecomeMerchant = () => {
       <ToastContainer />
       <div className="container h-full relative flex items-center">
         <ThreeDanim />
-        <form className="productBox w-2/5 flex flex-col">
+        <form className="productBox w-full md:w-2/3 lg:w-1/2 xl:w-2/5 flex flex-col m-auto">
           <h2 className="title">Become Merchant</h2>
           <label className="primary">
             <input

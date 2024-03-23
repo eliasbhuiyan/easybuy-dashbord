@@ -126,8 +126,8 @@ const CreateProduct = () => {
           />
         </label>
 
-        <div className="flex justify-between w-4/5 my-8">
-          <label className="primary w-2/5">
+        <div className="flex gap-4 flex-col md:flex-row justify-between w-full lg:w-4/5 my-8">
+          <label className="primary w-full lg:w-2/5">
             Product Slug *
             <Input
               value={pslug}
@@ -136,7 +136,7 @@ const CreateProduct = () => {
               className="input w-full"
             />
           </label>
-          <label className="primary w-2/5">
+          <label className="primary w-full lg:w-2/5">
             Select SubCatagory *
             <Select
               placeholder="Select Product"
@@ -147,8 +147,8 @@ const CreateProduct = () => {
           </label>
         </div>
 
-        <div className="flex justify-between w-4/5">
-          <label className="primary mb-4 inline-block w-2/5">
+        <div className="flex gap-4 flex-col lg:flex-row justify-between w-full lg:w-4/5">
+          <label className="primary mb-4 inline-block w-full lg:w-2/5">
             Upload Image *
             <FileUploader
               multiple={true}
@@ -157,7 +157,7 @@ const CreateProduct = () => {
               types={fileTypes}
             />
           </label>
-          <label className="primary w-2/5">
+          <label className="primary w-full lg:w-2/5">
             Image Alt *
             <Input
               value={imageAlt}
@@ -177,7 +177,7 @@ const CreateProduct = () => {
           <img src={file} className="shadow-2xl" />
         </div>
 
-        <button onClick={hendelCreate} className="btn m-auto block">
+        <button onClick={hendelCreate} className="btn m-auto block px-5 py-3 lg:px-8">
           Create Product
         </button>
       </div>
