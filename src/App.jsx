@@ -3,6 +3,7 @@ import {
   createBrowserRouter,
   Route,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 import Error from "./components/Error";
 import Layout from "./components/Layout";
@@ -24,14 +25,25 @@ import CustomerList from "./components/pages/CustomerList";
 import CustomerDetails from "./components/pages/CustomerDetails";
 import ProductDetils from "./components/pages/ProductDetails";
 import CatagoryDetails from "./components/pages/CatagoryDetails";
+import { useSelector } from "react-redux";
 
 function App() {
+  const user = useSelector((state) => state.user_sec.user);
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/becomemerchant" element={<BecomeMerchant />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/registration"
+          element={user ? <Navigate to="/" replace /> : <Registration />}
+        />
+        <Route
+          path="/becomemerchant"
+          element={user ? <Navigate to="/" replace /> : <BecomeMerchant />}
+        />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/" replace /> : <Login />}
+        />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/otp/:userId" element={<OtpPage />} />

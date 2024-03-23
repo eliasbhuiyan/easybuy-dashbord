@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const Layout = () => {
   const [show, setShow] = useState(false);
   const user = useSelector((state) => state.user_sec.user);
-  console.log(user);
 
   return user?.role == "admin" || user?.role == "merchant" ? (
     <>

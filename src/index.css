@@ -286,13 +286,7 @@
     @apply scale-90
   }
   .otp_input {
-    @apply relative outline-none w-[2.5em] h-[2.5em] bg-[rgb(235,235,235)] shadow-[inset_3px_3px_6px_#d1d1d1,inset_-3px_-3px_6px_#ffffff] transition-all m-[1em] pl-[15px] rounded-[5px] border-[none] left-[1.5em] top-[6.5em] hover:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] hover:bg-[lightgrey] focus:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] focus:bg-[lightgrey];
-  }
-  .btn1 {
-    @apply relative outline-none w-[17em] h-[3em] transition-[0.4s]  shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] rounded-[5px] border-[none] left-[2.4em] top-[8.5em] active:shadow-[inset_3px_3px_6px_#b5b5b5,inset_-3px_-3px_6px_#ffffff];
-  }
-  .btn2 {
-    @apply relative outline-none w-[17em] h-[3em] transition-[0.4s]  shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] rounded-[5px] border-[none] left-[2.4em] top-[9.5em] active:shadow-[inset_3px_3px_6px_#b5b5b5,inset_-3px_-3px_6px_#ffffff];
+    @apply outline-none w-[2.5em] h-[2.5em] bg-[rgb(235,235,235)] shadow-[inset_3px_3px_6px_#d1d1d1,inset_-3px_-3px_6px_#ffffff] transition-all m-[1em] pl-[15px] rounded-[5px] border-[none] hover:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] hover:bg-[lightgrey] focus:shadow-[inset_0px_0px_0px_#d1d1d1,inset_0px_0px_0px_#ffffff] focus:bg-[lightgrey];
   }
   /* ======== otp ============ */
     .heading_bg{
