@@ -122,7 +122,7 @@
   }
 
   .inputField {
-    @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 mx-5 text-black font-semibold pl-7;
+    @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 text-black font-semibold pl-7;
   }
 
   .inputField:focus {

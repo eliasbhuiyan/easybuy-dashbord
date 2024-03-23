@@ -98,9 +98,9 @@ const ProductDetails = () => {
   return (
     <div className="w-full p-6">
       <ToastContainer />
-      <div className="border-b pb-4 mb-6 flex justify-around relative">
-        <h3 className="heading_bg text-6xl pt-12">Product Details</h3>
-        <h2 className="title">Product Details</h2>
+      <div className="border-b pb-4 mb-6 flex flex-col lg:flex-row justify-around items-center lg:items-start relative">
+        <h3 className="heading_bg -top-9 lg:top-auto text-4xl lg:text-6xl pt-12">Product Details</h3>
+        <h2 className="text-3xl title">Product Details</h2>
         <label className="primary flex gap-3">
           Select Product :
           <Select
@@ -112,8 +112,8 @@ const ProductDetails = () => {
         </label>
       </div>
       {/* Product Details */}
-      <div className="flex gap-6">
-        <div className="w-1/2 flex gap-2 product_image h-fit">
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="lg:w-1/2 flex gap-2 product_image h-fit">
           {product?.variant.map((item, i) => (
             <div
               onClick={() => setvariantID(i)}
@@ -126,7 +126,7 @@ const ProductDetails = () => {
             </div>
           ))}
         </div>
-        <div className="w-1/2">
+        <div className="lg:w-1/2">
           <div>
             <h3 className="title mb-2 text-start capitalize">
               {product?.name}
@@ -254,7 +254,7 @@ const ProductDetails = () => {
           </div>
         ))}
         {/* Add Review */}
-        <div className="w-1/4">
+        <div className="md:w-1/2 xl:w-1/4">
           <p className="title mt-8 mb-3 text-start">Add Review</p>
           <p className="basic">Your Rating</p>
           <StarRating getRate={handelRate} />
@@ -284,7 +284,7 @@ const ProductDetails = () => {
               />
             </label>
           </div>
-          <button onClick={handelSubmitReview} className="btn btn-primary">
+          <button onClick={handelSubmitReview} className="btn py-3 px-8">
             Submit
           </button>
         </div>

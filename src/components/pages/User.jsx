@@ -98,7 +98,7 @@ const CustomerProfile = () => {
   return (
     <section className="w-full relative z-10 pt-12 flex justify-center items-center bg-slate-200">
       <h3 className="heading_bg pt-4 -z-10">Profile</h3>
-      <div className="w-1/2 h-fit productBox bg-slate-100 m-auto">
+      <div className="md:w-5/6 lg:w-3/5 xl:w-1/2 h-fit productBox bg-slate-100 m-auto">
         <ToastContainer />
         <div className="flex justify-between">
           <h2 className="text-lg text-secondary font-medium">Profile</h2>
@@ -160,7 +160,7 @@ const CustomerProfile = () => {
             }
           />
         </div>
-        <div className="py-4 px-6 w-full">
+        <div className="lg:py-4 lg:px-6 w-full">
           <div className="flex items-center mt-4">
             <MdEmail />
             <h3 className="px-2 w-full flex gap-2 items-center">
@@ -170,7 +170,7 @@ const CustomerProfile = () => {
               <input
                 placeholder="Enter your email address..."
                 value={enableEdit ? userUpdateData.email : user.email}
-                className={`userInput w-1/2 ${
+                className={`userInput w-3/5 lg:w-1/2 ${
                   enableEdit ? "outline-double" : "outline-none"
                 }`}
                 onChange={(e) =>

@@ -174,15 +174,6 @@ const AllProduct = () => {
               <button onClick={() => handelDetails(item)} className="detail_btn">
                   <TbListDetails className="detail_icon" />
                 </button>
-                {/* <Link 
-                  onClick={() => {
-                    dispatch(productID(item.shortID));
-                    document.cookie = `product_short=${item.shortID};`;
-                  }}
-                  to={`/productdetails/${item.slug}`}
-                className="detail_btn">
-                  <TbListDetails className="detail_icon" />
-                </Link> */}
                 <button onClick={handelEdit} className="edit_btn">
                   <FaEdit className="edit_icon" />
                 </button>
