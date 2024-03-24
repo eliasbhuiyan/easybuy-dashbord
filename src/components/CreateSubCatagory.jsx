@@ -18,11 +18,10 @@ const CreateSubCatagory = () => {
     const data = async () => {
       await CatagoryData(user?.auth)
         .then((res) => {
-          console.log(res);
           setAllCatagory(res.data.catagory);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          console.log("Unauthorized!");
         });
     };
     data();

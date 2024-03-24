@@ -18,8 +18,8 @@ const CustomerDetails = () => {
           setUserData(res.data.user);
           setLooding(false);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          console.log("Unauthorized!");
         })
         .finally(() => {
           setLooding(false);

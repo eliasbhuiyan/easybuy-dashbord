@@ -26,13 +26,17 @@ const UserList = (auth) => {
 };
 const FindUser = (auth, id) => {
   try {
-    const res = axios.post(`${import.meta.env.VITE_API_URL}auth/finduser`,{
-      id
-    }, {
-      headers: {
-        Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+    const res = axios.post(
+      `${import.meta.env.VITE_API_URL}auth/finduser`,
+      {
+        id,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      }
+    );
     return res;
   } catch (error) {
     return error;
@@ -54,7 +58,6 @@ const CatagoryData = (auth) => {
   }
 };
 const CatagorybyId = (auth, id) => {
-  console.log(auth, id);
   try {
     const res = axios.post(
       `${import.meta.env.VITE_API_URL}catagory/getcatagorybyid`,
@@ -88,7 +91,8 @@ const SubCatagoryData = (auth) => {
 const ProductData = () => {
   try {
     const res = axios.get(
-      `${import.meta.env.VITE_API_URL}product/getallproduct`);
+      `${import.meta.env.VITE_API_URL}product/getallproduct`
+    );
     return res;
   } catch (error) {
     return error;
@@ -97,9 +101,10 @@ const ProductData = () => {
 const FindOneProduct = (id) => {
   try {
     const res = axios.post(
-      `${import.meta.env.VITE_API_URL}product/findoneproduct`,{
+      `${import.meta.env.VITE_API_URL}product/findoneproduct`,
+      {
         id: id,
-      },
+      }
     );
     return res;
   } catch (error) {
@@ -115,5 +120,5 @@ export {
   ProductData,
   CatagorybyId,
   FindOneProduct,
-  FindUser
+  FindUser,
 };
