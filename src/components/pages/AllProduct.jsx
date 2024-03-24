@@ -19,15 +19,15 @@ const AllProduct = () => {
   const [looding, setLooding] = useState(true);
   const [productKey, setProductKey] = useState("");
   const [realtime, setRealtime] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const data = async () => {
       await ProductData(user?.auth)
         .then((res) => {
           setProduct(res.data.product);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          console.log("Unauthorized!");
         })
         .finally(() => {
           setLooding(false);
@@ -143,9 +143,7 @@ const AllProduct = () => {
           {product.map((item) => (
             <tr key={item._id}>
               <td>
-                <p
-                  
-                >
+                <p>
                   {item.shortID} - {item.name.substring(0, 20)}
                 </p>
               </td>
@@ -171,7 +169,10 @@ const AllProduct = () => {
                 </button>
               </td>
               <td className="flex items-center justify-evenly">
-              <button onClick={() => handelDetails(item)} className="detail_btn">
+                <button
+                  onClick={() => handelDetails(item)}
+                  className="detail_btn"
+                >
                   <TbListDetails className="detail_icon" />
                 </button>
                 <button onClick={handelEdit} className="edit_btn">

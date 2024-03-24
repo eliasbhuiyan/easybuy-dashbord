@@ -12,7 +12,6 @@ const Login = () => {
     email: "eliasbhuiyan21@gmail.com",
     password: "12345",
   });
-
   const handelLogin = () => {
     console.log(`${import.meta.env.VITE_API_URL}auth/login`);
     try {

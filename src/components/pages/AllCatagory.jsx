@@ -23,8 +23,8 @@ const AllCatagory = () => {
           setAllCatagory(res.data.catagory);
           setLooding(false);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          console.log("Unauthorized!");
         });
     };
     data();

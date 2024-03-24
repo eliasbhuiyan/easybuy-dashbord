@@ -19,29 +19,41 @@ const Dashbord = () => {
   });
   useEffect(() => {
     // Total User Data
-    UserList(user.auth).then((res) => {
-      setChartData((prevChartData) => ({
-        ...prevChartData,
-        customers: res.data.user.length,
-      }));
-    });
+    UserList(user.auth)
+      .then((res) => {
+        setChartData((prevChartData) => ({
+          ...prevChartData,
+          customers: res.data.user.length,
+        }));
+      })
+      .catch(() => {
+        console.log("Unauthorized!");
+      });
 
     // Total Catagory Data
-    CatagoryData(user.auth).then((res) => {
-      setChartData((prevChartData) => ({
-        ...prevChartData,
-        categories: res.data.catagory.length,
-      }));
-    });
+    CatagoryData(user.auth)
+      .then((res) => {
+        setChartData((prevChartData) => ({
+          ...prevChartData,
+          categories: res.data.catagory.length,
+        }));
+        setLooding(false);
+      })
+      .catch(() => {
+        console.log("Unauthorized!");
+      });
 
     // Total Product Data
-    ProductData().then((res) => {
-      setChartData((prevChartData) => ({
-        ...prevChartData,
-        products: res.data.product.length,
-      }));
-      setLooding(false);
-    });
+    ProductData()
+      .then((res) => {
+        setChartData((prevChartData) => ({
+          ...prevChartData,
+          products: res.data.product.length,
+        }));
+      })
+      .catch(() => {
+        console.log("Unauthorized!");
+      });
   }, []);
 
   if (looding) {
