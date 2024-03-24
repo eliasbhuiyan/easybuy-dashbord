@@ -9,8 +9,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
+    email: "eliasbhuiyan21@gmail.com",
+    password: "12345",
   });
 
   const handelLogin = () => {
