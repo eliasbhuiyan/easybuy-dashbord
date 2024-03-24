@@ -14,48 +14,49 @@ const Login = () => {
   });
 
   const handelLogin = () => {
+    console.log(`${import.meta.env.VITE_API_URL}auth/login`);
     try {
       axios
-      .post(`${import.meta.env.VITE_API_URL}auth/login`, {
-        email: loginData.email,
-        password: loginData.password,
-      })
-      .then((res) => {
-        let currentTime = new Date().getTime();
-        let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
-        let expires = expirationTime.toUTCString();
-        document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
-        dispatch(loggedUser(res.data.userObject));
-        if (
-          res.data?.userObject?.role == "admin" ||
-          res.data?.userObject?.role == "merchant"
-        ) {
-          toast.success(res?.data.message, {
+        .post(`${import.meta.env.VITE_API_URL}auth/login`, {
+          email: loginData.email,
+          password: loginData.password,
+        })
+        .then((res) => {
+          let currentTime = new Date().getTime();
+          let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
+          let expires = expirationTime.toUTCString();
+          document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
+          dispatch(loggedUser(res.data.userObject));
+          if (
+            res.data?.userObject?.role == "admin" ||
+            res.data?.userObject?.role == "merchant"
+          ) {
+            toast.success(res?.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              closeOnClick: true,
+              theme: "light",
+            });
+            setTimeout(() => {
+              navigate("/");
+            }, 1500);
+          } else {
+            toast.error("You are not authorized", {
+              position: "top-right",
+              autoClose: 5000,
+              closeOnClick: true,
+              theme: "light",
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.response?.data.error, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
             theme: "light",
           });
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
-        } else {
-          toast.error("You are not authorized", {
-            position: "top-right",
-            autoClose: 5000,
-            closeOnClick: true,
-            theme: "light",
-          });
-        }
-      })
-      .catch((err) => {
-        toast.error(err.response?.data.error, {
-          position: "top-right",
-          autoClose: 5000,
-          closeOnClick: true,
-          theme: "light",
         });
-      });
     } catch (error) {
       console.log("Faild to login!");
     }
