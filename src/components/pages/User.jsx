@@ -69,8 +69,8 @@ const CustomerProfile = () => {
         let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
         let expires = expirationTime.toUTCString();
         document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
-        dispatch(loggedUser(res.data.userObject));
-        toast.success(res.data.message, {
+        dispatch(loggedUser(res?.data.userObject));
+        toast.success(res?.data.message, {
           position: "top-right",
           autoClose: 5000,
           closeOnClick: true,
@@ -81,7 +81,7 @@ const CustomerProfile = () => {
         }, 1500);
       })
       .catch((err) => {
-        toast.error(err.response.data.error, {
+        toast.error(err.response?.data.error, {
           position: "top-right",
           autoClose: 5000,
           closeOnClick: true,

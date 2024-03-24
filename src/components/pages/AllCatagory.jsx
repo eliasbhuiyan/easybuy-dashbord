@@ -54,7 +54,6 @@ const AllCatagory = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.response.data.error, {
           position: "top-right",
           autoClose: 5000,

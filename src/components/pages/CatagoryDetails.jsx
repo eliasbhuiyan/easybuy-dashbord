@@ -31,7 +31,6 @@ const CatagoryDetails = () => {
     };
     data();
   }, []);
-  console.log(catagoryData);
 
   if (looding) {
     return <Loading />;
@@ -76,9 +75,7 @@ const CatagoryDetails = () => {
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
-                <p className="w-full">
-                 {item.description}
-                </p>
+                <p className="w-full">{item.description}</p>
               </AccordionItemPanel>
             </AccordionItem>
           ))}

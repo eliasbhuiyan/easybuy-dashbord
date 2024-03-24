@@ -26,6 +26,7 @@ import CustomerDetails from "./components/pages/CustomerDetails";
 import ProductDetils from "./components/pages/ProductDetails";
 import CatagoryDetails from "./components/pages/CatagoryDetails";
 import { useSelector } from "react-redux";
+import About from "./components/pages/About";
 
 function App() {
   const user = useSelector((state) => state.user_sec.user);
@@ -47,6 +48,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/otp/:userId" element={<OtpPage />} />
+        <Route path="/about-site" element={<About />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashbord />} />
           <Route path="/merchant" element={<Merchant />} />

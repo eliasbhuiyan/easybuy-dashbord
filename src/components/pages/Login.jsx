@@ -9,8 +9,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let [loginData, setLoginData] = useState({
-    email: "eliasbhuiyan21@gmail.com",
-    password: "12345",
+    email: "",
+    password: "",
   });
   const handelLogin = () => {
     console.log(`${import.meta.env.VITE_API_URL}auth/login`);
@@ -63,6 +63,12 @@ const Login = () => {
 
   return (
     <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
+      <Link
+        to="/about-site"
+        className="text-lg font-normal text-white inline-block btn absolute top-5 right-10"
+      >
+        About this site
+      </Link>
       <ToastContainer />
       <div className="container h-full relative flex items-center gap-9">
         <ThreeDanim />
