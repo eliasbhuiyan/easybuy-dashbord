@@ -5,6 +5,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { loggedUser } from "../../reducer/userSlice";
+import { FaUserSecret } from "react-icons/fa";
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +21,54 @@ const Login = () => {
         .post(`${import.meta.env.VITE_API_URL}auth/login`, {
           email: loginData.email,
           password: loginData.password,
+        })
+        .then((res) => {
+          let currentTime = new Date().getTime();
+          let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
+          let expires = expirationTime.toUTCString();
+          document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
+          dispatch(loggedUser(res.data.userObject));
+          if (
+            res.data?.userObject?.role == "admin" ||
+            res.data?.userObject?.role == "merchant"
+          ) {
+            toast.success(res?.data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              closeOnClick: true,
+              theme: "light",
+            });
+            setTimeout(() => {
+              navigate("/");
+            }, 1500);
+          } else {
+            toast.error("You are not authorized", {
+              position: "top-right",
+              autoClose: 5000,
+              closeOnClick: true,
+              theme: "light",
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.response?.data.error, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+        });
+    } catch (error) {
+      console.log("Faild to login!");
+    }
+  };
+  const handelGuest = () => {
+    console.log(`${import.meta.env.VITE_API_URL}auth/login`);
+    try {
+      axios
+        .post(`${import.meta.env.VITE_API_URL}auth/login`, {
+          email: "guestuser@gmail.com",
+          password: "12345",
         })
         .then((res) => {
           let currentTime = new Date().getTime();
@@ -104,6 +154,13 @@ const Login = () => {
           </Link>
           <button onClick={handelLogin} className="btn w-1/2 m-auto mt-4">
             Sign In
+          </button>
+          <button
+            onClick={handelGuest}
+            className="btn flex gap-3 items-center w-1/2 m-auto mt-4"
+          >
+            <FaUserSecret className="text-lg" />
+            Continue As Guest
           </button>
           <p className="mt-4 text-center">
             Don&apos;t have an account?{" "}
