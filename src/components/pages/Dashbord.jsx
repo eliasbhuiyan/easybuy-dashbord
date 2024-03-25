@@ -60,7 +60,7 @@ const Dashbord = () => {
     return <Loading />;
   }
   return (
-    <section className="p-10 w-full">
+    <section className="pt-28 md:pt-10 p-10 w-full">
       <div className="flex gap-6 flex-wrap">
         <DashbordCart
           title="Total Customers"

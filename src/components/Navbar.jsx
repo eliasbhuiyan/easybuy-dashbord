@@ -1,8 +1,7 @@
 import { FaChartPie, FaBox, FaSignOutAlt } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
-import { FaBarsStaggered } from "react-icons/fa6";
 import { RiListUnordered } from "react-icons/ri";
-import { FaUserSecret } from "react-icons/fa6";
+import { FaUserSecret, FaBarsStaggered } from "react-icons/fa6";
 
 import { Button, Menu } from "antd";
 import { useEffect, useState } from "react";
@@ -20,7 +19,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem("Dashbord", "sub1", <FaChartPie className="text-brand text-xl" />, [
+  getItem("Dashbord", "sub1", <FaChartPie className="navIcon" />, [
     getItem("Chart", "/"),
     getItem("Merchant", "merchant"),
     getItem("Chat", "chat"),
@@ -28,27 +27,27 @@ const items = [
   {
     type: "divider",
   },
-  getItem("Customer", "sub5", <FaUserSecret className="text-brand text-xl" />, [
+  getItem("Customer", "sub5", <FaUserSecret className="navIcon" />, [
     getItem("Customer List / Details", "customerlist"),
   ]),
   {
     type: "divider",
   },
-  getItem("Order", "sub4", <RiListUnordered className="text-brand text-xl" />, [
+  getItem("Order", "sub4", <RiListUnordered className="navIcon" />, [
     getItem("Order List", "orderlist"),
     getItem("Order Details", "orderdetails"),
   ]),
   {
     type: "divider",
   },
-  getItem("Catagory", "catagory", <BiCategoryAlt />, [
+  getItem("Catagory", "catagory", <BiCategoryAlt className="navIcon" />, [
     getItem("Create Catagory", "catagory"),
     getItem("All Catagory", "allcatagory"),
   ]),
   {
     type: "divider",
   },
-  getItem("Product", "sub3", <FaBox />, [
+  getItem("Product", "sub3", <FaBox className="navIcon" />, [
     getItem("Create Product", "product"),
     getItem("All Products", "allproduct"),
   ]),
@@ -87,72 +86,74 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        collapsed ? "w-fit" : "w-[300px]"
-      } flex flex-col py-5 z-50 h-screen bg-white sticky top-0 left-0 overflow-y-scroll overflow-x-visible`}
+        collapsed ? "w-full md:w-fit" : "w-full md:w-[300px]"
+      } sideNavbar justify-between md:justify-normal px-5 md:px-0 border-r-2 border-slate-400 rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl flex flex-wrap  md:flex-col pt-1.5 md:py-5 z-50 h-fit md:h-screen bg-brand fixed md:sticky top-0 left-0 overflow-y-scroll overflow-x-visible`}
     >
       <div
         className={
           collapsed
             ? "flex flex-col items-center justify-between pb-5 px-2"
-            : "flex items-center justify-between pb-5 px-2"
+            : "flex items-center justify-between pb-5 px-2 w-1/2 md:w-full"
         }
       >
-        <h2 className="text-xl font-bold text-slate-800">EasyBuy</h2>
-        {screenWidth > 768 && (
+        <div className="w-16">
+          <img className="w-full" src="/logo.png" alt="logo" />
+        </div>
+        {screenWidth > 767 && (
           <Button
-            type="primary"
+            className="text-white text-xl border-none"
             onClick={toggleCollapsed}
-            style={{
-              marginBottom: 16,
-              width: "fit-content",
-            }}
           >
-            <FaBarsStaggered className="text-brand text-xl" />
+            <FaBarsStaggered />
           </Button>
         )}
       </div>
       <Menu
         defaultSelectedKeys={["1"]}
         defaultOpenKeys={["sub1"]}
-        mode="inline"
+        mode={screenWidth > 767 ? "inline" : "horizontal"}
         theme="light"
         onClick={onClick}
         inlineCollapsed={collapsed}
         items={items}
-        style={{ fontSize: "20px" }}
+        style={{
+          background: "#42B42F",
+          margin: "0px",
+          padding: "0px",
+        }}
       />
 
-      <Link
-        to="/user"
-        className="mt-auto py-3 flex gap-4 items-center flex-wrap px-3 bg-primary"
-      >
-        {user?.avatar ? (
-          <img
-            src={user?.avatar}
-            alt="user"
-            className="w-10 h-10 rounded-full border"
-          />
-        ) : (
-          <div className="w-10 h-10 border rounded-full bg-secondary flex justify-center items-center text-white">
-            {concatenated}
-          </div>
-        )}
-        {!collapsed && (
-          <div>
-            <h2 className="text-xl font-bold text-white">{user.name}</h2>
-            <p className="text-brand capitalize">{user.role}</p>
-          </div>
-        )}
-      </Link>
-      <div>
-        <button
-          onClick={hendelSignOut}
-          className="w-full bg-primary text-white mt-2 py-3 flex gap-2 items-center focus:outline-none"
+      <div className="order-2 md:order-3 flex flex-row md:flex-col items-center md:mt-auto w-1/2 md:w-full">
+        <Link
+          to="/user"
+          className=" md:py-3 flex md:gap-4 items-center flex-wrap px-3 md:bg-primary w-full"
         >
-          <button />
-          <FaSignOutAlt />
-          <span> Logout</span>
-        </button>
+          {user?.avatar ? (
+            <img
+              src={user?.avatar}
+              alt="user"
+              className="w-10 h-10 rounded-full border"
+            />
+          ) : (
+            <div className="w-10 h-10 border rounded-full bg-secondary flex justify-center items-center text-white">
+              {concatenated}
+            </div>
+          )}
+          {!collapsed && (
+            <div>
+              <h2 className="text-xl font-bold text-white">{user.name}</h2>
+              <p className="text-brand capitalize">{user.role}</p>
+            </div>
+          )}
+        </Link>
+          <button
+            onClick={hendelSignOut}
+            className="w-full md:bg-primary text-white md:mt-2 md:py-3 flex gap-x-2 items-center focus:outline-none"
+          >
+            <button />
+            <FaSignOutAlt />
+            <span> Logout</span>
+          </button>
       </div>
     </div>
   );

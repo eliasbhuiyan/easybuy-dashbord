@@ -122,7 +122,7 @@
   }
 
   .inputField {
-    @apply w-full h-10 block bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 text-black font-semibold pl-7;
+    @apply w-full h-10 block text-base font-normal bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 text-black md:font-semibold pl-7;
   }
 
   .inputField:focus {
@@ -299,7 +299,29 @@
     .dashbordCart{
       @apply cursor-pointer border-8 border-white w-full md:w-[45%] lg:w-[30%] py-8 bg-[#F8F8F8] flex flex-col justify-center items-center gap-2 rounded-[30px] hover:shadow-[0_0_0px_5px_rgba(0,0,0,0.2)] transition-all shadow-[5px_8px_5px_rgba(0,0,0,0.1)];
     }
-  
-}
+  }
+  .sideNavbar .navIcon,
+  .sideNavbar .ant-menu-submenu-arrow{
+    color: white !important;
+    font-size: 20px !important;
+  }
+  .sideNavbar .ant-menu-title-content{
+    color: white !important;
+    font-size: 20px;
+  }
 
+  .sideNavbar::-webkit-scrollbar {
+    display: none
+   }
 
+   .sideNavbar .ant-menu-title-content{
+    @apply text-[0px] md:text-xl
+   }
+   .sideNavbar .ant-menu-submenu-horizontal{
+    @apply px-2 h-fit;
+    margin-top: -10px !important;
+   }
+   .sideNavbar .ant-menu-horizontal{
+    @apply justify-center order-3 inline-block
+    
+   }

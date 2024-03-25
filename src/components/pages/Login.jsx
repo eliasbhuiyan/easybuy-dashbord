@@ -112,10 +112,10 @@ const Login = () => {
   };
 
   return (
-    <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
+    <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover relative">
       <Link
         to="/about-site"
-        className="text-lg font-normal text-white inline-block btn absolute top-5 right-10"
+        className="text-lg font-normal text-white inline-block btn absolute top-5 right-10 z-50"
       >
         About this site
       </Link>
@@ -157,7 +157,7 @@ const Login = () => {
           </button>
           <button
             onClick={handelGuest}
-            className="btn flex gap-3 items-center w-1/2 m-auto mt-4"
+            className="btn flex gap-3 items-center justify-center w-1/2 m-auto mt-4"
           >
             <FaUserSecret className="text-lg" />
             Continue As Guest

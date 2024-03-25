@@ -95,9 +95,9 @@ const Merchant = () => {
     return <Loading />;
   }
   return (
-    <section className="p-6 w-5/6 lg:w-full productlist relative">
+    <section className="mt-28 md:mt-0 md:p-10 h-screen w-full productlist relative">
       {user.role !== "admin" && (
-        <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] z-50 flex justify-center items-center">
+        <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] z-40 flex justify-center items-center">
           <p className="text-3xl text-white"> Admin Access Only...</p>
         </div>
       )}
