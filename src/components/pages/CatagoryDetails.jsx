@@ -31,12 +31,12 @@ const CatagoryDetails = () => {
     };
     data();
   }, []);
-
+   console.log(catagoryData.subCatagory);
   if (looding) {
     return <Loading />;
   }
   return (
-    <section className="w-full py-5 flex flex-col items-center">
+    <section className="w-full mt-28 md:mt-0 md:p-10 flex flex-col items-center">
       <div className="productBox w-4/5 flex flex-col items-center gap-6 border border-slate-200">
         <ToastContainer />
         <h2 className="title">catagory Details</h2>

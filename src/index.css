@@ -297,7 +297,7 @@
     /* ================= Dashboard =============== */
 
     .dashbordCart{
-      @apply cursor-pointer border-8 border-white w-full md:w-[45%] lg:w-[30%] py-8 bg-[#F8F8F8] flex flex-col justify-center items-center gap-2 rounded-[30px] hover:shadow-[0_0_0px_5px_rgba(0,0,0,0.2)] transition-all shadow-[5px_8px_5px_rgba(0,0,0,0.1)];
+      @apply cursor-pointer border-8 border-white w-full sm:w-[45%] lg:w-[30%] py-8 bg-[#F8F8F8] flex flex-col justify-center items-center gap-2 rounded-[30px] hover:shadow-[0_0_0px_5px_rgba(0,0,0,0.2)] transition-all shadow-[5px_8px_5px_rgba(0,0,0,0.1)];
     }
   }
   .sideNavbar .navIcon,

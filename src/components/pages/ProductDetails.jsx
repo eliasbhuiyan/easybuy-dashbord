@@ -96,18 +96,18 @@ const ProductDetails = () => {
     return <Loading />;
   }
   return (
-    <div className="w-full mt-28 md:mt-0 md:p-10">
+    <div className="w-full mt-28 md:mt-0 p-10">
       <ToastContainer />
       <div className="border-b pb-4 mb-6 flex flex-col lg:flex-row justify-around items-center lg:items-start relative">
         <h3 className="heading_bg -top-9 lg:top-auto text-4xl lg:text-6xl pt-12">Product Details</h3>
         <h2 className="text-3xl title">Product Details</h2>
-        <label className="primary flex gap-3">
+        <label className="primary flex flex-col md:flex-row items-center md:gap-3">
           Select Product :
           <Select
             placeholder="Product ID"
             onChange={handleSelect}
             options={options}
-            className="block w-56"
+            className="w-56"
           />
         </label>
       </div>
