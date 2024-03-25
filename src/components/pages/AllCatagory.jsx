@@ -106,7 +106,7 @@ const AllCatagory = () => {
     return <Loading />;
   }
   return (
-    <section className="p-6 w-full productlist">
+    <section className="mt-28 md:mt-0 md:p-10 w-full productlist">
       {/* Product Header Part Start */}
       <Heading title="All Catagories" />
       {/* Product Body Part Start */}

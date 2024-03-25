@@ -93,7 +93,7 @@ const Navbar = () => {
         className={
           collapsed
             ? "flex flex-col items-center justify-between pb-5 px-2"
-            : "flex items-center justify-between pb-5 px-2 w-1/2 md:w-full"
+            : "flex items-center justify-between pb-5 px-2"
         }
       >
         <div className="w-16">
@@ -108,6 +108,7 @@ const Navbar = () => {
           </Button>
         )}
       </div>
+      <div className="order-3 md:order-2 w-full flex justify-center">
       <Menu
         defaultSelectedKeys={["1"]}
         defaultOpenKeys={["sub1"]}
@@ -122,8 +123,8 @@ const Navbar = () => {
           padding: "0px",
         }}
       />
-
-      <div className="order-2 md:order-3 flex flex-row md:flex-col items-center md:mt-auto w-1/2 md:w-full">
+      </div>
+      <div className="order-2 md:order-3 flex flex-row md:flex-col items-center md:mt-auto">
         <Link
           to="/user"
           className=" md:py-3 flex md:gap-4 items-center flex-wrap px-3 md:bg-primary w-full"

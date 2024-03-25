@@ -322,6 +322,6 @@
     margin-top: -10px !important;
    }
    .sideNavbar .ant-menu-horizontal{
-    @apply justify-center order-3 inline-block
-    
+    @apply justify-center w-fit
+
    }

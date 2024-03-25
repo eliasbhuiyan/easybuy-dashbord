@@ -96,7 +96,7 @@ const ProductDetails = () => {
     return <Loading />;
   }
   return (
-    <div className="w-full p-6">
+    <div className="w-full mt-28 md:mt-0 md:p-10">
       <ToastContainer />
       <div className="border-b pb-4 mb-6 flex flex-col lg:flex-row justify-around items-center lg:items-start relative">
         <h3 className="heading_bg -top-9 lg:top-auto text-4xl lg:text-6xl pt-12">Product Details</h3>

@@ -49,7 +49,7 @@ const CreateCatagory = () => {
       });
   };
   return (
-    <div className="productBox w-4/5 m-auto flex flex-col items-center gap-6 border border-slate-200">
+    <div className="mt-28 md:mt-0 md:p-10 productBox w-4/5 m-auto flex flex-col items-center gap-6 border border-slate-200">
       <ToastContainer />
       <h2 className="title">Create catagory</h2>
       <label className="primary w-full">

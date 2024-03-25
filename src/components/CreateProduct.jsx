@@ -103,7 +103,7 @@ const CreateProduct = () => {
     }
   };
   return (
-    <div className="bg-[#F5F5F5] p-6">
+    <div className="bg-[#F5F5F5] mt-28 md:mt-0 md:p-10">
       <div className="productBox">
         <h2 className="title">Create Product</h2>
         <label className="primary">

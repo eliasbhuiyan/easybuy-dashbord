@@ -43,7 +43,7 @@ const CustomerList = () => {
     return <Loading />;
   }
   return (
-    <div className="p-6 w-full productlist">
+    <div className="mt-28 md:mt-0 md:p-10 w-full productlist">
       <ToastContainer />
       <table className="w-full">
         <thead className="py-4 bg-secondary">
