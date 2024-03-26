@@ -310,9 +310,9 @@
     font-size: 20px;
   }
 
-  /* .sideNavbar::-webkit-scrollbar {
+  .sideNavbar::-webkit-scrollbar {
     display: none
-   } */
+   }
 
    .sideNavbar .ant-menu-title-content{
     @apply text-[0px] md:text-xl
