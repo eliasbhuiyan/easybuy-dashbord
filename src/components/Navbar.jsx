@@ -87,7 +87,7 @@ const Navbar = () => {
     <div
       className={`${
         collapsed ? "w-full md:w-fit" : "w-full md:w-[300px]"
-      } sideNavbar justify-between md:justify-normal px-5 md:px-0 border-r-2 border-slate-400 rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl flex flex-wrap  md:flex-col pt-1.5 md:py-5 z-50 h-fit md:h-screen bg-brand fixed md:sticky top-0 left-0 overflow-y-scroll overflow-x-visible`}
+      } sideNavbar justify-between md:justify-normal px-5 md:px-0 border-r-2 border-slate-400 rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl flex flex-wrap  md:flex-col pt-1.5 md:py-5 z-50 h-fit md:h-screen bg-brand fixed md:sticky top-0 left-0 md:overflow-y-scroll`}
     >
       <div
         className={
