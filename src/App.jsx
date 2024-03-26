@@ -27,7 +27,6 @@ import ProductDetils from "./components/pages/ProductDetails";
 import CatagoryDetails from "./components/pages/CatagoryDetails";
 import { useSelector } from "react-redux";
 import About from "./components/pages/About";
-import CustomerBillingPage from "./components/pages/BillPrint";
 
 function App() {
   const user = useSelector((state) => state.user_sec.user);
@@ -62,7 +61,6 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/allproduct" element={<AllProduct />} />
           <Route path="/productdetails/:slug" element={<ProductDetils />} />
-          <Route path="/billing" element={<CustomerBillingPage />} />
           <Route path="/user" element={<User />} />
         </Route>
         <Route path="*" element={<Error />} />
