@@ -3,9 +3,10 @@ import ThreeDanim from "../ThreeDanim";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { PropagateLoader } from "react-spinners";
 
 const Registration = () => {
-  // const [isLogin, setIsLogin] = useState(false);
+  const [loadingBtn, setLoadingBtn] = useState(false);
   let navigate = useNavigate();
   let [regData, setRegData] = useState({
     fullName: "",
@@ -16,6 +17,7 @@ const Registration = () => {
   });
 
   const handelReg = (e) => {
+    setLoadingBtn(true);
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_API_URL}auth/registration`, regData)
@@ -37,6 +39,7 @@ const Registration = () => {
           closeOnClick: true,
           theme: "light",
         });
+        setLoadingBtn(false);
       })
       .finally(() => {
         setRegData({
@@ -121,9 +124,18 @@ const Registration = () => {
             />
             <span className="placeholder">Password *</span>
           </label>
-          <button onClick={handelReg} className="btn w-1/2 m-auto mt-4">
-            Register
-          </button>
+
+          {loadingBtn ? (
+            <button className="btn w-1/2 m-auto mt-4">
+              <span className="block mb-5">
+                <PropagateLoader color="#fff" size={20} />
+              </span>
+            </button>
+          ) : (
+            <button onClick={handelReg} className="btn w-1/2 m-auto mt-4">
+              Register
+            </button>
+          )}
           <p className="mt-4 text-center">
             Already have an account?{" "}
             <Link to="/becomemerchant" className="text-brand">

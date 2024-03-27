@@ -3,13 +3,16 @@ import ThreeDanim from "../ThreeDanim";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { PropagateLoader } from "react-spinners";
 
 const BecomeMerchant = () => {
+  const [loadingBtn, setLoadingBtn] = useState(false);
   let [merchantData, setMerchantData] = useState({
     email: "",
     password: "",
   });
   const handelMerchant = (e) => {
+    setLoadingBtn(true);
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_API_URL}auth/merchant`, {
@@ -31,6 +34,7 @@ const BecomeMerchant = () => {
           closeOnClick: true,
           theme: "light",
         });
+        setLoadingBtn(false);
       })
       .finally(() => {
         setMerchantData({
@@ -77,9 +81,18 @@ const BecomeMerchant = () => {
             />
             <span className="placeholder">Password *</span>
           </label>
-          <button onClick={handelMerchant} className="btn w-1/2 m-auto mt-4">
-            Become Merchant
-          </button>
+
+          {loadingBtn ? (
+            <button className="btn w-1/2 m-auto mt-4">
+              <span className="block mb-5">
+                <PropagateLoader color="#fff" size={20} />
+              </span>
+            </button>
+          ) : (
+            <button onClick={handelMerchant} className="btn w-1/2 m-auto mt-4">
+              Become Merchant
+            </button>
+          )}
           <p className="mt-4 text-center">
             Already Merchant ?{" "}
             <Link to="/login" className="text-brand">

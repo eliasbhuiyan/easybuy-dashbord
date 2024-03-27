@@ -20,7 +20,7 @@
   }
 
   .btn {
-    @apply py-1 px-3 lg:py-3 lg:px-8 rounded-full uppercase text-white font-medium text-xs lg:text-sm lg:font-bold inline-block relative transition-all transform-gpu bg-brand;
+    @apply h-10 px-3 lg:py-3 lg:px-8 rounded-full uppercase text-white font-medium text-xs lg:text-sm lg:font-bold relative transition-all transform-gpu bg-brand;
   }
 
   .btn:hover {

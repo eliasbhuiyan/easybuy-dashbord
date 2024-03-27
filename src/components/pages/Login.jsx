@@ -6,16 +6,19 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { loggedUser } from "../../reducer/userSlice";
 import { FaUserSecret } from "react-icons/fa";
+import { PropagateLoader } from "react-spinners";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loadingBtn, setLoadingBtn] = useState(false);
+  const [loadingBtnGst, setLoadingBtnGst] = useState(false);
   let [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
   const handelLogin = () => {
-    console.log(`${import.meta.env.VITE_API_URL}auth/login`);
+    setLoadingBtn(true);
     try {
       axios
         .post(`${import.meta.env.VITE_API_URL}auth/login`, {
@@ -48,6 +51,7 @@ const Login = () => {
               closeOnClick: true,
               theme: "light",
             });
+            setLoadingBtn(false);
           }
         })
         .catch((err) => {
@@ -57,13 +61,14 @@ const Login = () => {
             closeOnClick: true,
             theme: "light",
           });
+          setLoadingBtn(false);
         });
     } catch (error) {
       console.log("Faild to login!");
     }
   };
   const handelGuest = () => {
-    console.log(`${import.meta.env.VITE_API_URL}auth/login`);
+    setLoadingBtnGst(true);
     try {
       axios
         .post(`${import.meta.env.VITE_API_URL}auth/login`, {
@@ -96,6 +101,7 @@ const Login = () => {
               closeOnClick: true,
               theme: "light",
             });
+            setLoadingBtnGst(false);
           }
         })
         .catch((err) => {
@@ -105,9 +111,11 @@ const Login = () => {
             closeOnClick: true,
             theme: "light",
           });
+          setLoadingBtnGst(false);
         });
     } catch (error) {
       console.log("Faild to login!");
+      setLoadingBtnGst(false);
     }
   };
 
@@ -152,16 +160,33 @@ const Login = () => {
           <Link to="/forgotpassword" className="text-brand ml-8">
             Forgot Password?
           </Link>
-          <button onClick={handelLogin} className="btn w-1/2 m-auto mt-4">
-            Sign In
-          </button>
-          <button
-            onClick={handelGuest}
-            className="btn flex gap-3 items-center justify-center w-1/2 m-auto mt-4"
-          >
-            <FaUserSecret className="text-lg" />
-            Continue As Guest
-          </button>
+          {loadingBtn ? (
+            <button className="btn w-1/2 m-auto mt-4">
+              <span className="block mb-5">
+                <PropagateLoader color="#fff" size={20} />
+              </span>
+            </button>
+          ) : (
+            <button onClick={handelLogin} className="btn w-1/2 m-auto mt-4">
+              Sign In
+            </button>
+          )}
+          {loadingBtnGst ? (
+            <button className="btn w-1/2 m-auto mt-4">
+              <span className="block mb-5">
+                <PropagateLoader color="#fff" size={20} />
+              </span>
+            </button>
+          ) : (
+            <button
+              onClick={handelGuest}
+              className="btn flex gap-3 items-center justify-center w-1/2 m-auto mt-4"
+            >
+              <FaUserSecret className="text-lg" />
+              Continue As Guest
+            </button>
+          )}
+
           <p className="mt-4 text-center">
             Don&apos;t have an account?{" "}
             <Link to="/registration" className="text-brand">
