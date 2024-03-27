@@ -2,13 +2,13 @@ import { useState } from "react";
 const Calculator = ({ className }) => {
   const [value, setValue] = useState("");
   return (
-    <div className={`absolute bottom-16 -right-8 transition-all  ${className}`}>
+    <div className={`absolute bottom-16 -right-8 transition-all w-[250px] lg:w-[350px] h-[350px] lg:h-[450px]  ${className}`}>
       <div className="calculator">
-        <form>
+        <div className="h-full">
           <div className="display">
             <input type="text" value={value} />
           </div>
-          <div>
+          <div className="h-[13%] mh mb-3 flex">
             <input type="button" value="AC" onClick={() => setValue("")} />
             <input
               type="button"
@@ -26,7 +26,7 @@ const Calculator = ({ className }) => {
               onClick={(e) => setValue(value + e.target.value)}
             />
           </div>
-          <div>
+          <div className="h-[13%] mh mb-3 flex">
             <input
               type="button"
               value="7"
@@ -48,7 +48,7 @@ const Calculator = ({ className }) => {
               onClick={(e) => setValue(value + e.target.value)}
             />
           </div>
-          <div>
+          <div className="h-[13%] mh mb-3 flex">
             <input
               type="button"
               value="4"
@@ -70,7 +70,7 @@ const Calculator = ({ className }) => {
               onClick={(e) => setValue(value + e.target.value)}
             />
           </div>
-          <div>
+          <div className="h-[13%] mh mb-3 flex">
             <input
               type="button"
               value="1"
@@ -92,7 +92,7 @@ const Calculator = ({ className }) => {
               onClick={(e) => setValue(value + e.target.value)}
             />
           </div>
-          <div>
+          <div className="h-[13%] mh mb-3 flex">
             <input
               type="button"
               value="00"
@@ -110,7 +110,7 @@ const Calculator = ({ className }) => {
               onClick={() => setValue(eval(value))}
             />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

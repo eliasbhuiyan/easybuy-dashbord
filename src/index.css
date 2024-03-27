@@ -156,11 +156,11 @@
   }
 
   .calculator {
-    @apply w-full p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
+    @apply w-full h-full p-5 rounded-s-xl flex items-center justify-center bg-[#ccc];
   }
 
   .calculator input {
-    @apply border-none outline-none w-16 h-16 text-lg bg-slate-500 m-1 rounded-xl text-white cursor-pointer;
+    @apply border-none outline-none w-[22%] h-full text-sm lg:text-lg bg-slate-500 m-1 rounded-xl text-white cursor-pointer;
   }
 
   .calculator input[type="button"]:hover {
@@ -168,15 +168,15 @@
   }
 
   .calculator .display {
-    @apply flex justify-end mt-1 mb-4;
+    @apply flex justify-end mt-1 mb-4 h-[15%] w-full;
   }
 
   .calculator .display input {
-    @apply text-right flex-1 text-4xl py-1 px-2 bg-secondary
+    @apply text-right flex-1 py-1 px-2 bg-secondary text-lg lg:text-2xl
   }
 
   .calculator input.equal {
-    @apply w-32
+    @apply w-1/2
   }
 
   /* ============================================ */
