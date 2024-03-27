@@ -7,7 +7,7 @@ import { FaRoad } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaUserSecret } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,7 +26,6 @@ const CustomerProfile = () => {
   const [userUpdateData, setUserUpdateData] = useState({
     fullName: user.name,
     phone: user.phone,
-    email: user.email,
     addressOne: user.address,
     addressTwo: user.addressTwo,
     zipCode: user.zipCode,
@@ -36,7 +35,7 @@ const CustomerProfile = () => {
     password: "",
     uid: user.auth,
   });
-console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
+  console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
   const handleClick = () => {
     axios
       .post(
@@ -45,7 +44,6 @@ console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
           fullName: userUpdateData.fullName,
           image,
           phone: userUpdateData.phone,
-          email: userUpdateData.email,
           addressOne: userUpdateData.addressOne,
           addressTwo: userUpdateData.addressTwo,
           zipCode: userUpdateData.zipCode,
@@ -140,7 +138,7 @@ console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
             />
           ) : (
             <div className="w-24 h-24 border rounded-full bg-secondary flex justify-center items-center text-white text-2xl">
-              User
+              <FaUserSecret />
             </div>
           )}
           <p className=" text-[#5b5f60] text-base font-semibold uppercase mt-3">
@@ -167,19 +165,7 @@ console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
               <span className="text-lg text-secondary font-semibold">
                 Email:
               </span>
-              <input
-                placeholder="Enter your email address..."
-                value={enableEdit ? userUpdateData.email : user.email}
-                className={`userInput w-3/5 lg:w-1/2 ${
-                  enableEdit ? "outline-double" : "outline-none"
-                }`}
-                onChange={(e) =>
-                  setUserUpdateData({
-                    ...userUpdateData,
-                    email: e.target.value,
-                  })
-                }
-              />
+              <span className={`userInput`}>{user.email}</span>
             </h3>
           </div>
           <div className="flex items-center mt-4">

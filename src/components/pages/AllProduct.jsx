@@ -76,7 +76,7 @@ const AllProduct = () => {
     if (data) {
       axios
         .post(
-          "http://localhost:8000/api/v1/product/deleteproduct",
+          `${import.meta.env.VITE_API_URL}product/deleteproduct`,
           {
             id: productKey,
           },

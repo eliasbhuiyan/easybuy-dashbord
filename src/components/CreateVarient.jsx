@@ -12,7 +12,7 @@ const CreateVarient = () => {
   const [allProduct, setAllProduct] = useState([]);
   const [color, setColor] = useState("");
   const [image, setImage] = useState();
-  const [originalPrice, setOriginalPrice ] = useState("");
+  const [originalPrice, setOriginalPrice] = useState("");
   const [sellingPrice, setSellingPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [size, setSize] = useState("");
@@ -45,13 +45,13 @@ const CreateVarient = () => {
   const [file, setFile] = useState(null);
   const handleChange = async (files) => {
     setImage(files[0]);
-    setFile(URL.createObjectURL(file[0]));
+    setFile(URL.createObjectURL(files[0]));
   };
   // Create Varient Part
   const hendelCreate = () => {
     axios
       .post(
-        `${import.meta.env.VITE_API_URL}/product/createvariant`,
+        `${import.meta.env.VITE_API_URL}product/createvariant`,
         {
           color,
           image,

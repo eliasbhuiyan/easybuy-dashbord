@@ -23,7 +23,6 @@ const CustomerProfile = ({ user }) => {
   const [userUpdateData, setUserUpdateData] = useState({
     fullName: userData.fullName,
     phone: userData.phone,
-    email: userData.email,
     addressOne: userData.addressOne,
     addressTwo: userData.addressTwo,
     zipCode: userData.zipCode,
@@ -40,26 +39,29 @@ const CustomerProfile = ({ user }) => {
 
   const handleClick = () => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/updateuser`, {
-        fullName: userUpdateData.fullName,
-        phone: userUpdateData.phone,
-        email: userUpdateData.email,
-        addressOne: userUpdateData.addressOne,
-        addressTwo: userUpdateData.addressTwo,
-        zipCode: userUpdateData.zipCode,
-        city: userUpdateData.city,
-        country: userUpdateData.country,
-        state: userUpdateData.state,
-        password: userUpdateData.password,
-        uid: user._id,
-      },{
-        headers: {
-          Authorization: `Bearer user@${user._id}@${
-            import.meta.env.VITE_SWTSECRT
-          }`,
-          "Content-Type": "multipart/form-data",
+      .post(
+        `${import.meta.env.VITE_API_URL}auth/updateuser`,
+        {
+          fullName: userUpdateData.fullName,
+          phone: userUpdateData.phone,
+          addressOne: userUpdateData.addressOne,
+          addressTwo: userUpdateData.addressTwo,
+          zipCode: userUpdateData.zipCode,
+          city: userUpdateData.city,
+          country: userUpdateData.country,
+          state: userUpdateData.state,
+          password: userUpdateData.password,
+          uid: user._id,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer user@${user._id}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message, {
           position: "top-right",
@@ -134,16 +136,7 @@ const CustomerProfile = ({ user }) => {
           <MdEmail />
           <h3 className="px-2 flex gap-2 items-center">
             <span className="text-lg text-secondary font-semibold">Email:</span>
-            <input
-              placeholder="Enter your email address..."
-              value={enableEdit ? userUpdateData.email : userData.email}
-              className={`userInput ${
-                enableEdit ? "outline-double" : "outline-none"
-              }`}
-              onChange={(e) =>
-                setUserUpdateData({ ...userUpdateData, email: e.target.value })
-              }
-            />
+            <span className={`userInput`}>{userData.email}</span>
           </h3>
         </div>
         <div className="flex items-center mt-4 text-gray-700">
@@ -341,28 +334,28 @@ const CustomerProfile = ({ user }) => {
           </h3>
         </div>
         {enableEdit && (
-            <div className="flex justify-center">
-              <div className="flex items-center mt-8 w-fit px-4 py-3 border shadow">
-                <RiLockPasswordFill />
-                <h3 className="px-2 w-full flex gap-2 items-center">
-                  <span className="text-lg text-secondary font-semibold">
-                    Password :
-                  </span>
-                  <input
-                    placeholder="Enter your password"
-                    type="password"
-                    className="userInput outline-double"
-                    onChange={(e) =>
-                      setUserUpdateData((prev) => ({
-                        ...prev,
-                        password: e.target.value,
-                      }))
-                    }
-                  />
-                </h3>
-              </div>
+          <div className="flex justify-center">
+            <div className="flex items-center mt-8 w-fit px-4 py-3 border shadow">
+              <RiLockPasswordFill />
+              <h3 className="px-2 w-full flex gap-2 items-center">
+                <span className="text-lg text-secondary font-semibold">
+                  Password :
+                </span>
+                <input
+                  placeholder="Enter your password"
+                  type="password"
+                  className="userInput outline-double"
+                  onChange={(e) =>
+                    setUserUpdateData((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }))
+                  }
+                />
+              </h3>
             </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );

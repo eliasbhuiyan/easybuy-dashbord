@@ -177,7 +177,10 @@ const CreateProduct = () => {
           <img src={file} className="shadow-2xl" />
         </div>
 
-        <button onClick={hendelCreate} className="btn m-auto block px-5 py-3 lg:px-8">
+        <button
+          onClick={hendelCreate}
+          className="btn m-auto block px-5 py-3 lg:px-8"
+        >
           Create Product
         </button>
       </div>
