@@ -14,7 +14,7 @@ const Layout = () => {
         <Navbar />
         <Outlet />
       </div>
-      <div className="calculator_btn">
+      <div className="calculator_btn z-50">
         <FaCalculator onClick={() => setShow(!show)} className="inline-block" />
         <Calculator className={show ? "calculator_show" : "calculator_hide"} />
       </div>

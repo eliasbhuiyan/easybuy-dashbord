@@ -33,7 +33,6 @@ const CatagoryDetails = () => {
     };
     data();
   }, []);
-  console.log(catagoryData.subCatagory);
   if (looding) {
     return <Loading />;
   }

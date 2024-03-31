@@ -35,7 +35,6 @@ const CustomerProfile = () => {
     password: "",
     uid: user.auth,
   });
-  console.log(`${import.meta.env.VITE_API_URL}auth/updateuser`);
   const handleClick = () => {
     axios
       .post(
