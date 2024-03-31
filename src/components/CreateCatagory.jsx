@@ -52,24 +52,22 @@ const CreateCatagory = () => {
     <div className="mt-28 md:mt-0 md:p-10 productBox w-4/5 m-auto flex flex-col items-center gap-6 border border-slate-200">
       <ToastContainer />
       <h2 className="title">Create catagory</h2>
-      <label className="primary w-full">
-        Catagory Name *
-        <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Catagory Name"
-          className="input w-full"
-        />
-      </label>
-      <label className="primary pt-8 inline-block w-full">
+      <label className="basic w-full">Catagory Name *</label>
+      <Input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Catagory Name"
+        className="input w-full text-lg"
+      />
+      <label className="basic pt-8 inline-block w-full">
         Catagory Description *
-        <Editor
-          editorState={editorState}
-          wrapperClassName="demo-wrapper input w-full rounded-lg"
-          editorClassName="demo-editor"
-          onEditorStateChange={(value) => setEditorState(value)}
-        />
       </label>
+      <Editor
+        editorState={editorState}
+        wrapperClassName="demo-wrapper input w-full rounded-lg"
+        editorClassName="demo-editor"
+        onEditorStateChange={(value) => setEditorState(value)}
+      />
       <button onClick={handelSubmit} className="btn w-fit px-5 py-3 lg:px-8">
         Create
       </button>

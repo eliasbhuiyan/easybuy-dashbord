@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import StarRating from "../StarRating";
 import { ToastContainer, toast } from "react-toastify";
 import { FindOneProduct, ProductData } from "../../api";
+import HtmltoText from "../HtmltoText";
 const ProductDetails = () => {
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
@@ -22,28 +23,28 @@ const ProductDetails = () => {
   });
   useEffect(() => {
     // Fetch Data
-    const data = async  () => {
+    const data = async () => {
       await FindOneProduct(searchParams.get("pid"))
-      .then((res) => {
-        setProduct(res.data.product);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    }
-    data()
+        .then((res) => {
+          setProduct(res.data.product);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+    data();
   }, []);
   // All Product
   useEffect(() => {
-    const data = async ()=>{
+    const data = async () => {
       await ProductData().then((res) => {
         setAllProduct(res.data.product);
       });
-    }
-    data()
+    };
+    data();
   }, []);
   // Product Selection Part
   const options = [];
@@ -95,11 +96,14 @@ const ProductDetails = () => {
   if (loading) {
     return <Loading />;
   }
+
   return (
     <div className="w-full mt-28 md:mt-0 p-10">
       <ToastContainer />
       <div className="border-b pb-4 mb-6 flex flex-col lg:flex-row justify-around items-center lg:items-start relative">
-        <h3 className="heading_bg -top-9 lg:top-auto text-4xl lg:text-6xl pt-12">Product Details</h3>
+        <h3 className="heading_bg -top-9 lg:top-auto text-4xl lg:text-6xl pt-12">
+          Product Details
+        </h3>
         <h2 className="text-3xl title">Product Details</h2>
         <label className="primary flex flex-col md:flex-row items-center md:gap-3">
           Select Product :
@@ -235,7 +239,7 @@ const ProductDetails = () => {
       </div>
       <div className="my-8">
         <p className="title text-start mb-2">Product Details:</p>
-        <p className="basic">{product?.description}</p>
+        <HtmltoText htmlContent={product?.description} />
       </div>
       {/* Customer Review */}
       <div className="my-4">
@@ -245,9 +249,11 @@ const ProductDetails = () => {
             <div className="flex gap-2 items-center pb-2">
               <p className="basic">{item?.userId?.fullName}</p>
               <ul className="flex gap-1 text-orange-400">
-                <li>
-                  <FaStar className="text-yellow-500" />
-                </li>
+                {[...Array(item.rating).keys()].map((item) => (
+                  <li key={item}>
+                    <FaStar className="text-yellow-500" />
+                  </li>
+                ))}
               </ul>
             </div>
             <p className=" font-sans text-secondary">{item?.comment}</p>

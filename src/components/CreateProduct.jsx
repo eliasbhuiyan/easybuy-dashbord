@@ -106,50 +106,47 @@ const CreateProduct = () => {
     <div className="bg-[#F5F5F5] mt-28 md:mt-0 md:p-10">
       <div className="productBox">
         <h2 className="title">Create Product</h2>
-        <label className="primary">
-          Product Name *
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Product Name"
-            className="input"
-          />
-        </label>
+        <label className="basic">Product Name *</label>
+        <Input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Product Name"
+          className="input mt-2 text-lg"
+        />
 
-        <label className="primary pt-8 inline-block">
-          Product Description *
+        <label className="pt-8 inline-block">
+          <span className="basic">Product Description *</span>
           <Editor
             editorState={editorState}
-            wrapperClassName="demo-wrapper input w-full rounded-lg"
+            wrapperClassName="demo-wrapper input w-full rounded-lg mt-2"
             editorClassName="demo-editor"
             onEditorStateChange={(value) => setEditorState(value)}
           />
         </label>
-
         <div className="flex gap-4 flex-col md:flex-row justify-between w-full lg:w-4/5 my-8">
-          <label className="primary w-full lg:w-2/5">
-            Product Slug *
+          <label className="w-full lg:w-2/5">
+            <span className="basic">Product Slug *</span>
             <Input
               value={pslug}
               onChange={(e) => setpSlug(e.target.value)}
               placeholder="Product Slug"
-              className="input w-full"
+              className="input w-full mt-2 text-lg"
             />
           </label>
-          <label className="primary w-full lg:w-2/5">
-            Select SubCatagory *
+          <label className="w-full lg:w-2/5">
+            <span className="basic">Select SubCatagory *</span>
             <Select
               placeholder="Select Product"
               onChange={handleSelect}
               options={options}
-              className="block"
+              className="block mt-2 text-lg"
             />
           </label>
         </div>
 
         <div className="flex gap-4 flex-col lg:flex-row justify-between w-full lg:w-4/5">
-          <label className="primary mb-4 inline-block w-full lg:w-2/5">
-            Upload Image *
+          <label className="mb-4 inline-block w-full lg:w-2/5">
+            <span className="basic inline-block mb-2">Upload Image *</span>
             <FileUploader
               multiple={true}
               handleChange={handleChange}
@@ -157,13 +154,13 @@ const CreateProduct = () => {
               types={fileTypes}
             />
           </label>
-          <label className="primary w-full lg:w-2/5">
-            Image Alt *
+          <label className="w-full lg:w-2/5">
+            <span className="basic">Image Alt *</span>
             <Input
               value={imageAlt}
               onChange={(e) => setImageAlt(e.target.value)}
               placeholder="Image Alt"
-              className="input"
+              className="input mt-2"
             />
           </label>
         </div>

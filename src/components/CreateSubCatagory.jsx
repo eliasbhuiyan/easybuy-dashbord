@@ -77,33 +77,29 @@ const CreateSubCatagory = () => {
   return (
     <div className="productBox w-4/5 m-auto mt-6 flex flex-col items-center gap-6 border border-slate-200">
       <h2 className="title">Create sub catagory</h2>
-      <label className="primary w-full">
-        Sub Catagory Name *
-        <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Sub Catagory Name"
-          className="input w-full"
-        />
-      </label>
-      <label className="primary pt-8 inline-block w-full">
+      <label className="basic w-full">Sub Catagory Name *</label>
+      <Input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Sub Catagory Name"
+        className="input w-full text-lg"
+      />
+      <label className="basic pt-8 inline-block w-full">
         SubCatagory Description *
-        <Editor
-          editorState={editorState}
-          wrapperClassName="demo-wrapper input w-full rounded-lg"
-          editorClassName="demo-editor"
-          onEditorStateChange={(value) => setEditorState(value)}
-        />
       </label>
-      <label className="primary w-full">
-        Select Catagory *
-        <Select
-          placeholder="Select Product"
-          onChange={handleSelect}
-          options={options}
-          className="border-none block"
-        />
-      </label>
+      <Editor
+        editorState={editorState}
+        wrapperClassName="demo-wrapper input w-full rounded-lg"
+        editorClassName="demo-editor"
+        onEditorStateChange={(value) => setEditorState(value)}
+      />
+      <label className="basic w-full">Select Catagory *</label>
+      <Select
+        placeholder="Select Product"
+        onChange={handleSelect}
+        options={options}
+        className="border-none w-full"
+      />
       <button onClick={handelSubmit} className="btn w-fit px-5 py-3 lg:px-8">
         Create
       </button>

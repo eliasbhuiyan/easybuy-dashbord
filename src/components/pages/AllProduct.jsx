@@ -11,6 +11,7 @@ import Heading from "../Heading";
 import { useSelector } from "react-redux";
 import { ProductData } from "../../api";
 import { useNavigate } from "react-router-dom";
+import HtmltoText from "../HtmltoText";
 
 const AllProduct = () => {
   const user = useSelector((state) => state.user_sec.user);
@@ -147,7 +148,10 @@ const AllProduct = () => {
                   {item.shortID} - {item.name.substring(0, 20)}
                 </p>
               </td>
-              <td>{item.description.substring(0, 20)}...</td>
+              <td>
+                {<HtmltoText htmlContent={item.description.substring(0, 15)} />}
+                ...
+              </td>
               <td>
                 <img
                   className="w-16 h-16 m-auto border"

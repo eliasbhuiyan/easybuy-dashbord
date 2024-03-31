@@ -93,7 +93,7 @@ const CreateVarient = () => {
       <div className="productBox">
         <h2 className="title">Create Varient</h2>
         <div className="flex gap-5 flex-col md:flex-row justify-around my-8">
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Color Varient
             <input
               onChange={(e) => setColor(e.target.value)}
@@ -103,7 +103,7 @@ const CreateVarient = () => {
             />
           </label>
 
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Quantity Varient
             <input
               onChange={(e) => setQuantity(e.target.value)}
@@ -114,7 +114,7 @@ const CreateVarient = () => {
           </label>
         </div>
         <div className="flex gap-5 flex-col md:flex-row justify-around mb-8">
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Size Varient
             <input
               onChange={(e) => setSize(e.target.value)}
@@ -124,7 +124,7 @@ const CreateVarient = () => {
             />
           </label>
 
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Storage Varient
             <input
               onChange={(e) => setStorage(e.target.value)}
@@ -135,7 +135,7 @@ const CreateVarient = () => {
           </label>
         </div>
         <div className="flex gap-5 flex-col md:flex-row justify-around">
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Original Price
             <input
               onChange={(e) => setOriginalPrice(e.target.value)}
@@ -144,7 +144,7 @@ const CreateVarient = () => {
               className="inputField"
             />
           </label>
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Selling Price
             <input
               onChange={(e) => setSellingPrice(e.target.value)}
@@ -155,19 +155,19 @@ const CreateVarient = () => {
           </label>
         </div>
         <div className="w-full mb-5 flex flex-col md:flex-row justify-center mt-4">
-          <label className="primary w-full md:w-2/5">
+          <label className="basic w-full md:w-2/5">
             Select Product *
             <Select
               placeholder="Select Product"
               onChange={handleSelect}
               options={options}
-              className="block"
+              className="block mt-2"
             />
           </label>
         </div>
         <div className="flex gap-5 flex-col items-center">
-          <label className="primary pb-4 inline-block">
-            Upload Image *
+          <label className="basic pb-4 inline-block">
+            <span className="mb-2 inline-block">Upload Image *</span>
             <FileUploader
               multiple={true}
               handleChange={handleChange}
