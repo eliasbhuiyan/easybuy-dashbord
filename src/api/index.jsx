@@ -42,13 +42,15 @@ const FindUser = (auth, id) => {
     return error;
   }
 };
-const CatagoryData = (auth) => {
+const CatagoryData = () => {
   try {
     const res = axios.get(
       `${import.meta.env.VITE_API_URL}catagory/getallcatagory`,
       {
         headers: {
-          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+          Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
         },
       }
     );
@@ -91,7 +93,14 @@ const SubCatagoryData = (auth) => {
 const ProductData = () => {
   try {
     const res = axios.get(
-      `${import.meta.env.VITE_API_URL}product/getallproduct`
+      `${import.meta.env.VITE_API_URL}product/getallproduct`,
+      {
+        headers: {
+          Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      }
     );
     return res;
   } catch (error) {
