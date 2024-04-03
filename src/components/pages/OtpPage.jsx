@@ -6,7 +6,6 @@ const OtpPage = () => {
   let navigate = useNavigate();
   const { userId } = useParams();
   const [inputs, setInputs] = useState(["", "", "", ""]);
-  console.log(inputs.join(""));
   const handleChange = (index, value) => {
     const newInputs = [...inputs];
     newInputs[index] = value;
@@ -41,6 +40,44 @@ const OtpPage = () => {
         });
       });
   };
+  const handelResendOtp = () => {
+    axios
+      .post(
+        `${import.meta.env.VITE_API_URL}auth/resendotp`,
+        {
+          userId: userId.slice(1),
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+        toast.info(res.data.info, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      });
+  };
   return (
     <section className="h-screen w-full flex justify-center items-center">
       <ToastContainer />
@@ -51,36 +88,6 @@ const OtpPage = () => {
         <p className="basic text-center">
           We have sent a verification code to your email
         </p>
-        {/* <div className="box mt-3">
-        <input
-          value={otpData.otp[0] || ""}
-          onChange={(e) => handleOtpChange(0, e.target.value)}
-          className="otp_input"
-          type="password"
-          maxLength="1"
-        />
-        <input
-          value={otpData.otp[1] || ""}
-          onChange={(e) => handleOtpChange(1, e.target.value)}
-          className="otp_input"
-          type="password"
-          maxLength="1"
-        />
-        <input
-          value={otpData.otp[2] || ""}
-          onChange={(e) => handleOtpChange(2, e.target.value)}
-          className="otp_input"
-          type="password"
-          maxLength="1"
-        />
-        <input
-          value={otpData.otp[3] || ""}
-          onChange={(e) => handleOtpChange(3, e.target.value)}
-          className="otp_input"
-          type="password"
-          maxLength="1"
-        />
-      </div> */}
         <div className="flex">
           {inputs.map((inputValue, index) => (
             <input
@@ -94,15 +101,24 @@ const OtpPage = () => {
             />
           ))}
         </div>
+        <div className="flex gap-3 mt-auto mb-2 font-dm font-normal text-secondary text-base">
+          <p>Didn&apos;t receive the code?</p>
+          <button
+            onClick={handelResendOtp}
+            className="underline text-slate-600"
+          >
+            Resend OTP
+          </button>
+        </div>
         <button
           onClick={handelSubmit}
-          className="shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] w-5/6 py-3 rounded-xl basic mt-auto"
+          className="shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] w-5/6 py-3 rounded-xl basic mb-5"
         >
           Submit
         </button>
         <Link
-          to="/registration"
-          className="shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] w-5/6 py-3 rounded-xl basic text-center mt-5"
+          to="/signup"
+          className="shadow-[1px_1px_3px_#b5b5b5,-1px_-1px_3px_#ffffff] w-5/6 py-3 rounded-xl basic text-center"
         >
           Back
         </Link>
