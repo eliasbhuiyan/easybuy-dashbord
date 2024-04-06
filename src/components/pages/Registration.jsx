@@ -20,7 +20,14 @@ const Registration = () => {
     setLoadingBtn(true);
     e.preventDefault();
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/registration`, regData)
+      .post(`${import.meta.env.VITE_API_URL}auth/registration`, regData,
+      {
+        headers: {
+          Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         toast.success(res.data.success, {
           position: "top-right",
