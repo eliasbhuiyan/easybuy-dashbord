@@ -81,6 +81,13 @@ const Login = () => {
         .post(`${import.meta.env.VITE_API_URL}auth/login`, {
           email: "guestuser@gmail.com",
           password: "12345",
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
         })
         .then((res) => {
           let currentTime = new Date().getTime();
