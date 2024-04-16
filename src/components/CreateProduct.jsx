@@ -49,13 +49,14 @@ const CreateProduct = () => {
   };
   // Product Creation Part
   const user = useSelector((state) => state.user_sec.user);
-  const hendelCreate = async () => {
+  const hendelCreate = async (e) => {
+    e.preventDefault()
     try {
       await axios
         .post(
           `${import.meta.env.VITE_API_URL}product/createproduct`,
           {
-            name: name,
+             name,
             image,
             description: draftToHtml(
               convertToRaw(editorState.getCurrentContent())
@@ -104,7 +105,7 @@ const CreateProduct = () => {
   };
   return (
     <div className="bg-[#F5F5F5] mt-28 md:mt-0 md:p-10">
-      <div className="productBox">
+      <form className="productBox">
         <h2 className="title">Create Product</h2>
         <label className="basic">Product Name *</label>
         <Input
@@ -180,7 +181,7 @@ const CreateProduct = () => {
         >
           Create Product
         </button>
-      </div>
+      </form>
       <ToastContainer />
     </div>
   );

@@ -328,3 +328,26 @@
 
 
    /* =================  */
+   @media print {
+    .sideNavbar {
+      display: none;
+    }
+    .logo{
+      width: 80px;
+    }
+    .productBox{
+      padding: 0;
+      width: 100%;
+    }
+    .invoiceInput,
+    .print,
+    .close{
+      display: none;
+    }
+    .productlist thead{
+    @apply border
+    }
+    .productlist td{
+    @apply border
+    }
+}

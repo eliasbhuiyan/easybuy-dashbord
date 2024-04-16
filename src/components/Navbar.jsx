@@ -54,6 +54,10 @@ const items = [
   {
     type: "divider",
   },
+  getItem("Accounts", "sub6", <FaBox className="navIcon" />, [
+    getItem("Invoice", "invoice"),
+    getItem("Invoice List", "invoicelist"),
+  ]),
 ];
 const Navbar = () => {
   const user = useSelector((state) => state.user_sec.user);
