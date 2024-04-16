@@ -44,11 +44,6 @@ const Invoice = () => {
     }));
   };
 
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    window.print();
-  };
-
   return (
     <div className="bg-[#F5F5F5] w-full p-10">
       <div className="productBox flex flex-col gap-10 invoice-container">
@@ -62,7 +57,7 @@ const Invoice = () => {
           onDeleteItem={handleDeleteItem}
         />
         <InvoiceTotals invoiceData={invoiceData} />
-        <button onClick={generatePDF} className="print btn w-fit m-auto">
+        <button onClick={window.print()} className="print btn w-fit m-auto">
           Print PDF
         </button>
       </div>
