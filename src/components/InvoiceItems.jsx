@@ -15,7 +15,15 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
 
   const handleSubmitNewItem = (event) => {
     event.preventDefault();
-    onAddItem(newItem);
+    if (!newItem.name) {
+      console.log("Name required");
+    } else if (!newItem.quantity) {
+      console.log("Quantity required");
+    } else if (!newItem.unitCost) {
+      console.log("UnitCost required");
+    } else {
+      onAddItem(newItem);
+    }
   };
 
   return (
@@ -57,6 +65,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
             type="text"
             id="newItemName"
             name="name"
+            required
             value={newItem.name}
             onChange={handleNewItemChange}
           />
@@ -74,6 +83,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
         <div className="flex gap-3 mb-1">
           <label htmlFor="newItemUnitCost">Unit Cost:</label>
           <input
+            required
             type="number"
             id="newItemUnitCost"
             name="unitCost"
@@ -84,6 +94,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
         <div className="flex gap-3 mb-1">
           <label htmlFor="newItemQuantity">Quantity:</label>
           <input
+            required
             type="number"
             id="newItemQuantity"
             name="quantity"

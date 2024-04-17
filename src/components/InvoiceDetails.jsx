@@ -32,7 +32,7 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               type="text"
               id="customerName"
               name="name"
-              //   value={invoiceData.customer.name}
+              value={invoiceData.customer.name}
               onChange={onInputChange}
             />
           </div>
@@ -43,7 +43,7 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               type="text"
               id="customerAddress"
               name="address"
-              //   value={invoiceData.customer.address}
+              value={invoiceData.customer.address}
               onChange={onInputChange}
             />
           </div>
@@ -54,7 +54,7 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               type="number"
               id="customerPhone"
               name="phone"
-              //   value={invoiceData.customer.email}
+              value={invoiceData.customer.phone}
               onChange={onInputChange}
             />
           </div>

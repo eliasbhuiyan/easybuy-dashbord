@@ -1,17 +1,18 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import InvoiceTotals from "../InvoiceTotals";
 import InvoiceDetails from "../InvoiceDetails";
 import InvoiceItems from "../InvoiceItems";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Invoice = () => {
-  const buttonRef = useRef(null);
   const [invoiceData, setInvoiceData] = useState({
     date: new Date().toLocaleDateString(),
     customer: {
-      invoiceId: "00123",
+      invoiceId: `eb${Math.floor(1000 + Math.random() * 9000)}`,
       name: "",
       address: "",
-      email: "",
+      phone: "",
     },
     items: [],
     totals: {},
@@ -53,11 +54,43 @@ const Invoice = () => {
     }));
   };
   const handelPrint = () => {
-    window.print();
+    axios
+      .post(`${import.meta.env.VITE_API_URL}product/createinvoice`, {
+        invoiceData,
+      })
+      .then((res) => {
+        window.print();
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+        setInvoiceData({
+          date: new Date().toLocaleDateString(),
+          customer: {
+            invoiceId: `eb${Math.floor(1000 + Math.random() * 9000)}`,
+            name: "",
+            address: "",
+            phone: "",
+          },
+          items: [],
+          totals: {},
+        });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
+      });
   };
 
   return (
     <div className="bg-[#F5F5F5] w-full p-10">
+      <ToastContainer />
       <div className="productBox flex flex-col gap-10 invoice-container">
         <InvoiceDetails
           invoiceData={invoiceData}
@@ -72,18 +105,7 @@ const Invoice = () => {
           invoiceData={invoiceData}
           onPaidAmount={handelAmountMargin}
         />
-        {/* <button
-          onClick={handelPrint}
-          onKeyDown={handleKeyPress}
-          className="print btn w-fit m-auto"
-        >
-          Print PDF
-        </button> */}
-        <button
-          autoFocus
-          onClick={handelPrint}
-          className="print btn w-fit m-auto"
-        >
+        <button onClick={handelPrint} className="print btn w-fit m-auto">
           Print PDF
         </button>
       </div>
