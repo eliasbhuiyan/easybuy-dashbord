@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const InvoiceTotals = ({ invoiceData }) => {
+const InvoiceTotals = ({ invoiceData, onPaidAmount }) => {
   const [amountPaid, setAmountPaid] = useState(0);
   const subTotal = invoiceData.items.reduce(
     (total, item) => total + item.unitCost * item.quantity,
@@ -12,6 +12,14 @@ const InvoiceTotals = ({ invoiceData }) => {
     setAmountPaid(parseFloat(event.target.value));
   };
   const balanceDue = total - amountPaid;
+  useEffect(() => {
+    onPaidAmount({
+      total: total,
+      paid: amountPaid,
+      balanceDue: isNaN(balanceDue) ? total : balanceDue < 0 ? 0 : balanceDue,
+      returnAmount: balanceDue < 0 ? amountPaid - total : 0,
+    });
+  }, [amountPaid, total]);
   return (
     <div className="border py--5 rounded-lg flex justify-between">
       <div className="w-1/2 flex justify-center items-center">
@@ -58,7 +66,11 @@ const InvoiceTotals = ({ invoiceData }) => {
         <div className="border-b border-l pr-3 basic text-end">
           <span className="border-r p-2 inline-block pr-6">Balance Due:</span>
           <span className=" w-1/4 text-center inline-block">
-            {isNaN(balanceDue) ? total.toFixed(2) : balanceDue.toFixed(2)}
+            {isNaN(balanceDue)
+              ? total.toFixed(2)
+              : balanceDue < 0
+              ? (0).toFixed(2)
+              : balanceDue.toFixed(2)}
           </span>
         </div>
         <div className="border-b border-l pr-3 basic text-end">

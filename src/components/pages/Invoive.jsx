@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InvoiceTotals from "../InvoiceTotals";
-import jsPDF from "jspdf";
 import InvoiceDetails from "../InvoiceDetails";
 import InvoiceItems from "../InvoiceItems";
 
 const Invoice = () => {
+  const buttonRef = useRef(null);
   const [invoiceData, setInvoiceData] = useState({
     date: new Date().toLocaleDateString(),
     customer: {
@@ -14,6 +14,7 @@ const Invoice = () => {
       email: "",
     },
     items: [],
+    totals: {},
   });
 
   const handleInputChange = (event) => {
@@ -25,16 +26,24 @@ const Invoice = () => {
         [name]: value,
       },
     }));
-    console.log(invoiceData);
   };
 
   const handleAddItem = (newItem) => {
-    console.log(newItem);
     setInvoiceData((prevData) => ({
       ...prevData,
       items: [...prevData.items, newItem],
     }));
-    console.log(invoiceData);
+  };
+  const handelAmountMargin = (amount) => {
+    setInvoiceData((prevData) => ({
+      ...prevData,
+      totals: {
+        total: amount.total,
+        paid: amount.paid,
+        balanceDue: amount.balanceDue,
+        returnAmount: amount.returnAmount,
+      },
+    }));
   };
 
   const handleDeleteItem = (index) => {
@@ -42,6 +51,9 @@ const Invoice = () => {
       ...prevData,
       items: prevData.items.filter((_, i) => i !== index),
     }));
+  };
+  const handelPrint = () => {
+    window.print();
   };
 
   return (
@@ -56,9 +68,20 @@ const Invoice = () => {
           onAddItem={handleAddItem}
           onDeleteItem={handleDeleteItem}
         />
-        <InvoiceTotals invoiceData={invoiceData} />
+        <InvoiceTotals
+          invoiceData={invoiceData}
+          onPaidAmount={handelAmountMargin}
+        />
+        {/* <button
+          onClick={handelPrint}
+          onKeyDown={handleKeyPress}
+          className="print btn w-fit m-auto"
+        >
+          Print PDF
+        </button> */}
         <button
-          onClick={() => window.print()}
+          autoFocus
+          onClick={handelPrint}
           className="print btn w-fit m-auto"
         >
           Print PDF

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
   const [newItem, setNewItem] = useState({
@@ -11,14 +11,11 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
   const handleNewItemChange = (event) => {
     const { name, value } = event.target;
     setNewItem((prevItem) => ({ ...prevItem, [name]: value }));
-    console.log(newItem);
   };
 
   const handleSubmitNewItem = (event) => {
-    console.log(newItem);
     event.preventDefault();
     onAddItem(newItem);
-    // setNewItem({ name: "", description: "", unitCost: "", quantity: "" });
   };
 
   return (
@@ -54,7 +51,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
         </tbody>
       </table>
       <form onSubmit={handleSubmitNewItem} className="pt-10 basic invoiceInput">
-        <div>
+        <div className="flex gap-3 mb-1">
           <label htmlFor="newItemName">Name:</label>
           <input
             type="text"
@@ -64,7 +61,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
             onChange={handleNewItemChange}
           />
         </div>
-        <div>
+        <div className="flex gap-3 mb-1">
           <label htmlFor="newItemDescription">Details:</label>
           <input
             type="text"
@@ -74,7 +71,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
             onChange={handleNewItemChange}
           />
         </div>
-        <div>
+        <div className="flex gap-3 mb-1">
           <label htmlFor="newItemUnitCost">Unit Cost:</label>
           <input
             type="number"
@@ -84,7 +81,7 @@ const InvoiceItems = ({ invoiceData, onAddItem, onDeleteItem }) => {
             onChange={handleNewItemChange}
           />
         </div>
-        <div>
+        <div className="flex gap-3 mb-1">
           <label htmlFor="newItemQuantity">Quantity:</label>
           <input
             type="number"

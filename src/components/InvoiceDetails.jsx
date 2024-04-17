@@ -4,7 +4,7 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
       <h2 className="title border-b pb-4">Invoice</h2>
       <div className="flex justify-between px-10">
         <div>
-          <div className="basic">
+          <div className="basic flex gap-3">
             <label htmlFor="invoiceId">Invoice ID:</label>
             <input
               type="text"
@@ -14,7 +14,7 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               onChange={onInputChange}
             />
           </div>
-          <div className="basic pb-3">
+          <div className="basic flex gap-3 pb-3">
             <label htmlFor="date">Date:</label>
             <input
               type="text"
@@ -24,10 +24,11 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               disabled
             />
           </div>
-          <div className="basic">
-            <h3 className="pb-2">Customer</h3>
+          <h3 className="pb-2 basic">Customer</h3>
+          <div className="basic flex gap-3">
             <label htmlFor="customerName">Name:</label>
             <input
+              className="w-full"
               type="text"
               id="customerName"
               name="name"
@@ -35,9 +36,10 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               onChange={onInputChange}
             />
           </div>
-          <div className="basic">
+          <div className="basic flex gap-3">
             <label htmlFor="customerAddress">Address:</label>
             <input
+              className="w-full"
               type="text"
               id="customerAddress"
               name="address"
@@ -45,12 +47,13 @@ const InvoiceDetails = ({ invoiceData, onInputChange }) => {
               onChange={onInputChange}
             />
           </div>
-          <div className="basic">
-            <label htmlFor="customerEmail">Email:</label>
+          <div className="basic flex gap-3">
+            <label htmlFor="customerPhone">Phone:</label>
             <input
-              type="email"
-              id="customerEmail"
-              name="email"
+              className="w-full"
+              type="number"
+              id="customerPhone"
+              name="phone"
               //   value={invoiceData.customer.email}
               onChange={onInputChange}
             />
