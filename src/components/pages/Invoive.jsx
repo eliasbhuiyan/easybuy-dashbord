@@ -57,7 +57,10 @@ const Invoice = () => {
           onDeleteItem={handleDeleteItem}
         />
         <InvoiceTotals invoiceData={invoiceData} />
-        <button onClick={window.print()} className="print btn w-fit m-auto">
+        <button
+          onClick={() => window.print()}
+          className="print btn w-fit m-auto"
+        >
           Print PDF
         </button>
       </div>
