@@ -113,6 +113,28 @@ const FindOneProduct = (id) => {
       `${import.meta.env.VITE_API_URL}product/findoneproduct`,
       {
         id: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+const InvoiceData = (auth) => {
+  try {
+    const res = axios.get(
+      `${import.meta.env.VITE_API_URL}product/invoicelist`,
+      {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
       }
     );
     return res;
@@ -130,4 +152,5 @@ export {
   CatagorybyId,
   FindOneProduct,
   FindUser,
+  InvoiceData,
 };

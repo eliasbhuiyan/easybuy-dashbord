@@ -28,6 +28,7 @@ import CatagoryDetails from "./components/pages/CatagoryDetails";
 import { useSelector } from "react-redux";
 import About from "./components/pages/About";
 import Invoice from "./components/pages/Invoive";
+import InvoiceList from "./components/pages/InvoiceList";
 
 function App() {
   const user = useSelector((state) => state.user_sec.user);
@@ -64,6 +65,7 @@ function App() {
           <Route path="/productdetails/:slug" element={<ProductDetils />} />
           <Route path="/user" element={<User />} />
           <Route path="/invoice" element={<Invoice />} />
+          <Route path="/invoicelist" element={<InvoiceList />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>
