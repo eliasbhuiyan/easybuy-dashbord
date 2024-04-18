@@ -4,7 +4,7 @@ import { MdSell } from "react-icons/md";
 import DashbordCart from "../DashbordCart";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { CatagoryData, ProductData, UserList } from "../../api";
+import { CatagoryData, OrderListData, ProductData, UserList } from "../../api";
 import Loading from "../Loading";
 const Dashbord = () => {
   const [looding, setLooding] = useState(true);
@@ -14,8 +14,8 @@ const Dashbord = () => {
     products: "",
     orders: "",
     categories: "",
-    sell: "",
-    visitors: "",
+    sell: "0",
+    visitors: "10",
   });
   useEffect(() => {
     // Total User Data
@@ -54,8 +54,14 @@ const Dashbord = () => {
       .catch(() => {
         console.log("Unauthorized!");
       });
-  }, []);
 
+    OrderListData(user?.auth).then((res) => {
+      setChartData((prevChartData) => ({
+        ...prevChartData,
+        orders: res.data.length,
+      }));
+    });
+  }, []);
   if (looding) {
     return <Loading />;
   }
@@ -75,18 +81,22 @@ const Dashbord = () => {
         <DashbordCart
           title="Total Orders"
           icon={<FaShoppingCart />}
-          value={10}
+          value={chartData.orders}
         />
         <DashbordCart
           title="Total Categories"
           icon={<BiCategoryAlt />}
           value={chartData.categories}
         />
-        <DashbordCart title="Total Sell" icon={<MdSell />} value={10} />
+        <DashbordCart
+          title="Total Sell"
+          icon={<MdSell />}
+          value={chartData.sell}
+        />
         <DashbordCart
           title="Total Visitors"
           icon={<BiSolidHappyHeartEyes />}
-          value={10}
+          value={chartData.visitors}
         />
       </div>
     </section>

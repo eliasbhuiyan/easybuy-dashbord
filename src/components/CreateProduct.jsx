@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { SubCatagoryData } from "../api";
 
 const CreateProduct = () => {
+  const user = useSelector((state) => state.user_sec.user);
   const fileTypes = ["JPEG", "PNG", "JPG", "PDF"];
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
@@ -48,15 +49,15 @@ const CreateProduct = () => {
     setSubCatagoryId(value);
   };
   // Product Creation Part
-  const user = useSelector((state) => state.user_sec.user);
+
   const hendelCreate = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       await axios
         .post(
           `${import.meta.env.VITE_API_URL}product/createproduct`,
           {
-             name,
+            name,
             image,
             description: draftToHtml(
               convertToRaw(editorState.getCurrentContent())

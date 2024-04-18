@@ -29,6 +29,8 @@ import { useSelector } from "react-redux";
 import About from "./components/pages/About";
 import Invoice from "./components/pages/Invoive";
 import InvoiceList from "./components/pages/InvoiceList";
+import OrderList from "./components/pages/OrderList";
+import OrderDetails from "./components/pages/OrderDetails";
 
 function App() {
   const user = useSelector((state) => state.user_sec.user);
@@ -66,6 +68,8 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/invoice" element={<Invoice />} />
           <Route path="/invoicelist" element={<InvoiceList />} />
+          <Route path="/orderlist" element={<OrderList />} />
+          <Route path="/orderdetails" element={<OrderDetails />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>

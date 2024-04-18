@@ -113,20 +113,20 @@ const Navbar = () => {
         )}
       </div>
       <div className="order-3 md:order-2 w-full flex justify-center">
-      <Menu
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        mode={screenWidth > 767 ? "inline" : "horizontal"}
-        theme="light"
-        onClick={onClick}
-        inlineCollapsed={collapsed}
-        items={items}
-        style={{
-          background: "#42B42F",
-          margin: "0px",
-          padding: "0px",
-        }}
-      />
+        <Menu
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["sub1"]}
+          mode={screenWidth > 767 ? "inline" : "horizontal"}
+          theme="light"
+          onClick={onClick}
+          inlineCollapsed={collapsed}
+          items={items}
+          style={{
+            background: "#42B42F",
+            margin: "0px",
+            padding: "0px",
+          }}
+        />
       </div>
       <div className="order-2 md:order-3 flex flex-row md:flex-col items-center md:mt-auto">
         <Link
@@ -151,14 +151,14 @@ const Navbar = () => {
             </div>
           )}
         </Link>
-          <button
-            onClick={hendelSignOut}
-            className="w-full md:bg-primary text-white md:mt-2 md:py-3 flex gap-x-2 items-center focus:outline-none"
-          >
-            <button />
-            <FaSignOutAlt />
-            <span> Logout</span>
-          </button>
+        <button
+          onClick={hendelSignOut}
+          className="w-full md:bg-primary text-white md:mt-2 md:py-3 flex gap-x-2 items-center focus:outline-none"
+        >
+          <button />
+          <FaSignOutAlt />
+          <span> Logout</span>
+        </button>
       </div>
     </div>
   );

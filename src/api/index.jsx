@@ -142,6 +142,18 @@ const InvoiceData = (auth) => {
     return error;
   }
 };
+const OrderListData = (auth) => {
+  try {
+    const res = axios.get(`${import.meta.env.VITE_API_URL}product/orderlist`, {
+      headers: {
+        Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
 export {
   AllMerchant,
@@ -153,4 +165,5 @@ export {
   FindOneProduct,
   FindUser,
   InvoiceData,
+  OrderListData,
 };
