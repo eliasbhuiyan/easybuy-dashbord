@@ -4,8 +4,10 @@ import InvoiceDetails from "../InvoiceDetails";
 import InvoiceItems from "../InvoiceItems";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Invoice = () => {
+  const user = useSelector((state) => state.user_sec.user);
   const [invoiceData, setInvoiceData] = useState({
     date: new Date().toLocaleDateString(),
     customer: {
@@ -55,9 +57,19 @@ const Invoice = () => {
   };
   const handelPrint = () => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}product/createinvoice`, {
-        invoiceData,
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}product/createinvoice`,
+        {
+          invoiceData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${user?.auth}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
+        }
+      )
       .then((res) => {
         window.print();
         toast.success(res.data.message, {
