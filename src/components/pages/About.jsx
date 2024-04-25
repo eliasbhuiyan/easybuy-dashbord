@@ -8,11 +8,10 @@ const About = () => {
         <div className="container">
           <h1 className="title text-2xl lg:text-3xl">
             &quot;Welcome to <span className="text-brand">EasyBuy</span>{" "}
-            Interactive multivendor E-commerce Dashbord!&quot;
+            Interactive E-commerce Dashbord!&quot;
           </h1>
           <p className="basic text-lg text-center">
-            Learn about our platform designed for practicing e-commerce and
-            exploring multivendor setups.{" "}
+            Learn about our platform designed for practicing e-commerce setups.{" "}
             <span className="block">
               Purpose: Understand that this website is for demonstration and
               practice purposes.
@@ -129,11 +128,11 @@ const About = () => {
                   </span>
                 </p>
               </li>
-              <li className="flex gap-2">
-                <p>
-                  <span>Merchant Requests:</span>
+              <li>
+                <p className="flex gap-2">
+                  <span>Invoice:</span>
                   <span className="font-normal">
-                    Review and approve merchant requests to join the platform.
+                   Create Invoice manually, View and print customer invoices.
                   </span>
                 </p>
               </li>

@@ -47,7 +47,7 @@ const BecomeMerchant = () => {
     <section className="h-screen bg-slate-100 bg-[url('../../bg.png')] bg-no-repeat bg-center bg-cover">
       <Link
         to="/about-site"
-        className="text-lg font-normal text-white inline-block btn fixed top-5 right-10 z-50"
+        className="btn fixed top-5 right-10 z-50"
       >
         About this site
       </Link>
